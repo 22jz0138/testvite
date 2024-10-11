@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from "../../common/header/Header";
 import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
-import styles from "./Main.module.css";
+import styles from "./Mainteam.module.css";
 import useSetSidebar from '../../../hooks/useSetSidebar';
 
-export default function Main() {
+export default function Mainteam() {
 
   const {checkbool,toggleSidebar} = useSetSidebar();
 
