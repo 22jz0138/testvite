@@ -1,11 +1,11 @@
 import './App.css';
-import Mainteam from './components/pages/mainteam/Mainteam';
+import MainTeam from './components/pages/mainteam/Mainteam';
 
 function App() {
 
   return (
     <>
-      <Mainteam/>
+      <MainTeam/>
     </>
   )
 }
