@@ -9,7 +9,7 @@ return (
         <aside>
             <ul className={`${styles.list} ${checkbool ? '' : styles.close}`}>
                 <li>
-                    {checkbool?'チーム一覧': <FontAwesomeIcon icon={faPeopleGroup} size='l'/> }
+                    {checkbool?'チーム一覧': <FontAwesomeIcon icon={faPeopleGroup} /> }
                 </li>
                 <li>
                     {checkbool?'来場者': <FontAwesomeIcon icon={faPersonShelter}/>}
@@ -23,7 +23,6 @@ return (
                 <li>
                     {checkbool?'会場':<FontAwesomeIcon icon={faPersonChalkboard}/>}
                 </li>
-
             </ul>
         </aside>
     </>
