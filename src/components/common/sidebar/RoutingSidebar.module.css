@@ -7,11 +7,14 @@
     justify-content: space-around;
     align-items: center;
     border-right: 1px solid #555;
+    transition: width 0.3s ease;
+}
+.list.close{
+    width: 80px;
 }
 .list li{
     padding: 10px;
-    /* width: 80%; */
     text-align: center;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
 }
