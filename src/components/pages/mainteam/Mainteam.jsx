@@ -1,21 +1,16 @@
 import React from 'react';
-import Header from "../../common/header/Header";
-import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
+import MergeToHandS from '../../composition/fixity/MergeToHandS';
 import styles from "./Mainteam.module.css";
-import useSetSidebar from '../../../hooks/useSetSidebar';
 
-export default function Mainteam() {
 
-  const {checkbool,toggleSidebar} = useSetSidebar();
+export default function MainTeam() {
+
+console.log("ここはチーム一覧");
+
 
   return (
     <>
-        <Header toggleSidebar={toggleSidebar}/>
-        <div className={styles.flex}>
-          <RoutingSidebar checkbool={checkbool}/>
-
-        </div>
-
+      <MergeToHandS/>
     </>
   )
 }
