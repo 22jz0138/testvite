@@ -1,7 +1,7 @@
 import React from 'react'
 import MergeToHandS from '../../composition/fixity/MergeToHandS'
 
-const Reception = () => {
+const ReceptionPage = () => {
     console.log("ここは受付");
   return (
     <>
@@ -10,4 +10,4 @@ const Reception = () => {
   )
 }
 
-export default Reception
+export default ReceptionPage

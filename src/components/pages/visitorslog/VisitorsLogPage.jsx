@@ -1,7 +1,7 @@
 import React from 'react'
 import MergeToHandS from '../../composition/fixity/MergeToHandS'
 
-const VisitorsLog = () => {
+const VisitorsLogPage = () => {
   console.log("ここは来場者");
   return (
     <>
@@ -11,4 +11,4 @@ const VisitorsLog = () => {
   )
 }
 
-export default VisitorsLog
+export default VisitorsLogPage

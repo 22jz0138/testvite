@@ -1,7 +1,7 @@
 import React from 'react'
 import MergeToHandS from '../../composition/fixity/MergeToHandS'
 
-const Questionnaire = () => {
+const QuestionnairePage = () => {
     console.log("ここはアンケート");
   return (
     <>
@@ -10,4 +10,4 @@ const Questionnaire = () => {
   )
 }
 
-export default Questionnaire
+export default QuestionnairePage
