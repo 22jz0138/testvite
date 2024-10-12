@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 export default function useSetSidebar() {
 
-    const [checkbool,serCheckbool] = useState(true);
+    const [checkbool,setCheckbool] = useState(true);
 
     const toggleSidebar = () => {
-      serCheckbool (prevState => !prevState)
+      setCheckbool (prevState => !prevState)
     }
   return {checkbool,toggleSidebar}
 }
