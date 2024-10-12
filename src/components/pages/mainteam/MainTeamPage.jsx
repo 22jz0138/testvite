@@ -1,9 +1,9 @@
 import React from 'react';
 import MergeToHandS from '../../composition/fixity/MergeToHandS';
-import styles from "./Mainteam.module.css";
+import styles from "./MainTeamPage.module.css";
 
 
-export default function MainTeam() {
+export default function MainTeamPage() {
 
 console.log("ここはチーム一覧");
 
