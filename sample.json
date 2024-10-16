@@ -1,0 +1,7 @@
+{
+    "entries": [
+      { "id": 1, "name": "山田 太郎", "affiliation": "営業部", "email": "taro@example.com" },
+      { "id": 2, "name": "鈴木 花子", "affiliation": "人事部", "email": "hanako@example.com" }
+    ]
+  }
+  
