@@ -5,12 +5,13 @@ import styles from "./MainTeamPage.module.css";
 
 export default function MainTeamPage() {
 
-console.log("ここはチーム一覧");
+// console.log("ここはチーム一覧");
 
 
   return (
     <>
       <MergeToHandS/>
+      <h1>こんにちは</h1>
     </>
   )
 }
