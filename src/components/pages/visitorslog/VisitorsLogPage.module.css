@@ -1,0 +1,8 @@
+.flex{
+    max-height: calc(100% - 70px);
+    width: 100%;
+    display: flex;
+  }
+.visior{
+    height: 100%;
+}
