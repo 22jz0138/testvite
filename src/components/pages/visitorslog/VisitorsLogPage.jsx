@@ -13,10 +13,7 @@ const VisitorsLogPage = () => {
   <Header toggleSidebar={toggleSidebar}/>
   <div className={styles.flex}>
     <RoutingSidebar checkbool={checkbool}/>
-
-
     <Visitor className={styles.Visitor}/>
-
   </div>
 
 </>
