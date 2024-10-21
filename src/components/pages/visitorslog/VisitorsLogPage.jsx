@@ -4,13 +4,15 @@ import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
 import useSetSidebar from '../../../hooks/useSetSidebar';
 import Visitor from '../../common/visitor/Visitor';
 import styles from "./VisitorsLogPage.module.css"
+import useSetUrlPath from '../../../hooks/useSetUrlPath';
 
 const VisitorsLogPage = () => {
+  // const location = useLocation();
   const {checkbool,toggleSidebar} = useSetSidebar();
-  console.log("ここは来場者");
+  const mypath = useSetUrlPath();
   return (
   <>
-  <Header toggleSidebar={toggleSidebar}/>
+  <Header toggleSidebar={toggleSidebar} path={mypath}/>
   <div className={styles.flex}>
     <RoutingSidebar checkbool={checkbool}/>
     <Visitor className={styles.Visitor}/>

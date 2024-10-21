@@ -3,13 +3,15 @@ import Header from "../../common/header/Header";
 import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
 import useSetSidebar from '../../../hooks/useSetSidebar';
 import styles from './QuestionnairePage.module.css'
+import useSetUrlPath from '../../../hooks/useSetUrlPath';
+
 
 const QuestionnairePage = () => {
   const {checkbool,toggleSidebar} = useSetSidebar();
-    console.log("ここはアンケート");
+  const mypath = useSetUrlPath();
   return (
-    <>
-      <Header toggleSidebar={toggleSidebar}/>
+  <>
+  <Header toggleSidebar={toggleSidebar} path={mypath}/>
       <div className={styles.flex}>
         <RoutingSidebar checkbool={checkbool}/>
       </div>
