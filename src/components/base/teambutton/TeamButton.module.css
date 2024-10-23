@@ -1,0 +1,28 @@
+/* TeamButton.module.css */
+.teamButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .teamButtonPrimary {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .teamButtonPrimary:hover {
+    background-color: #2980b9;
+  }
+  
+  .teamButtonSecondary {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .teamButtonSecondary:hover {
+    background-color: #c0392b;
+  }
+  
