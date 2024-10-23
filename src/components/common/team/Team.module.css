@@ -1,22 +1,54 @@
-.teamArea{
+/* カード型表示 */
+
+.teamCardArea{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    max-height: 90vh;
+    max-height: 80vh;
     justify-content: space-around;
     overflow: scroll;
 }
 .cardItem{
-    margin: 10px;
     padding: 20px;
     width: calc((100% - 60px) / 4);
     border-radius: 5px;
     box-shadow: 4px 4px 4px -4px;
 }
-.teamimgArea{
+.teamImgCardArea{
     margin: 5px;
 }
-.teamimgArea img{
+.teamImgCardArea img{
     border-radius: 5px;
+}
+/* リスト表示 */
+.teamAreaList{
+    width: 80vw;
+    max-height: 80vh;
+    overflow: scroll;
+    display: block;
+}
+.listItem{
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+.listItem *{
+    width:calc((100% -100px) / 4);
+}
+.teamImgListArea{
+    margin: 5px;
+}
+
+.teamImgListArea img{
+    width: 100px;
+    height: 100px;
+}
+
+.visualSet{
+    height: 10%;
 }

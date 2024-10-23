@@ -18,11 +18,19 @@
   }
   
   .teamButtonSecondary {
-    background-color: #e74c3c;
+    background-color: #b3b3b3;
     color: white;
   }
   
   .teamButtonSecondary:hover {
-    background-color: #c0392b;
+    background-color: #7d7b7b;
   }
   
+  /* 非アクティブの時 */
+  .inactive {
+    background-color: gray; /* 非アクティブなときの背景色 */
+  }
+  
+  .teamButton:hover {
+    opacity: 0.8;
+  }

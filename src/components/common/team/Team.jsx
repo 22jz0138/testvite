@@ -1,20 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Team.module.css'
 import sampleteam from '../../../../smpleteam.json'
 import catjpg from '../../../assets/images.jpg'
 import TeamButton from '../../base/teambutton/TeamButton'
 
 export const Team = () => {
+  const [isStyle,setIsStyle] = useState(true);
   const data = sampleteam;
+  const setCardView = () => {
+    setIsStyle(true); // カード表示に変更
+    console.log("card");
+  };
+
+  // リスト表示に切り替える関数
+  const setListView = () => {
+    setIsStyle(false); // リスト表示に変更
+    console.log("list");
+  };
   return (
     <>
-      <div>
-        <TeamButton initialVisualType="primary" label="Toggle Button"/>
+    <div>
+      <div className={styles.visualSet}>
+        {/* リスト表示に切り替えるボタン */}
+        <TeamButton 
+        visualType={isStyle ? 'secondary' : 'primary'}
+        label="リスト表示" 
+        onClick={setListView} 
+        isInactive={isStyle}
+        />
+        {/* カード表示に切り替えるボタン */}
+        <TeamButton 
+         visualType={isStyle ? 'primary' : 'secondary'} 
+        label="カード表示"
+        onClick={setCardView}
+        isInactive={isStyle} 
+        />
+        
       </div>
-        <div className={styles.teamArea}>
+        <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
           {data.map((team) => (
-              <div key={team.id} className={styles.cardItem}>
-                <div className={styles.teamimgArea}>
+              <div key={team.id + "s"} className={isStyle ? styles.cardItem : styles.listItem}>
+                <div className={isStyle ? styles.teamImgCardArea : styles.teamImgListArea}>
                   <img src={catjpg} alt="口を開けた猫" />
                 </div>
                 <h2>{team.name}</h2>
@@ -29,6 +55,7 @@ export const Team = () => {
               </div>
           ))}
         </div>
+    </div>
     </>
   )
 }
