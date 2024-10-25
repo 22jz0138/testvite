@@ -11,6 +11,7 @@ const useSetUrlPath = () => {
         team: 'チーム一覧',
         reception: '受付',
         question: 'アンケート',
+        student:'学生一覧'
     };
 
     // パスが指定されていれば対応する名称を取得、そうでなければパスそのまま

@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import QuestionnairePage from './components/pages/questionnaire/QuestionnairePage';
 import ReceptionPage from './components/pages/reception/ReceptionPage';
 import VisitorsLogPage from './components/pages/visitorslog/VisitorsLogPage';
+import StudentPage from './components/pages/student/StudentPage';
 import AreaPage from './components/pages/area/AreaPage';
+import Detail from './components/pages/mainteam/detail/Detail';
+import NoTeam from './components/pages/nomatch/NoTeam';
 import NoMatch from './components/pages/nomatch/NoMatch';
 
 function App() {
@@ -16,7 +19,10 @@ function App() {
                 <Route path='/question'element={<QuestionnairePage />}/>
                 <Route path='/reception'element={<ReceptionPage />}/>
                 <Route path='/visitor'element={<VisitorsLogPage />}/>
+                <Route path='/student'element={<StudentPage />}/>
                 <Route path='/area'element={<AreaPage />}/>
+                <Route path="/team/:id" element={<Detail />} />
+                <Route path='/NotTeam' element={<NoTeam/>}/>
                 <Route path="/*" element={<NoMatch />} />
       </Routes>
       

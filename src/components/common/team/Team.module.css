@@ -1,3 +1,14 @@
+.teamArea{
+    width: 100%;
+    max-height: 100%;
+}
+
+/* ソートエリア */
+
+.visualSet{
+    height: calc(100% - 80vh);
+}
+
 /* カード型表示 */
 
 .teamCardArea{
@@ -23,12 +34,12 @@
 }
 /* リスト表示 */
 .teamAreaList{
-    width: 80vw;
+    width: 100%;
     max-height: 80vh;
     overflow: scroll;
     display: block;
 }
-.listItem{
+.listLink{
     padding: 20px;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
@@ -37,6 +48,15 @@
     align-items: center;
     gap: 20px;
 }
+/* .listItem{
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+} */
 .listItem *{
     width:calc((100% -100px) / 4);
 }
@@ -47,8 +67,4 @@
 .teamImgListArea img{
     width: 100px;
     height: 100px;
-}
-
-.visualSet{
-    height: 10%;
 }

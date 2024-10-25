@@ -3,6 +3,8 @@ import styles from './Team.module.css'
 import sampleteam from '../../../../smpleteam.json'
 import catjpg from '../../../assets/images.jpg'
 import TeamButton from '../../base/teambutton/TeamButton'
+import { Link } from "react-router-dom";
+
 
 export const Team = () => {
   const [isStyle,setIsStyle] = useState(true);
@@ -17,9 +19,11 @@ export const Team = () => {
     setIsStyle(false); // リスト表示に変更
     console.log("list");
   };
+
+  
   return (
     <>
-    <div>
+    <div className={styles.teamArea}>
       <div className={styles.visualSet}>
         {/* リスト表示に切り替えるボタン */}
         <TeamButton 
@@ -37,9 +41,13 @@ export const Team = () => {
         />
         
       </div>
+      <div>
+        
+      </div>
         <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
           {data.map((team) => (
               <div key={team.id + "s"} className={isStyle ? styles.cardItem : styles.listItem}>
+                <Link to={`/team/${team.id}`} className={isStyle ? "" : styles.listLink}>
                 <div className={isStyle ? styles.teamImgCardArea : styles.teamImgListArea}>
                   <img src={catjpg} alt="口を開けた猫" />
                 </div>
@@ -52,6 +60,7 @@ export const Team = () => {
                     </li>
                   ))}
                 </ul>
+                </Link>
               </div>
           ))}
         </div>
