@@ -7,6 +7,8 @@
 
 .visualSet{
     height: calc(100% - 80vh);
+    margin: 10px;
+    gap: 10px;
 }
 
 /* カード型表示 */

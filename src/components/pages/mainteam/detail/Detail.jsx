@@ -9,7 +9,6 @@ import RoutingSidebar from "../../../common/sidebar/RoutingSidebar";
 import useSetSidebar from '../../../../hooks/useSetSidebar';
 import useSetUrlPath from '../../../../hooks/useSetUrlPath';
 
-
 const Detail = () => {
     const navigate = useNavigate();
     const { id } = useParams();

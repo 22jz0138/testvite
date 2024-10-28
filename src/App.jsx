@@ -1,6 +1,7 @@
 import './App.css';
 import MainTeamPage from './components/pages/mainteam/MainTeamPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login  from './components/pages/login/Login';
 import QuestionnairePage from './components/pages/questionnaire/QuestionnairePage';
 import ReceptionPage from './components/pages/reception/ReceptionPage';
 import VisitorsLogPage from './components/pages/visitorslog/VisitorsLogPage';
@@ -15,7 +16,8 @@ function App() {
   return (
     <>
       <Routes>
-                <Route path='/'element={<MainTeamPage />}/>
+                <Route path='/'element={<Login />}/>
+                <Route path='/team'element={<MainTeamPage />}/>
                 <Route path='/question'element={<QuestionnairePage />}/>
                 <Route path='/reception'element={<ReceptionPage />}/>
                 <Route path='/visitor'element={<VisitorsLogPage />}/>

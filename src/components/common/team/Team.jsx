@@ -5,44 +5,30 @@ import catjpg from '../../../assets/images.jpg'
 import TeamButton from '../../base/teambutton/TeamButton'
 import { Link } from "react-router-dom";
 
-
 export const Team = () => {
   const [isStyle,setIsStyle] = useState(true);
   const data = sampleteam;
-  const setCardView = () => {
-    setIsStyle(true); // カード表示に変更
-    console.log("card");
-  };
+  const setCardView = () => setIsStyle(true);  // カード表示に変更
+  const setListView = () => setIsStyle(false); // リスト表示に変更
 
-  // リスト表示に切り替える関数
-  const setListView = () => {
-    setIsStyle(false); // リスト表示に変更
-    console.log("list");
-  };
-
-  
   return (
     <>
     <div className={styles.teamArea}>
       <div className={styles.visualSet}>
+        {/* カード表示に切り替えるボタン */}
+        <TeamButton  
+          visualType="card"
+          onClick={setCardView}
+          isInactive={isStyle} 
+        />
         {/* リスト表示に切り替えるボタン */}
         <TeamButton 
-        visualType={isStyle ? 'secondary' : 'primary'}
-        label="リスト表示" 
-        onClick={setListView} 
-        isInactive={isStyle}
+          visualType="list"
+          onClick={setListView} 
+          isInactive={isStyle}
         />
-        {/* カード表示に切り替えるボタン */}
-        <TeamButton 
-         visualType={isStyle ? 'primary' : 'secondary'} 
-        label="カード表示"
-        onClick={setCardView}
-        isInactive={isStyle} 
-        />
-        
       </div>
       <div>
-        
       </div>
         <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
           {data.map((team) => (

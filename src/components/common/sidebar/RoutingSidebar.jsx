@@ -16,7 +16,7 @@ return (
         <aside>
             <ul className={`${styles.list} ${checkbool ? '' : styles.close}`}>
                 <li>
-                    <Link to="/">
+                    <Link to="/team">
                         {checkbool?'チーム一覧': <FontAwesomeIcon icon={faPeopleGroup} /> }
                     </Link>
                 </li>

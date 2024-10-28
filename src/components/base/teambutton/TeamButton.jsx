@@ -1,24 +1,13 @@
-import React, { useState } from 'react';
-import styles from './TeamButton.module.css'; // CSSモジュールをimport
+import React from 'react';
+import CardIcon from '../../../assets/cardicon/cardIcon';
+import ListIcon from '../../../assets/listicon/listIcon';
+import styles from './TeamButton.module.css';
 
-const TeamButton = ({ visualType, label,onClick,isActive }) => {
-  // visualTypeの状態を管理
-//   const [visualType, setVisualType] = useState(initialVisualType);
-
-//   クリック時にビジュアルを切り替える関数
-//   const toggleVisualType = () => {
-//     setVisualType((prevType) => (prevType === 'primary' ? 'secondary' : 'primary'));
-//     console.log("クリックできた");
-//   };
-  // ビジュアルの種類に応じたクラスを割り当てる
-  const className = visualType === 'primary' ? styles.teamButtonPrimary : styles.teamButtonSecondary;
-  const inactiveClass  = isActive ? styles.active : '';
+const TeamButton = ({ visualType, onClick, isInactive }) => {
+  const Icon = visualType === 'list' ? ListIcon : CardIcon;
   return (
-    <button 
-    className={`${styles.teamButton} ${className} ${inactiveClass}`}
-    onClick={onClick}
-    >
-      {label}
+    <button onClick={onClick} className={styles.teamButton}>
+      <Icon isActive={!isInactive} />
     </button>
   );
 };
