@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from "../../common/header/Header";
 import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
-import useSetSidebar from '../../../hooks/useSetSidebar';
 import { Team } from '../../common/team/Team';
 import styles from "./MainTeamPage.module.css";
+import useSetSidebar from '../../../hooks/useSetSidebar';
 import useSetUrlPath from '../../../hooks/useSetUrlPath';
 
 
