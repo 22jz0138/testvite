@@ -1,0 +1,8 @@
+.flexLegend{
+    display: flex;
+    justify-content: space-around;
+    background: rgb(240, 240, 240);
+    padding-top: 10px;
+    font-size: large;
+    font-weight: bolder;
+}

@@ -2,9 +2,7 @@
     width: 100%;
     max-height: 100%;
 }
-
 /* ソートエリア */
-
 .visualSet{
     height: calc(100% - 80vh);
     margin: 10px;

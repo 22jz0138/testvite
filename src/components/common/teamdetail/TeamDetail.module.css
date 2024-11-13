@@ -1,0 +1,52 @@
+.teamDetaulArea{
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 80%;
+}
+.titleAndEdit{
+    padding: 15px 0;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d2d5da;
+}
+.titleAndEdit h1{
+    margin: 0 30px
+}
+.expArea{
+    padding: 24px;
+}
+
+.expArea p{
+    font-size: 1.2rem;
+    font-weight:300;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    font-feature-settings: "palt";
+    color: rgb(41, 41, 41);
+}
+
+.smallp{
+    font-size: .85rem;
+    font-weight: normal;
+    line-height: 1.5;
+    letter-spacing: .04em;
+    font-feature-settings: "palt" 1;
+    color: #6e7687;
+}
+
+.inputArea{
+    margin: 24px;
+    padding: 18px 0;
+    border: 1px solid #d2d5da;
+    border-radius: 6px;
+}
+
+.inputArea div{
+    padding: 1rem 0 0 1.5rem;
+}
+.inputArea span{
+    font-size: 1rem;
+    font-weight: 800;
+}

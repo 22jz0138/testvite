@@ -1,4 +1,3 @@
-// Detail.js
 import React from "react";
 import { useParams,useNavigate  } from "react-router-dom";
 import sampleteam from '../../../../../smpleteam.json'
@@ -8,6 +7,7 @@ import Header from "../../../common/header/Header";
 import RoutingSidebar from "../../../common/sidebar/RoutingSidebar";
 import useSetSidebar from '../../../../hooks/useSetSidebar';
 import useSetUrlPath from '../../../../hooks/useSetUrlPath';
+import TeamDetail from "../../../common/teamdetail/TeamDetail";
 
 const Detail = () => {
     const navigate = useNavigate();
@@ -35,7 +35,10 @@ const Detail = () => {
   <>
     <Header toggleSidebar={toggleSidebar} path={mypath}/>
     <div className={styles.flex}>
-    <RoutingSidebar checkbool={checkbool}/>
+      <RoutingSidebar checkbool={checkbool}/>
+      <div className={styles.detailArea}>
+        <TeamDetail/>
+      </div>
     </div>
     </>
   )
