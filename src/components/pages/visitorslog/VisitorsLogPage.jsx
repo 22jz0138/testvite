@@ -5,9 +5,11 @@ import useSetSidebar from '../../../hooks/useSetSidebar';
 import Visitor from '../../common/visitor/Visitor';
 import styles from "./VisitorsLogPage.module.css"
 import useSetUrlPath from '../../../hooks/useSetUrlPath';
+import useRequireAuth from '../../../hooks/useRequireAuth';
 
 const VisitorsLogPage = () => {
   // const location = useLocation();
+  useRequireAuth();
   const {checkbool,toggleSidebar} = useSetSidebar();
   const mypath = useSetUrlPath();
   return (

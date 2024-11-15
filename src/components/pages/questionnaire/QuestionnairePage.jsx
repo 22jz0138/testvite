@@ -5,9 +5,10 @@ import useSetSidebar from '../../../hooks/useSetSidebar';
 import styles from './QuestionnairePage.module.css'
 import useSetUrlPath from '../../../hooks/useSetUrlPath';
 import { Questionnaire } from '../../common/questionnaire/Questionnaire';
-
+import useRequireAuth from '../../../hooks/useRequireAuth';
 
 const QuestionnairePage = () => {
+  useRequireAuth();
   const {checkbool,toggleSidebar} = useSetSidebar();
   const mypath = useSetUrlPath();
   return (

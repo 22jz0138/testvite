@@ -4,9 +4,11 @@ import RoutingSidebar from '../../common/sidebar/RoutingSidebar';
 import useSetSidebar from '../../../hooks/useSetSidebar';
 import styles from './ReceptionPage.module.css'
 import useSetUrlPath from '../../../hooks/useSetUrlPath';
+import useRequireAuth from '../../../hooks/useRequireAuth';
 
 
 const ReceptionPage = () => {
+  useRequireAuth();
   const {checkbool,toggleSidebar} = useSetSidebar();
   const mypath = useSetUrlPath();
   return (

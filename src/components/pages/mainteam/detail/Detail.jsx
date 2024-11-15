@@ -8,8 +8,10 @@ import RoutingSidebar from "../../../common/sidebar/RoutingSidebar";
 import useSetSidebar from '../../../../hooks/useSetSidebar';
 import useSetUrlPath from '../../../../hooks/useSetUrlPath';
 import TeamDetail from "../../../common/teamdetail/TeamDetail";
+import useRequireAuth from '../../../../hooks/useRequireAuth';
 
 const Detail = () => {
+    useRequireAuth();
     const navigate = useNavigate();
     const { id } = useParams();
     const data = sampleteam;

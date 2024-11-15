@@ -10,7 +10,6 @@ import AreaPage from './components/pages/area/AreaPage';
 import Detail from './components/pages/mainteam/detail/Detail';
 import NoTeam from './components/pages/nomatch/NoTeam';
 import NoMatch from './components/pages/nomatch/NoMatch';
-
 function App() {
 
   return (

@@ -2,11 +2,15 @@ import React from 'react'
 import styles from "./Login.module.css"
 import { useState } from 'react'
 import Ajax from '../../../hooks/Ajax';
+import {useAuth} from '../../../context/AuthContext'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Login() {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate(); 
     const inputAccount = (e) => {
         setAccount(e.target.value);
     }
@@ -22,10 +26,14 @@ function Login() {
         }
         Ajax(null, null, 'login', 'POST',  req)
         .then((data) => {
-            if(data.status === 'success') {
+            if(data.status === "success") {
             console.log("dekita");
+            const token = data.token;
+            login(token);
+            navigate('/team');
             } else {
-            console.log(data.massage);
+            console.log(data.status);
+            
             }
         })
         }
@@ -47,7 +55,7 @@ function Login() {
                         </dl>
                         <button type="submit">OK</button>
                     </form>
-                </div>
+                </div>  
             </div>
         </>
     );
