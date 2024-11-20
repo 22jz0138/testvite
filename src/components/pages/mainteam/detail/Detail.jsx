@@ -1,49 +1,61 @@
-import React from "react";
-import { useParams,useNavigate  } from "react-router-dom";
-import sampleteam from '../../../../../smpleteam.json'
-import { useEffect } from "react";
-import styles from "./Detail.module.css"
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import styles from "./Detail.module.css";
 import Header from "../../../common/header/Header";
 import RoutingSidebar from "../../../common/sidebar/RoutingSidebar";
 import useSetSidebar from '../../../../hooks/useSetSidebar';
 import useSetUrlPath from '../../../../hooks/useSetUrlPath';
 import TeamDetail from "../../../common/teamdetail/TeamDetail";
 import useRequireAuth from '../../../../hooks/useRequireAuth';
+import Ajax from "../../../../hooks/Ajax";
+import { useAuth } from '../../../../context/AuthContext';
 
 const Detail = () => {
-    useRequireAuth();
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const data = sampleteam;
-    const arraylast = (data.slice(-1)[0]);
-    const lastTeamId = arraylast.id;
-    console.log(lastTeamId);
-    
-    useEffect(() => {
-        // アイテムが存在しない場合、エラーページにリダイレクト
-        if(id > lastTeamId){
+  useRequireAuth();
+  const token = useAuth();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [lastTeamId, setLastTeamId] = useState(null); // lastTeamIdを状態として定義
+  const { checkbool, toggleSidebar } = useSetSidebar(); // フックをコンポーネントの最上部で呼び出す
+  const mypath = useSetUrlPath(); // フックをコンポーネントの最上部で呼び出す
+
+  useEffect(() => {
+    Ajax(null, token.token, 'team', 'get')
+      .then((data) => {
+        if (data.status === "success") {
+          setData(data.team || []);
+          console.log("データ取得成功");
+
+          // データが取得できた後にlastTeamIdを設定
+          const arrayLast = data.team.slice(-1)[0]; // 修正: data.teamを使う
+          setLastTeamId(arrayLast ? arrayLast.id : null); // lastTeamIdを設定
+          
+          if (id > (arrayLast ? arrayLast.id : 0)) {
             navigate("/NoTeam");
+          }
+        } else {
+          console.log(data.status);
         }
-    }, [id, navigate]);
+      });
+  }, [id, navigate, token]);
 
-    if (id > lastTeamId) {
-        return null; // リダイレクトするため、コンテンツは表示しない
-    }
-  // IDに基づいてデータを取得するなどの処理を追加可能
-    const {checkbool,toggleSidebar} = useSetSidebar();
-    const mypath = useSetUrlPath();
+  // lastTeamIdがまだ取得できていない場合は何も表示しない
+  if (lastTeamId === null) {
+    return null;
+  }
 
-    return (
-  <>
-    <Header toggleSidebar={toggleSidebar} path={mypath}/>
-    <div className={styles.flex}>
-      <RoutingSidebar checkbool={checkbool}/>
-      <div className={styles.detailArea}>
-        <TeamDetail/>
+  return (
+    <>
+      <Header toggleSidebar={toggleSidebar} path={mypath} />
+      <div className={styles.flex}>
+        <RoutingSidebar checkbool={checkbool} />
+        <div className={styles.detailArea}>
+          <TeamDetail />
+        </div>
       </div>
-    </div>
     </>
-  )
+  );
 };
 
 export default Detail;

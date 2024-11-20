@@ -1,6 +1,6 @@
 .teamDetaulArea{
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1200px;
     height: 80%;
 }
 .titleAndEdit{
@@ -37,6 +37,8 @@
 }
 
 .inputArea{
+    display: flex;
+    flex-wrap: wrap;
     margin: 24px;
     padding: 18px 0;
     border: 1px solid #d2d5da;
@@ -49,4 +51,11 @@
 .inputArea span{
     font-size: 1rem;
     font-weight: 800;
+}
+
+.teamText{
+    width: 50%;
+}
+.textImage{
+    width: 50%;
 }
