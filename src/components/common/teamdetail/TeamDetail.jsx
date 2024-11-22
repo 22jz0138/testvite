@@ -4,27 +4,26 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from '../../../hooks/Ajax';
 
-export default function TeamDetail() {
+export default function TeamDetail(props) {
     const token = useAuth();
     const [teamDetail,setTeamDetail] = useState();
-    const { team_id } = useParams();
-
+    // const { team_id } = useParams();
+    // console.log(props.id);
     useEffect(() => {
-        Ajax(null, token.token, 'team', 'get')
+        Ajax(null, token.token, `team/${props.id}`, 'get')
         .then((data) => {
-          if (data.status === "success") {
-            setTeamDetail(data.team);
+            if (data.status === "success") {
+            setTeamDetail(data);
             console.log("データ取得成功");
-            // console.log(data.team);
-          } else {
+            console.log(data);
+        } else {
             console.log(data.status);
-          }
+        }                                     
         });
-      }, []);
-    
+    }, []);
 
-      console.log(team_id);
-      const teamInfo = teamDetail ? teamDetail.find(item => item.id === team_id) : null;
+
+    //   console.log(teamInfo);
     return (
         <>
             <div className={styles.teamDetaulArea}>
@@ -37,23 +36,25 @@ export default function TeamDetail() {
                     <small className={styles.smallp}>※編集する場合は右上のボタンを押してください</small>
                 </div>
                 <div className={styles.inputArea}>
-                    {teamInfo ? (
+                    {teamDetail ? (
                         <div className={styles.teamText}>
                             <div>
-                                <span>チーム名</span>
-                                <p>{teamInfo.name}</p>
+                                <span>チーム番号</span>
+                                <p>{teamDetail.team.num}</p>
                             </div>
                             <div>
                                 <span>システム名</span>
-                                <p>{teamInfo.detail || '詳細情報がありません'}</p>
+                                <p>{teamDetail.team.name || '詳細情報がありません'}</p>
                             </div>
                             <div>
                                 <span>メンバー</span>
-                                <p>{teamInfo.num || 'メンバー情報がありません'}</p>
+                                {teamDetail.team.students.map((student)=>(
+                                <p>{student.grade + "年  " + student.name}</p>
+                                ))}
                             </div>
                             <div>
                                 <span>詳細</span>
-                                <p>{teamInfo.detail || '詳細情報がありません'}</p>
+                                <p>{teamDetail.team.detail || '詳細情報がありません'}</p>
                             </div>
                         </div>
                     ) : (

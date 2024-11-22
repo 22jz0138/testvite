@@ -14,6 +14,7 @@ const Detail = () => {
   useRequireAuth();
   const token = useAuth();
   const navigate = useNavigate();
+  const [team_id,setTeam_id] = useState();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [lastTeamId, setLastTeamId] = useState(null); // lastTeamIdを状態として定義
@@ -30,7 +31,7 @@ const Detail = () => {
           // データが取得できた後にlastTeamIdを設定
           const arrayLast = data.team.slice(-1)[0]; // 修正: data.teamを使う
           setLastTeamId(arrayLast ? arrayLast.id : null); // lastTeamIdを設定
-          
+          setTeam_id(id);
           if (id > (arrayLast ? arrayLast.id : 0)) {
             navigate("/NoTeam");
           }
@@ -51,7 +52,7 @@ const Detail = () => {
       <div className={styles.flex}>
         <RoutingSidebar checkbool={checkbool} />
         <div className={styles.detailArea}>
-          <TeamDetail />
+          <TeamDetail id={team_id}/>
         </div>
       </div>
     </>
