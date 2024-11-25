@@ -53,7 +53,7 @@ function Login() {
                                 <dd><input type="password" id="password" onChange={inputPassword}></input></dd>
                             </div>
                         </dl>
-                        <button type="submit">OK</button>
+                        <button type="submit" className={styles.loginButton}>OK</button>
                     </form>
                 </div>  
             </div>

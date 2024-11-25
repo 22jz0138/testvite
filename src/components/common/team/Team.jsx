@@ -26,11 +26,11 @@ export const Team = () => {
       });
   };
 
-  // useEffect(() => {
-  //   fetchTeamData(); // 初回データ取得
-  //   const intervalId = setInterval(fetchTeamData, 5000); // 5秒ごとにデータを取得
-  //   return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
-  // }, [token]);
+  useEffect(() => {
+    fetchTeamData(); // 初回データ取得
+    const intervalId = setInterval(fetchTeamData, 5000); // 5秒ごとにデータを取得
+    return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
+  }, [token]);
 
   
 
