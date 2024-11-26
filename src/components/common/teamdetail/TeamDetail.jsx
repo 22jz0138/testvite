@@ -10,6 +10,8 @@ export default function TeamDetail(props) {
     const [putName, setPutName] = useState();
     const [putDetail, setPutDetail] = useState();
     const [isVisible, setIsVisible] = useState(false);
+    const [teamDetail,setTeamDetail] = useState();
+    const token = useAuth();
     const toggleVisibility = () => {
         setIsVisible((f) => !f);
     };
@@ -19,12 +21,12 @@ export default function TeamDetail(props) {
     const inputTeamName = (e) => {
         setPutName(e.target.value);
     }
-    const token = useAuth();
-    const [teamDetail,setTeamDetail] = useState();
-    // const { team_id } = useParams();
-    // console.log(props.id);
-    useEffect(() => {
-        Ajax(null, token.token, `team/${props.id}`, 'get')
+    const inputTeamDetail = (e) => {
+        setPutDetail(e.target.value);
+    }
+
+    const fetchTeamData = () => {
+        Ajax(null, null, `team/${props.id}`, 'get')
         .then((data) => {
             if (data.status === "success") {
             setTeamDetail(data);
@@ -34,7 +36,12 @@ export default function TeamDetail(props) {
             console.log(data.status);
         }                                     
         });
+    }
+
+    useEffect(() => {
+        fetchTeamData();
     }, []);
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
         const req = {
@@ -46,18 +53,16 @@ export default function TeamDetail(props) {
         .then((data) => {
             if(data.status === "success") {
             console.log("dekita");
-            const token = data.token;
-            login(token);
-            navigate('/team');
+            toggleVisibility();
+            fetchTeamData();
             } else {
             console.log(data.status);
-            
-            }
+            console.log(data.message);
+            console.log(token.token );
+            }   
         })
         }
 
-
-    //   console.log(teamInfo);
     return (
         <>
             <div className={styles.teamDetaulArea}>
@@ -103,24 +108,25 @@ export default function TeamDetail(props) {
                         </div>
                     </div>
                 </div>
-                <div className={ isVisible ? styles.inputArea : styles.None }>
+                <div className={ isVisible ? styles.formArea : styles.None }>
                     <form onSubmit={handleSubmit} className={styles.editForm}>
-                        <dl>
-                            <div className={styles.formField}>
+                        <dl className={styles.innerForm}>
+                            <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">チーム番号</label></dt>
-                                <dd><input type="text" id="team" onChange={inputTeamNum}></input></dd>
+                                <dd><input type="text" id="team" onChange={inputTeamNum} ></input></dd>
                             </div>
-                            <div className={styles.formField}>
+                            <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">システム名</label></dt>
                                 <dd><input type="text" id="system" onChange={inputTeamName}></input></dd>
                             </div>
-                            <div className={styles.formField}>
+                            <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">詳細</label></dt>
-                                <dd><input type="text" id="detail" onChange={setPutDetail}></input></dd>
+                                <dd><input type="text" id="detail" onChange={inputTeamDetail}></input></dd>
                             </div>
+                            <button type="submit" className={styles.submitButton}>OK</button>
                         </dl>
-                        <button type="submit" className={styles.submitButton}>OK</button>
                     </form>
+                    <div></div>
                 </div>
             </div>
         </>

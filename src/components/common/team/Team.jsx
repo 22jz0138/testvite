@@ -77,7 +77,7 @@ export const Team = () => {
                     </div>
                     <h2>{team.name}</h2>
                     <p>{team.detail}</p>
-                    {console.log(team)}
+                    {/* {console.log(team)} */}
                     <ul>
                       {team.students &&
                         team.students.map((student) => (
