@@ -121,7 +121,7 @@ export default function TeamDetail(props) {
                             </div>
                             <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">詳細</label></dt>
-                                <dd><input type="text" id="detail" onChange={inputTeamDetail}></input></dd>
+                                <dd><textarea type="text" id="detail" onChange={inputTeamDetail}></textarea></dd>
                             </div>
                             <button type="submit" className={styles.submitButton}>OK</button>
                         </dl>

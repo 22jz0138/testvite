@@ -1,44 +1,44 @@
 import React from 'react';
-import { VictoryPie, VictoryTheme, VictoryContainer } from 'victory';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-export const VisitorPie = () => {
-  const data = [
-    { x: "30", y: 30, fill: '#555' },
-    { x: "35", y: 35, fill: '#4caf50' },
-    { x: "25", y: 25, fill: '#ff9800' },
-    { x: "10", y: 10, fill: '#f44336' },
-  ];
+ChartJS.register(ArcElement, Tooltip, Legend);
 
+export const VisitorPie = (props) => {
+  const div1 = props.data && props.data.visitor ? props.data.visitor.filter(visitor => visitor.division === 1).length : 0;
+  const div2 = props.data && props.data.visitor ? props.data.visitor.filter(visitor => visitor.division === 2).length : 0;
+  const div3 = props.data && props.data.visitor ? props.data.visitor.filter(visitor => visitor.division === 3).length : 0;
+  const div4 = props.data && props.data.visitor ? props.data.visitor.filter(visitor => visitor.division === 4).length : 0;
+  const div5 = props.data && props.data.visitor ? props.data.visitor.filter(visitor => visitor.division === 5).length : 0;
 
-  return (
-    <>
-      <VictoryPie
-        innerRadius={0}
-        padAngle={0}
-        width={400}
-        height={400}
-        viewBox={"0 0 500 500"}
-        data={data}
-        style={{
-          data: {
-            fill: ({ datum }) => datum.fill,
-          },
-          labels: {
-            fontSize: 20,
-            fill: '#333',
-          },
-        }}
-        theme={VictoryTheme.clean}
-        containerComponent={
-          <VictoryContainer
-            style={{
-              backgroundColor: "#f0f0f0",
-              borderRadius: "10px",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          />
-        }
-      />
-    </>
-  );
+  const data = {
+    labels: ['企業', '学生', '学校関係者', '卒業生', 'その他'],
+    datasets: [
+      {
+        data: [div1, div2, div3, div4, div5],
+        backgroundColor: [
+          '#555',
+          '#4caf50',
+          '#ff9800',
+          '#f44336',
+          '#999',
+        ],
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: '訪問者の分布',
+      },
+    },
+  };
+
+  return <Pie data={data} options={options} />;
 };

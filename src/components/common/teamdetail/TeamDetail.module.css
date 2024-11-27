@@ -59,6 +59,9 @@
 .teamText{
     width: 50%;
 }
+.teamText p{
+    font-size: 1.2rem;
+}
 .textImage{
     width: 50%;
 }
@@ -136,23 +139,38 @@
     font-weight: bold; /* ラベルを太字に */
 }
 
-.dd {
-    margin: 0; /* デフォルトのマージンを削除 */
+/* .dd {
+    margin: 0; 
+} */
+textarea{
+    resize: none;
+    height: 100px;
+}
+textarea:focus{
+    border-color: #F8A100; 
+    outline: none; 
 }
 
-.teamForm input[type="text"] {
-    width: 90%; /* 入力フィールドを全幅に */
-    padding: 10px; /* パディング */
+.teamForm input[type="text"],textarea {
+    width: 90%; 
+    padding: 10px; 
     margin: 0 auto;
-    border: 1px solid #ccc; /* ボーダー */
-    border-radius: 4px; /* 角を丸く */
-    font-size: 16px; /* フォントサイズ */
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 16px; 
 }
 
 .teamForm input[type="text"]:focus {
-    border-color: #F8A100; /* フォーカス時のボーダー色 */
-    outline: none; /* デフォルトのアウトラインを削除 */
+    border-color: #F8A100; 
+    outline: none; 
 }
+
+.teamForm input[id="detail"]{
+    height: 100px;
+}
+
+
+
 
 .submitButton {
     width: 60%;

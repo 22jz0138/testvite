@@ -10,6 +10,7 @@ export const Team = () => {
   const [isStyle, setIsStyle] = useState(true);
   const [team, setTeam] = useState([]); // 初期値を空配列に設定
   const token = useAuth();
+  
 
   const setCardView = () => setIsStyle(true);  // カード表示に変更
   const setListView = () => setIsStyle(false); // リスト表示に変更
@@ -31,6 +32,7 @@ export const Team = () => {
     const intervalId = setInterval(fetchTeamData, 5000); // 5秒ごとにデータを取得
     return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
   }, [token]);
+
 
   
 
@@ -66,6 +68,7 @@ export const Team = () => {
                     to={`/team/${team.id}`}
                     className={isStyle ? "" : styles.listLink}
                   >
+                    {console.log(team)}
                     <div
                       className={
                         isStyle
@@ -75,9 +78,9 @@ export const Team = () => {
                     >
                       <img src={catjpg} alt="口を開けた猫" />
                     </div>
+                    <h2>{(team.num)}</h2>
                     <h2>{team.name}</h2>
                     <p>{team.detail}</p>
-                    {/* {console.log(team)} */}
                     <ul>
                       {team.students &&
                         team.students.map((student) => (
