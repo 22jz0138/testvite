@@ -6,6 +6,7 @@ import RealTimeChart from "./graphs/RealTimeChart ";
 import { LegendList } from "./graphs/LegendList";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from "../../../hooks/Ajax";
+import TestModel from "./graphs/TestModel";
 
 export const Questionnaire = () => {
   const token = useAuth();
@@ -37,12 +38,13 @@ export const Questionnaire = () => {
   return (
     <>
       <div className={styles.dashboard}>
+
         <div className={styles.graph}>
-          <LegendList />
           <VisitorPie data={visitorData} />
-          <RealTimeChart/>
         </div>
-        <div>
+        <div className={styles.graph}>
+          <RealTimeChart data={visitorData}/>
+          <TestModel data={visitorData}/>
           {/* 他のコンテンツ */}
         </div>
       </div>

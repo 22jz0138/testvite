@@ -9,6 +9,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 function Login() {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
+    const [errFlag,setErrFlag] = useState(true);
     const { login } = useAuth();
     const navigate = useNavigate(); 
     const inputAccount = (e) => {
@@ -33,7 +34,7 @@ function Login() {
             navigate('/team');
             } else {
             console.log(data.status);
-            
+            setErrFlag(false);
             }
         })
         }
@@ -52,6 +53,7 @@ function Login() {
                                 <dt><label htmlFor="password">パスワード</label></dt>
                                 <dd><input type="password" id="password" onChange={inputPassword}></input></dd>
                             </div>
+                            <p className={errFlag ? styles.errNone : styles.err}>アカウントまたはパスワードに誤りがあります</p>
                         </dl>
                         <button type="submit" className={styles.loginButton}>OK</button>
                     </form>

@@ -101,3 +101,14 @@ label {
 .loginButton:focus {
     background-color: #F8A100;
 }
+
+
+/*login のエラーメッセージ*/
+.errNone{
+    display: none;
+}
+
+.err{
+    color: red;
+    font-size: 0.8rem;
+}

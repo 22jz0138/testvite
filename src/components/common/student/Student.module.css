@@ -1,3 +1,54 @@
-.DataGrid {
-    
+.listArea {
+    width: 100%;
+    height: 100%;
+    /* background: #ffadad; */
+}
+
+.listHeader{
+
+    width: 98%;
+    padding: 0 1%;
+    text-align: center;
+    border-bottom: 1px #333 solid;
+}
+.listTitle{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+}
+.listTitle li{
+    width: 15%;
+    font-size: 1.5rem;
+}
+
+
+.columnBody{
+    text-align: center;
+    overflow: scroll;
+}
+.columnBody::-webkit-scrollbar{
+    display: none;
+}
+
+.studentsColumnWrapper{
+    width: 100%;
+
+}
+
+.studentsColumn{
+    height: 100px;
+    width: 98%;
+    margin: 0 1%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px rgba(126, 126, 126, 0.4) solid;
+    align-items: center;
+}
+
+.studentsColumn li{
+    width: 15%;
+    font-size: 1.3rem;
 }
