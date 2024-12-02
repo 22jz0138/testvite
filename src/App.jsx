@@ -10,6 +10,7 @@ import AreaPage from './components/pages/area/AreaPage';
 import Detail from './components/pages/mainteam/detail/Detail';
 import NoTeam from './components/pages/nomatch/NoTeam';
 import NoMatch from './components/pages/nomatch/NoMatch';
+import DetailStudent from './components/pages/student/detailStudent/DetailStudent';
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/reception'element={<ReceptionPage />}/>
                 <Route path='/visitor'element={<VisitorsLogPage />}/>
                 <Route path='/student'element={<StudentPage />}/>
+                <Route path='/student/:id'element={<DetailStudent />}/>
                 <Route path='/area'element={<AreaPage />}/>
                 <Route path="/team/:id" element={<Detail />} />
                 <Route path='/NotTeam' element={<NoTeam/>}/>

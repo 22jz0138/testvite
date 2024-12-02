@@ -28,7 +28,6 @@ const Detail = () => {
           setData(data.team || []);
           console.log("データ取得成功");
 
-          // データが取得できた後にlastTeamIdを設定
           const arrayLast = data.team.slice(-1)[0]; // 修正: data.teamを使う
           setLastTeamId(arrayLast ? arrayLast.id : null); // lastTeamIdを設定
           setTeam_id(id);

@@ -16,13 +16,12 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: 100px;
+    height: 80px;
 }
 .listTitle li{
     width: 15%;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
-
 
 .columnBody{
     text-align: center;
@@ -34,11 +33,10 @@
 
 .studentsColumnWrapper{
     width: 100%;
-
 }
 
 .studentsColumn{
-    height: 100px;
+    height: 70px;
     width: 98%;
     margin: 0 1%;
     display: flex;
@@ -50,5 +48,5 @@
 
 .studentsColumn li{
     width: 15%;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }

@@ -1,22 +1,18 @@
 import * as React from 'react';
 import {useState,useEffect} from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import Ajax from '../../../hooks/Ajax';
 import { useAuth } from '../../../context/AuthContext';
+import { Link } from "react-router-dom";
 import styles from './Student.module.css';
-
-const VISIBLE_FIELDS = [
-    { field: 'id', headerName: 'ID', width: 150 },
-    { field: 'grade', headerName: '学年', width: 150 },
-    { field: 'team_id', headerName: 'チーム番号', width: 150 },
-    { field: 'name', headerName: '氏名', width: 300 },
-    { field: 'number', headerName: '学籍番号 ', width: 400 },
-    { field: 'employment_target_id', headerName: '内定先ID', width: 400 },
-];
 
 export default function BasicExampleDataGrid() {
     const token = useAuth();
     const [studentData, setStudentData] = useState([]);
+    const [StudentDetail, setStudentDetail] = useState();
+    const handleDetailClick = (e) =>{
+        const studentId  = e.target.getAttribute("data-key");
+        setStudentData(studentId);
+    }
     useEffect(() => {
         Ajax(null, token.token, 'student', 'get')
         .then((data) => {
@@ -31,9 +27,6 @@ export default function BasicExampleDataGrid() {
 
     return (
         <>
-            {/* <div style={{ height: 600  }}>
-                <DataGrid rows={studentData} columns={VISIBLE_FIELDS} pageSize={5} />
-            </div> */}
             <div className={styles.listArea}>
                 <div className={styles.listHeader}>
                     <ul className={styles.listTitle}>
@@ -46,17 +39,21 @@ export default function BasicExampleDataGrid() {
                     </ul>
                 </div>
                 <div className={styles.columnBody}>
-                    {studentData.map((item, index) => (
-                    <ul key={index} className={styles.studentsColumnWrapper}>
-                        <div className={styles.studentsColumn}>
-                            <li>{item.id}</li>
-                            <li>{item.grade}</li>
-                            <li>{item.team_id}</li>
-                            <li>{item.name}</li>
-                            <li>{item.number}</li>
-                            <li>{item.employment_target_id}</li>
-                        </div>
-                    </ul>
+                    {studentData.map((item) => (
+                    <Link
+                    to={`/student/${item.id}`}
+                    >
+                        <ul key={item.number} className={styles.studentsColumnWrapper}>
+                            <div key={item.name} data-key={item.id} className={styles.studentsColumn} onClick={handleDetailClick}>
+                                <li>{item.id}</li>
+                                <li>{item.grade}</li>
+                                <li>{item.team_id}</li>
+                                <li>{item.name}</li>
+                                <li>{item.number}</li>
+                                <li>{item.employment_target_id}</li>
+                            </div>
+                        </ul>
+                    </Link>
                     ))}
                 </div>
             </div>

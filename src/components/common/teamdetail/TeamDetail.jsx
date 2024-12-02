@@ -67,7 +67,7 @@ export default function TeamDetail(props) {
         <>
             <div className={styles.teamDetaulArea}>
                 <div className={styles.titleAndEdit}>
-                    <h1 > チーム情報</h1>
+                    <h1> チーム情報</h1>
                     <EditButton
                     onClick={toggleVisibility}
                     />
