@@ -65,7 +65,7 @@ export default function TeamDetail(props) {
 
     return (
         <>
-            <div className={styles.teamDetaulArea}>
+            <div className={styles.teamDetailArea}>
                 <div className={styles.titleAndEdit}>
                     <h1> チーム情報</h1>
                     <EditButton
