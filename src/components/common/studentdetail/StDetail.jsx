@@ -1,16 +1,24 @@
 import React from 'react'
 import { useState } from 'react';
 import { EditButton } from '../../base/editButton/EditButton';
+import { DeleteButton } from '../../base/deleteButton/DeleteButton';
+import StudentModal from '../../base/modal/studentModal/StudentModal';
 import styles from './StDetail.module.css';
 
 export default function StDetail(props) {
     const [isVisible, setIsVisible] = useState(false);
-      console.log(props);
+    const [showModal, setShowModal] = useState(false);
+    console.log(props);
     const detailData = props.stData;
     console.log(detailData);
     const toggleVisibility = () => {
         setIsVisible((f) => !f);
     };
+    const ShowModal = () => {
+        console.log("おされた");
+        setShowModal(true);
+        console.log(showModal);
+      };
     return (
         <>
             <div className={styles.studentDetailArea}>
@@ -19,11 +27,13 @@ export default function StDetail(props) {
                     <EditButton
                     onClick={toggleVisibility}
                     />
+                    
                 </div>
                 <div className={styles.expArea}>
                     <p>登録されている学生の情報を確認・編集します</p>
                     <small className={styles.smallp}>※編集する場合は右上のボタンを押してください</small>
                 </div>
+                <StudentModal showFlag={showModal} setShowModal={setShowModal} data={detailData} />
                 <div className={ isVisible ? styles.None : styles.detailArea}>
                     {detailData ? (
                             <div className={styles.studentText}>
@@ -43,10 +53,17 @@ export default function StDetail(props) {
                                     <span>氏名</span>
                                     <p>{detailData.student.name || '情報がありません'}</p>
                                 </div>
+                                {/* <DeleteButton
+                                onClick={ShowModal}
+                                /> */}
+                                <div className={styles.deleteButtonWrapper}>
+                                    <button onClick={ShowModal} className={styles.delete}><p>削除</p></button>
+                                </div>
                             </div>
                         ) : (
                             <p>チーム情報を読み込んでいます...</p>
                         )}
+                    
                 </div>
                 <div>
                 <div className={ isVisible ? styles.formArea : styles.None }>
@@ -64,7 +81,7 @@ export default function StDetail(props) {
                                 <dt><label htmlFor="text">学籍番号</label></dt>
                                 <dd><input type="text" id="system" ></input></dd>
                             </div>
-                            <button type="submit" className={styles.submitButton}>OK</button>
+                            <button type="submit" className={styles.submitButton}></button>
                         </dl>
                     </form>
                 </div>

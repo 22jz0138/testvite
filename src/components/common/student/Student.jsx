@@ -9,10 +9,16 @@ export default function BasicExampleDataGrid() {
     const token = useAuth();
     const [studentData, setStudentData] = useState([]);
     const [StudentDetail, setStudentDetail] = useState();
+    const [showModal, setShowModal] = useState(false);
     const handleDetailClick = (e) =>{
         const studentId  = e.target.getAttribute("data-key");
         setStudentData(studentId);
     }
+    const ShowModal = () => {
+        console.log("おされた");
+        setShowModal(true);
+        console.log(showModal);
+      };
     useEffect(() => {
         Ajax(null, token.token, 'student', 'get')
         .then((data) => {
@@ -28,6 +34,9 @@ export default function BasicExampleDataGrid() {
     return (
         <>
             <div className={styles.listArea}>
+                <div>
+                    <button className={styles.addeStudentButton}>登録</button>
+                </div>
                 <div className={styles.listHeader}>
                     <ul className={styles.listTitle}>
                         <li>ID</li>

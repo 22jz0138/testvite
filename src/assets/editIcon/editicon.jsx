@@ -1,7 +1,5 @@
 import styles from './editIcon.module.css'
 
-
-
 const EditIcon = (onClick) => (
     <svg 
     width="65"

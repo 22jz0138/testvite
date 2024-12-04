@@ -11,7 +11,6 @@ export const Team = () => {
   const [team, setTeam] = useState([]); // 初期値を空配列に設定
   const token = useAuth();
   
-
   const setCardView = () => setIsStyle(true);  // カード表示に変更
   const setListView = () => setIsStyle(false); // リスト表示に変更
 
@@ -32,9 +31,6 @@ export const Team = () => {
     const intervalId = setInterval(fetchTeamData, 5000); // 5秒ごとにデータを取得
     return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
   }, [token]);
-
-
-  
 
   return (
     <>
