@@ -7,9 +7,9 @@ import Ajax from '../../../hooks/Ajax';
 
 export default function TeamDetail(props) {
     const [putNum, setPutNum] = useState();
+    const [isVisible, setIsVisible] = useState(false);
     const [putName, setPutName] = useState();
     const [putDetail, setPutDetail] = useState();
-    const [isVisible, setIsVisible] = useState(false);
     const [teamDetail,setTeamDetail] = useState();
     const token = useAuth();
     const toggleVisibility = () => {

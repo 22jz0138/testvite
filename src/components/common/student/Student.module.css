@@ -25,11 +25,12 @@
 
 .columnBody{
     text-align: center;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 80%;
 }
-.columnBody::-webkit-scrollbar{
+/* .columnBody::-webkit-scrollbar{
     display: none;
-}
+} */
 
 .studentsColumnWrapper{
     width: 100%;

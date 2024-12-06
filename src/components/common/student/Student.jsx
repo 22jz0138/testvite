@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useState,useEffect} from 'react';
 import Ajax from '../../../hooks/Ajax';
 import { useAuth } from '../../../context/AuthContext';
+import StudentAddModal from '../../base/modal/studentaddmodal/StudentAddModal';
 import { Link } from "react-router-dom";
 import styles from './Student.module.css';
 
@@ -9,6 +10,7 @@ export default function BasicExampleDataGrid() {
     const token = useAuth();
     const [studentData, setStudentData] = useState([]);
     const [StudentDetail, setStudentDetail] = useState();
+    const [teamData,setTeamData] = useState();
     const [showModal, setShowModal] = useState(false);
     const handleDetailClick = (e) =>{
         const studentId  = e.target.getAttribute("data-key");
@@ -16,9 +18,20 @@ export default function BasicExampleDataGrid() {
     }
     const ShowModal = () => {
         console.log("おされた");
-        setShowModal(true);
+        Ajax(null, token.token, 'team', 'get')
+        .then((data) => {
+            if(data.status === "success") {
+                setTeamData(data.team);
+                console.log("dekita");
+                console.log("チームデータ",data);
+            } else {
+                console.log(data.status);
+            }
+            setShowModal(true);
+        });
         console.log(showModal);
       };
+
     useEffect(() => {
         Ajax(null, token.token, 'student', 'get')
         .then((data) => {
@@ -35,8 +48,9 @@ export default function BasicExampleDataGrid() {
         <>
             <div className={styles.listArea}>
                 <div>
-                    <button className={styles.addeStudentButton}>登録</button>
+                    <button className={styles.addeStudentButton} onClick={ShowModal}>登録</button>
                 </div>
+                {showModal && <StudentAddModal showFlag={showModal} setShowModal={setShowModal} selectData={teamData}/>}
                 <div className={styles.listHeader}>
                     <ul className={styles.listTitle}>
                         <li>ID</li>

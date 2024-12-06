@@ -81,7 +81,7 @@ export default function StDetail(props) {
                                 <dt><label htmlFor="text">学籍番号</label></dt>
                                 <dd><input type="text" id="system" ></input></dd>
                             </div>
-                            <button type="submit" className={styles.submitButton}></button>
+                            <button type="submit" className={styles.submitButton}>登録</button>
                         </dl>
                     </form>
                 </div>
