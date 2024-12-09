@@ -6,7 +6,7 @@ import StudentAddModal from '../../base/modal/studentaddmodal/StudentAddModal';
 import { Link } from "react-router-dom";
 import styles from './Student.module.css';
 
-export default function BasicExampleDataGrid() {
+export default function Student() {
     const token = useAuth();
     const [studentData, setStudentData] = useState([]);
     const [StudentDetail, setStudentDetail] = useState();
@@ -48,7 +48,7 @@ export default function BasicExampleDataGrid() {
         <>
             <div className={styles.listArea}>
                 <div className={styles.processingArea}>
-                    <button className={styles.addeStudentButton} onClick={ShowModal}>登録</button>
+                    <button className={styles.addeStudentButton} onClick={ShowModal}><p>+ </p></button>
                 </div>
                 {showModal && <StudentAddModal showFlag={showModal} setShowModal={setShowModal} selectData={teamData}/>}
                 <div className={styles.studentListArea}>

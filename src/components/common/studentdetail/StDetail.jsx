@@ -8,9 +8,9 @@ import styles from './StDetail.module.css';
 export default function StDetail(props) {
     const [isVisible, setIsVisible] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    console.log(props);
+    // console.log(props);
     const detailData = props.stData;
-    console.log(detailData);
+    // console.log(detailData);
     const toggleVisibility = () => {
         setIsVisible((f) => !f);
     };

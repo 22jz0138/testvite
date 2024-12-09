@@ -50,6 +50,7 @@
     justify-content: space-around;
     align-items: center;
     gap: 20px;
+    height: 80px;
 }
 /* .listItem{
     padding: 20px;
@@ -60,8 +61,11 @@
     align-items: center;
     gap: 20px;
 } */
-.listItem *{
+/* .listItem *{
     width:calc((100% - 100px) / 4);
+} */
+.listItem p{
+    overflow: hidden;
 }
 .teamImgListArea{
     margin: 5px;

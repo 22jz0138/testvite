@@ -107,7 +107,6 @@ const TestModel = (props) => {
 
   return (
     <div>
-      <h1>時間帯別データ数（積み上げ棒グラフ）</h1>
       <Bar data={chartData} options={{
         scales: {
           y: {

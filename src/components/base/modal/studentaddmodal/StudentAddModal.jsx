@@ -2,6 +2,7 @@ import React from "react";
 import styles from './StudentAddModal.module.css'
 import { useAuth } from "../../../../context/AuthContext";
 import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Ajax from "../../../../hooks/Ajax";
 
 const StudentAddModal = (props) => {
@@ -12,6 +13,7 @@ const StudentAddModal = (props) => {
     const [putStudentEmployment,setStudentEmployment] = useState();
     // const [teamData,setTeamData] = useState();
     const token = useAuth();
+    const navigate = useNavigate();
     console.log(props);
     const teamData = Object.values(props.selectData)
 

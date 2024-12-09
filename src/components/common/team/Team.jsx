@@ -76,7 +76,7 @@ export const Team = () => {
                     </div>
                     <h2>{(team.num)}</h2>
                     <h2>{team.name}</h2>
-                    <p>{team.detail}</p>
+                    {/* <p>{team.detail}</p> */}
                     <ul>
                       {team.students &&
                         team.students.map((student) => (
