@@ -65,7 +65,7 @@ export default function Student() {
                     <div className={styles.columnBody}>
                         {studentData.map((item) => (
                         <Link
-                        to={`/student/${item.id}`}
+                        to={`/admin/student/${item.id}`}
                         >
                             <ul key={item.number} className={styles.studentsColumnWrapper}>
                                 <div key={item.name} data-key={item.id} className={styles.studentsColumn} onClick={handleDetailClick}>

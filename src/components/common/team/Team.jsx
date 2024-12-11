@@ -61,7 +61,7 @@ export const Team = () => {
                   className={isStyle ? styles.cardItem : styles.listItem}
                 >
                   <Link
-                    to={`/team/${team.id}`}
+                    to={`/admin/team/${team.id}`}
                     className={isStyle ? "" : styles.listLink}
                   >
                     {console.log(team)}

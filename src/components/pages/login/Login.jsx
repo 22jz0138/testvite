@@ -31,7 +31,7 @@ function Login() {
             console.log("dekita");
             const token = data.token;
             login(token);
-            navigate('/team');
+            navigate('/admin/team');
             } else {
             console.log(data.status);
             setErrFlag(false);

@@ -19,7 +19,7 @@ const StudentModal = (props) => {
             if(data.status === "success") {
                 console.log("dekite");
                 closeModal();
-                navigate('/student');
+                navigate('/admin/student');
             } else {
                 console.log(data.status);
             }

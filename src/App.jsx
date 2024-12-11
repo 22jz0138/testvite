@@ -17,18 +17,18 @@ function App() {
   return (
     <>
       <Routes>
-                <Route path='/'element={<Dashboard />}/>
-                <Route path='/login'element={<Login />}/>
-                <Route path='/team'element={<MainTeamPage />}/>
-                <Route path='/question'element={<QuestionnairePage />}/>
-                <Route path='/reception'element={<ReceptionPage />}/>
-                <Route path='/visitor'element={<VisitorsLogPage />}/>
-                <Route path='/student'element={<StudentPage />}/>
-                <Route path='/student/:id'element={<DetailStudent />}/>
-                <Route path='/area'element={<AreaPage />}/>
-                <Route path="/team/:id" element={<Detail />} />
-                <Route path='/NotTeam' element={<NoTeam/>}/>
-                <Route path="/*" element={<NoMatch />} />
+                <Route path='/admin/'element={<Dashboard />}/>
+                <Route path='/admin/login'element={<Login />}/>
+                <Route path='/admin/team'element={<MainTeamPage />}/>
+                <Route path='/admin/question'element={<QuestionnairePage />}/>
+                <Route path='/admin/reception'element={<ReceptionPage />}/>
+                <Route path='/admin/visitor'element={<VisitorsLogPage />}/>
+                <Route path='/admin/student'element={<StudentPage />}/>
+                <Route path='/admin/student/:id'element={<DetailStudent />}/>
+                <Route path='/admin/area'element={<AreaPage />}/>
+                <Route path='/admin/team/:id' element={<Detail />} />
+                <Route path='/admin/NotTeam' element={<NoTeam/>}/>
+                <Route path="/admin/*" element={<NoMatch />} />
       </Routes>
       
     </>

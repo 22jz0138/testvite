@@ -32,7 +32,7 @@ const Detail = () => {
           setLastTeamId(arrayLast ? arrayLast.id : null); // lastTeamIdを設定
           setTeam_id(id);
           if (id > (arrayLast ? arrayLast.id : 0)) {
-            navigate("/NoTeam");
+            navigate('/admin/NoTeam');
           }
         } else {
           console.log(data.status);
