@@ -11,6 +11,7 @@
 }
 .list.close{
     width: 80px;
+    /* justify-content: flex-start; */
 }
 .list li{
     padding: 10px;

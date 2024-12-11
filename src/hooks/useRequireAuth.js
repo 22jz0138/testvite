@@ -9,7 +9,7 @@ const useRequireAuth = () => {
 
     useEffect(() => {
         if (token === null) {
-            navigate('/'); // ログイン画面のパスを指定
+            navigate('/login'); // ログイン画面のパスを指定
         }
     }, [token, navigate]);
 };

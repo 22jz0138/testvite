@@ -1,20 +1,19 @@
 import React from 'react'
 import { Routes, Route,Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPeopleGroup ,faPersonShelter,faQrcode,faClipboardQuestion,faPersonChalkboard,faGraduationCap} from '@fortawesome/free-solid-svg-icons';  // 必要なアイコンをインポート
+import { faPeopleGroup ,faPersonShelter,faQrcode,faClipboardQuestion,faPersonChalkboard,faGraduationCap,faChartLine} from '@fortawesome/free-solid-svg-icons';  // 必要なアイコンをインポート
 import styles from './RoutingSidebar.module.css';
-// import MainTeamPage from '../../pages/mainteam/MainTeamPage';
-// import QuestionnairePage from '../../pages/questionnaire/QuestionnairePage';
-// import ReceptionPage from '../../pages/reception/ReceptionPage';
-// import VisitorsLogPage from '../../pages/visitorslog/VisitorsLogPage';
-// import AreaPage from '../../pages/area/AreaPage';
-
 
 export default function RoutingSidebar({ checkbool}) {
 return (
     <>  
         <aside>
             <ul className={`${styles.list} ${checkbool ? '' : styles.close}`}>
+                <li>
+                    <Link to="/">
+                        {checkbool?'アナリティクス': <FontAwesomeIcon icon={faChartLine} /> }
+                    </Link>
+                </li>
                 <li>
                     <Link to="/team">
                         {checkbool?'チーム一覧': <FontAwesomeIcon icon={faPeopleGroup} /> }

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Questionnaire.module.css";
+import styles from "./graphs.module.css";
 import { useState, useEffect } from "react";
 import { VisitorPie } from "./graphs/VisitorPie";
 import RealTimeChart from "./graphs/RealTimeChart ";
@@ -8,7 +8,7 @@ import { useAuth } from '../../../context/AuthContext';
 import Ajax from "../../../hooks/Ajax";
 import TestModel from "./graphs/TestModel";
 
-export const Questionnaire = () => {
+export const Graphs = () => {
   const token = useAuth();
   const [visitorData, setVisitorData] = useState();
 

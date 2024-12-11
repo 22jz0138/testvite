@@ -46,11 +46,11 @@ function Login() {
                     <form onSubmit={handleSubmit} className={styles.uiForm}>
                         <dl>
                             <div className={styles.formField}>
-                                <dt><label htmlFor="account">アカウント</label></dt>
+                                <dt><label htmlFor="account">account</label></dt>
                                 <dd><input type="text" id="account" onChange={inputAccount}></input></dd>
                             </div>
                             <div className={styles.formField}>
-                                <dt><label htmlFor="password">パスワード</label></dt>
+                                <dt><label htmlFor="password">password</label></dt>
                                 <dd><input type="password" id="password" onChange={inputPassword}></input></dd>
                             </div>
                             <p className={errFlag ? styles.errNone : styles.err}>アカウントまたはパスワードに誤りがあります</p>

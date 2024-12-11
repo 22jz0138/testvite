@@ -11,12 +11,14 @@ import Detail from './components/pages/mainteam/detail/Detail';
 import NoTeam from './components/pages/nomatch/NoTeam';
 import NoMatch from './components/pages/nomatch/NoMatch';
 import DetailStudent from './components/pages/student/detailStudent/DetailStudent';
+import Dashboard from './components/pages/dashboard/dashboard';
 function App() {
 
   return (
     <>
       <Routes>
-                <Route path='/'element={<Login />}/>
+                <Route path='/'element={<Dashboard />}/>
+                <Route path='/login'element={<Login />}/>
                 <Route path='/team'element={<MainTeamPage />}/>
                 <Route path='/question'element={<QuestionnairePage />}/>
                 <Route path='/reception'element={<ReceptionPage />}/>
