@@ -1,0 +1,24 @@
+.listArea{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.listWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px
+    ;
+}
+
+.queList{
+    width: 30%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background:rgba(55, 171, 157,0.2);
+}
