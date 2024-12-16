@@ -12,6 +12,7 @@ import NoTeam from './components/pages/nomatch/NoTeam';
 import NoMatch from './components/pages/nomatch/NoMatch';
 import DetailStudent from './components/pages/student/detailStudent/DetailStudent';
 import Dashboard from './components/pages/dashboard/dashboard';
+import QuestionnaireDetail from './components/pages/questionnaire/detail/QuestionnaireDetail';
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
                   <Route path='/admin/login'element={<Login />}/>
                   <Route path='/admin/team'element={<MainTeamPage />}/>
                   <Route path='/admin/question'element={<QuestionnairePage />}/>
+                  <Route path='/admin/questionnairedetail' element={<QuestionnaireDetail/>}/>
                   <Route path='/admin/reception'element={<ReceptionPage />}/>
                   <Route path='/admin/visitor'element={<VisitorsLogPage />}/>
                   <Route path='/admin/student'element={<StudentPage />}/>

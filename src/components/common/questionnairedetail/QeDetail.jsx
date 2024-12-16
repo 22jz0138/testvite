@@ -7,10 +7,11 @@ import { useEffect } from "react";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from "../../../hooks/Ajax";
 
+
 const style = {
     padding: "1rem"
   };
-const QuestionnaireDetail = () => {
+const QeDetail = () => {
     const [items, setItems] = useState([]);
     const [itemData,setItemData] = useState();
     const token = useAuth();
@@ -59,4 +60,4 @@ const QuestionnaireDetail = () => {
       );
 }
 
-export default QuestionnaireDetail
+export default QeDetail

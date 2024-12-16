@@ -18,8 +18,8 @@ const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [lastTeamId, setLastTeamId] = useState(null); // lastTeamIdを状態として定義
-  const { checkbool, toggleSidebar } = useSetSidebar(); // フックをコンポーネントの最上部で呼び出す
-  const mypath = useSetUrlPath(); // フックをコンポーネントの最上部で呼び出す
+  const { checkbool, toggleSidebar } = useSetSidebar(); 
+  const mypath = useSetUrlPath(); 
 
   useEffect(() => {
     Ajax(null, token.token, 'team', 'get')

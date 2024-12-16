@@ -17,6 +17,7 @@ const useSetUrlPath = () => {
         "admin/team": 'チーム一覧',
         "admin/reception": '受付',
         "admin/question": 'アンケート',
+        "admin/questionnairedetail":"アンケート詳細",
         "admin/student": '学生一覧',
         "admin/": 'アナリティクス'
     };

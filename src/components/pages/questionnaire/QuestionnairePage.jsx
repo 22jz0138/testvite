@@ -8,7 +8,7 @@ import useRequireAuth from '../../../hooks/useRequireAuth';
 import QuestionnaireList from '../../common/Questionnairelist/QuestionnaireList';
 
 const QuestionnairePage = () => {
-  useRequireAuth();
+  // useRequireAuth();
   const {checkbool,toggleSidebar} = useSetSidebar();
   const mypath = useSetUrlPath();
   return (
