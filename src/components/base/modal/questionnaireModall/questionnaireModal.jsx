@@ -6,16 +6,19 @@ import styles from './questionnaireModal.module.css';
 
 const questionnaireModal = (props) => {
   const token = useAuth();
-  const [putTitle, setPutTitle] = useState();
+  const [title, setTitle] = useState();
   const inputTitle = (e) => {
-    setPutNum(e.target.value);
+    setTitle(e.target.value);
     console.log(e.target.value);
   };
   const closeModal = () => {
   props.setShowModal(false);
   };  
   const handleAddQue = () => {
-    Ajax(null, token.token, `questionnaire`, 'POST')
+    const req = {
+      title : title
+    }
+    Ajax(null, token.token, `questionnaire`, 'post', req)
     .then((data) => {
         if(data.status === "success") {
             console.log("dekite");
@@ -33,16 +36,18 @@ const questionnaireModal = (props) => {
         <div id={styles.overlay} style={overlay}>
             <div id={styles.modalContent} style={modalContent}>
               <div className={styles.addModalTitleArea}>
-              <h2>新しいアンケートを作成します</h2>
-              <button  className={styles.cancelButton} onClick={closeModal}><span>×</span></button>
+                <h2>新しいアンケートを作成します</h2>
+                <button  className={styles.cancelButton} onClick={closeModal}><span>×</span></button>
               </div>
-              <dl className={styles.addInnerForm}>
-                  <div className={styles.addQueTitleForm}>
-                    <dt><label htmlFor="text">タイトル</label></dt>
-                    <dd><input type="text" id="QueTitle" maxLength={15} onChange={inputTitle} required></input></dd>
-                  </div>
-                  <button type="submit" className={styles.submitButton} onClick={handleAddQue}>OK</button>
-              </dl>
+              <form action="">
+                <dl className={styles.addInnerForm}>
+                    <div className={styles.addQueTitleForm}>
+                      <dt><label htmlFor="text">タイトル</label></dt>
+                      <dd><input type="text" id="QueTitle" maxLength={30} onChange={inputTitle} required></input></dd>
+                    </div>
+                    <button type="submit" className={styles.submitButton} onClick={handleAddQue}>OK</button>
+                </dl>
+              </form>
             </div>
         </div>
     ) : null}
@@ -53,7 +58,7 @@ const questionnaireModal = (props) => {
 const modalContent = {
   background: "white",
   width:"500px",
-  height:"150px",
+  height:"200px",
   padding: "10px",
   borderRadius: "10px",
 
