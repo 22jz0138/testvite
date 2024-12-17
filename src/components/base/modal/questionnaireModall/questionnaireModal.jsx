@@ -7,10 +7,13 @@ import styles from './questionnaireModal.module.css';
 const questionnaireModal = (props) => {
   const token = useAuth();
   const [title, setTitle] = useState();
+  const [inputValue, setInputValue] = useState('');
   const inputTitle = (e) => {
     setTitle(e.target.value);
+    setInputValue(e.target.value);
     console.log(e.target.value);
   };
+
   const closeModal = () => {
   props.setShowModal(false);
   };  
@@ -43,9 +46,12 @@ const questionnaireModal = (props) => {
                 <dl className={styles.addInnerForm}>
                     <div className={styles.addQueTitleForm}>
                       <dt><label htmlFor="text">タイトル</label></dt>
-                      <dd><input type="text" id="QueTitle" maxLength={30} onChange={inputTitle} required></input></dd>
+                      <dd>
+                        <input type="text" id="QueTitle" maxLength={30} onChange={inputTitle} value={inputValue}  required >
+                        </input>
+                      </dd>
                     </div>
-                    <button type="submit" className={styles.submitButton} onClick={handleAddQue}>OK</button>
+                    <button type="submit" className={!inputValue ? styles.disabled : styles.submitButton}   onClick={handleAddQue}  disabled={!inputValue}>OK</button>
                 </dl>
               </form>
             </div>

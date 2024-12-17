@@ -118,6 +118,17 @@
     cursor: pointer; /* カーソルをポインターに */
     transition: background-color 0.3s; /* ホバー時のトランジション */
 }
+.disabled{
+    width: 20%;
+    padding: 10px 15px; /* ボタンのパディング */
+    margin: 0 auto;
+    border: none; /* ボーダーを削除 */
+    border-radius: 4px; /* 角を丸く */
+    font-size: 16px; /* フォントサイズ */
+    background-color: gray; /* ボタンを灰色に */
+    color: white;           /* テキストを白に */
+    cursor: not-allowed; 
+}
 
 .submitButton:hover {
     background-color: #F8A100   ; /* ホバー時の色 */
