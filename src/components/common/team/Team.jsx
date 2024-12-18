@@ -5,6 +5,7 @@ import TeamButton from '../../base/teambutton/TeamButton';
 import { Link } from "react-router-dom";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from '../../../hooks/Ajax';
+import ReactLoading from "react-loading";
 
 export const Team = () => {
   const [isStyle, setIsStyle] = useState(true);
@@ -53,7 +54,9 @@ export const Team = () => {
           <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
             {/* データ取得中またはデータが空の場合の処理 */}
             {team.length === 0 ? (
-              <p>チーム情報を読み込み中...</p>
+              <article className={styles.loadingArea}>
+                <ReactLoading type='spokes' color='#37ab9d'/>
+              </article>
             ) : (
               team.map((team) => (
                 <div

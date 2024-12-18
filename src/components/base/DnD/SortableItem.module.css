@@ -1,0 +1,10 @@
+.quevalue{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 10%;
+    margin: 10px 0;
+    background:rgba(55, 171, 157,0.1);
+    border-radius: 12px;
+}

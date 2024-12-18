@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import styles from './SortableItem.module.css';
 
 const ItemTypes = {
   CARD: "card"
@@ -8,8 +9,6 @@ const ItemTypes = {
 const style = {
   border: "1px solid #ddd",
   padding: "0.5rem 1rem",
-  marginBottom: "0.5rem",
-  backgroundColor: "#fafafa",
   cursor: "move",
   listStyle: "none"
 };
@@ -69,7 +68,7 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
   drag(drop(ref));
 
   return (
-    <li ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+    <li ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} className={styles.quevalue}>
       {item.name}
     </li>
   );
