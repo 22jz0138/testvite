@@ -10,6 +10,7 @@ const useSetUrlPath = () => {
     const studentRegExp = new RegExp("admin/student/([1-9]\\d*|0)");
     // チーム詳細用の正規表現
     const teamRegExp = new RegExp("admin/team/([1-9]\\d*|0)");
+    const queDetailRegExp = new RegExp("admin/questionnairedetail/([1-9]\\d*|0)")
 
     const pathNames = {
         "admin/area": '会場',
@@ -29,6 +30,8 @@ const useSetUrlPath = () => {
         translatedPath = '学生詳細';
     } else if (teamRegExp.test(modPath)) {
         translatedPath = 'チーム詳細';
+    } else if (queDetailRegExp.test(modPath)){
+        translatedPath = "アンケート詳細"
     } else {
         translatedPath = pathNames[modPath] || modPath;
     }

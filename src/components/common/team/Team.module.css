@@ -6,8 +6,15 @@
 .visualSet{
     height: calc(100% - 80vh);
     margin: 10px;
-    gap: 10px;
+    display: flex;
+    align-items: center;
+    /* gap: 10px; */
     border-bottom: #ccc 1px solid;
+}
+
+/* ローディング */
+.loadingArea{
+    margin: 10px 0;
 }
 
 /* カード型表示 */

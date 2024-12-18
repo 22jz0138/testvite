@@ -4,6 +4,8 @@ import { EditButton } from '../../base/editButton/EditButton';
 import { DeleteButton } from '../../base/deleteButton/DeleteButton';
 import StudentModal from '../../base/modal/studentModal/StudentModal';
 import styles from './StDetail.module.css';
+import ReactLoading from "react-loading";
+
 
 export default function StDetail(props) {
     const [isVisible, setIsVisible] = useState(false);
@@ -61,7 +63,7 @@ export default function StDetail(props) {
                                 </div>
                             </div>
                         ) : (
-                            <p>チーム情報を読み込んでいます...</p>
+                            <ReactLoading type='spokes' color='#37ab9d'/>
                         )}
                     
                 </div>

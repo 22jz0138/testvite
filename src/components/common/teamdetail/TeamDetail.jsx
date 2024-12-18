@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { EditButton } from '../../base/editButton/EditButton';
 import Ajax from '../../../hooks/Ajax';
+import ReactLoading from "react-loading";
+
 
 export default function TeamDetail(props) {
     const [putNum, setPutNum] = useState();
@@ -29,7 +31,7 @@ export default function TeamDetail(props) {
         Ajax(null, null, `team/${props.id}`, 'get')
         .then((data) => {
             if (data.status === "success") {
-            setTeamDetail(data);
+            setTeamDetail(data );
             console.log("データ取得成功");
             console.log(data);
         } else {
@@ -99,7 +101,7 @@ export default function TeamDetail(props) {
                             </div>
                         </div>
                     ) : (
-                        <p>チーム情報を読み込んでいます...</p>
+                        <ReactLoading type='spokes' color='#37ab9d'/>
                     )}
                     <div className={styles.teamImage}>
                         <div>
