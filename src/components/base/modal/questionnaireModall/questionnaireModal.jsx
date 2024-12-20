@@ -26,7 +26,7 @@ const questionnaireModal = (props) => {
         if(data.status === "success") {
             console.log("dekite");
             closeModal();
-            navigate('/admin/student');
+            navigate('/admin/question');
         } else {
             console.log(data.status);
         }

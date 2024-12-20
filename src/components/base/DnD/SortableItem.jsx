@@ -69,7 +69,7 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
 
   return (
     <li ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} className={styles.quevalue}>
-      {item.name}
+      {item.question}
     </li>
   );
 };

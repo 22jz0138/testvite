@@ -11,7 +11,7 @@ import Ajax from "../../../../hooks/Ajax";
 import { useAuth } from '../../../../context/AuthContext';
 
 const Detail = () => {
-  // useRequireAuth();
+  useRequireAuth();
   const token = useAuth();
   const navigate = useNavigate();
   const [team_id,setTeam_id] = useState();

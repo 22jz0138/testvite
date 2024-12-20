@@ -17,8 +17,8 @@ const useSetUrlPath = () => {
         "admin/visitor": '来場者一覧',
         "admin/team": 'チーム一覧',
         "admin/reception": '受付',
-        "admin/question": 'アンケート',
-        "admin/questionnairedetail":"アンケート詳細",
+        "admin/question": 'アンケート一覧',
+        "admin/questionnairedetail":"アンケート一覧　＞　アンケート詳細",
         "admin/student": '学生一覧',
         "admin/": 'アナリティクス'
     };
@@ -31,7 +31,7 @@ const useSetUrlPath = () => {
     } else if (teamRegExp.test(modPath)) {
         translatedPath = 'チーム詳細';
     } else if (queDetailRegExp.test(modPath)){
-        translatedPath = "アンケート詳細"
+        translatedPath = "アンケート一覧　＞　アンケート詳細"
     } else {
         translatedPath = pathNames[modPath] || modPath;
     }

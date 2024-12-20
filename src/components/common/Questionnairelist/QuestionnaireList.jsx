@@ -35,7 +35,7 @@ const QuestionnaireList = () => {
             <div className={styles.listArea}>
                 <div className={styles.listWrapper}>
                     {queData.map((que) => (
-                        <Link to={`/admin/questionnairedetail/${que.id}`}>
+                        <Link to={`/admin/questionnairedetail/${que.id}`} className={styles.quelistwrap}>
                             <button key={que.id} className={styles.queList}>
                                 <p>{que.title}</p>
                             </button>
