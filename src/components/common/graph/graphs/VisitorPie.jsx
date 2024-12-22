@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
+import styles from './graphs.module.css'
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const VisitorPie = (props) => {
@@ -40,5 +40,12 @@ export const VisitorPie = (props) => {
     },
   };
 
-  return <Pie data={data} options={options} />;
+  return ( 
+    <>
+      <div style={{ width: '30%', height: '100%' }} className={styles.shadow}>
+        <Pie data={data} options={options}/>;
+        
+      </div>
+    </>
+  )
 };

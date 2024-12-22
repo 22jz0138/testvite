@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./graphs.module.css";
 import { useState, useEffect } from "react";
 import { VisitorPie } from "./graphs/VisitorPie";
+import VisitorCounter from "./graphs/VisitorCounter";
 import RealTimeChart from "./graphs/RealTimeChart ";
 import { LegendList } from "./graphs/LegendList";
 import { useAuth } from '../../../context/AuthContext';
@@ -30,23 +31,15 @@ export const Graphs = () => {
     fetchVisitorData();
   }, []);
 
-  // // visitorDataが存在するか確認してからフィルタリング
-  // const div1 = visitorData && visitorData.visitor ? visitorData.visitor.filter(visitor => visitor.division === 1).length : 0;
-  // console.log(div1);;
-
 
   return (
     <>
       <div className={styles.dashboard}>
-
-        <div className={styles.graph}>
+        <div className={styles.graphTop}>
           <VisitorPie data={visitorData} />
+          <VisitorCounter/>
         </div>
-        <div className={styles.graph}>
-          <RealTimeChart data={visitorData}/>
           <TestModel data={visitorData}/>
-          {/* 他のコンテンツ */}
-        </div>
       </div>
     </>
   );
