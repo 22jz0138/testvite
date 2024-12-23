@@ -8,6 +8,7 @@ import { LegendList } from "./graphs/LegendList";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from "../../../hooks/Ajax";
 import TestModel from "./graphs/TestModel";
+import TeanRanking from "./graphs/TeanRanking";
 
 export const Graphs = () => {
   const token = useAuth();
@@ -38,6 +39,7 @@ export const Graphs = () => {
         <div className={styles.graphTop}>
           <VisitorPie data={visitorData} />
           <VisitorCounter/>
+          <TeanRanking/>
         </div>
           <TestModel data={visitorData}/>
       </div>
