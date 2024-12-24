@@ -9,6 +9,7 @@ import AddQueModal from "../../base/modal/addqueModal/AddQueModal";
 import Ajax from "../../../hooks/Ajax";
 import ReactLoading from "react-loading";
 import { useParams } from "react-router-dom";
+import DeleteModal from "../../base/modal/deleteModal/DeleteModal";
 
 const QeDetail = () => {
   const token = useAuth();
@@ -37,20 +38,7 @@ const QeDetail = () => {
           console.log(data.status);
         }
       });
-  }, []);
-
-  // useEffect(() => {
-  //   if (addFlag) {
-  //     setItems(prevItems => {
-  //       const maxId = prevItems.reduce((max, item) => Math.max(max, item.id), 0);
-  //       return [
-  //         ...prevItems,
-  //         { id: maxId + 1, name: newque }
-  //       ];
-  //     });
-  //     setAddFlag(false);
-  //   }
-  // }, [addFlag]);
+  }, []); 
 
   useEffect(() => {
     setLoading(true); // データ取得開始時にローディングを開始
@@ -63,7 +51,7 @@ const QeDetail = () => {
         }
       })
       .finally(() => {
-        setLoading(false); // データ取得が完了したらローディングを終了
+        setLoading(false); 
       });
   }, [token.token, getId.id]);
 
@@ -91,6 +79,7 @@ const QeDetail = () => {
         </div>
       </div>
         <AddQueModal setAddFlag={setAddFlag} setNewQue={setNewQue} showFlag={showModal} setShowModal={setShowModal} items={items}/>
+        <DeleteModal showFlag={showModal} setShowModal={setShowModal} items={items}/>
         {loading ? ( // ローディング中の表示
           <article className={styles.loadingArea}>
             <ReactLoading type='spokes' color='#37ab9d' />
