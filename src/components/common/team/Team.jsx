@@ -42,24 +42,26 @@ export const Team = () => {
     <>
       <div className={styles.teamArea}>
         <AddTeamModal showFlag={showModal} setShowModal={setShowModal}/>
-        <div className={styles.visualSet}>
-          {/* カード表示に切り替えるボタン */}
-          <TeamButton
-            visualType="card"
-            onClick={setCardView}
-            isInactive={isStyle}
-          />
-          {/* リスト表示に切り替えるボタン */}
-          <TeamButton
-            visualType="list"
-            onClick={setListView}
-            isInactive={isStyle}
-          />
-          <button className={styles.addQue} onClick={ShowModal}>+</button>
+        <div>
+          <div className={styles.visualSet}>
+            <h2>チーム一覧</h2>
+            <div className={styles.visualButtonArea}>
+              <TeamButton
+                visualType="card"
+                onClick={setCardView}
+                isInactive={isStyle}
+              />
+              <TeamButton
+                visualType="list"
+                onClick={setListView}
+                isInactive={isStyle}
+              />
+            </div>
+            <button className={styles.addTeam} onClick={ShowModal}>+</button>
+          </div>
         </div>
         <div>
           <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
-            {/* データ取得中またはデータが空の場合の処理 */}
             {team.length === 0 ? (
               <article className={styles.loadingArea}>
                 <ReactLoading type='spokes' color='#37ab9d'/>
@@ -84,8 +86,12 @@ export const Team = () => {
                     >
                       <img src={catjpg} alt="口を開けた猫" />
                     </div>
-                    <h2>{(team.num)}</h2>
-                    <h2>{team.name}</h2>
+                    <div className={isStyle ? "" : styles.innerList}>
+                      <h2>{(team.num)}</h2>
+                    </div>
+                    <div className={isStyle ? "" : styles.innerList}>
+                      <h2>{team.name}</h2>
+                    </div>
                     {/* <p>{team.detail}</p> */}
                     <ul>
                       {team.students &&

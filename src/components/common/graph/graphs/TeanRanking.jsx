@@ -30,7 +30,7 @@ const TeanRanking = () => {
 
     return (
         <>
-            <div className={styles.raningArea}>
+            <div className={styles.rankingArea}>
                 {ratingItem.map((item, index) => (
                     <div key={item.id}className={styles.ranking}>
                         <span>

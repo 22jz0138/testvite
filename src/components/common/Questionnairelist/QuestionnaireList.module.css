@@ -1,5 +1,7 @@
 .listArea{
-    width: 1380px;
+    width: 80%;
+    height: 100%;
+    
     margin: 0 auto;
 }
 
@@ -12,9 +14,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 40px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
-
+.listWrapper::-webkit-scrollbar{
+    background: #ebf6f5;
+}
+.listWrapper::-webkit-scrollbar-thumb{
+    background: #37ab9d;
+    border-radius: 15px;
+}
 .quelistwrap{
     width: 30%;
     height: 200px;

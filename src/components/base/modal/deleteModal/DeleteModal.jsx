@@ -8,8 +8,32 @@ const DeleteModal = (props) => {
   const queId = useParams();
   
   return (
-    <div>DeleteModal</div>
+    <div id={styles.overlay} style={overlay}>
+                <div id={styles.modalContent} style={modalContent}>
+
+                </div>
+    </div>
   )
 }
+
+const modalContent = {
+  background: "white",
+  width: "500px",
+  height: "500px",
+  padding: "10px",
+  borderRadius: "10px",
+};
+
+const overlay = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0,0,0,0.5)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
 export default DeleteModal

@@ -11,6 +11,23 @@
     /* gap: 10px; */
     border-bottom: #ccc 1px solid;
 }
+.visualSet h2{
+    font-size: 1.7rem;
+}
+.visualButtonArea{
+    margin-left: 20px;
+    flex: 80%;
+}
+.addTeam{
+    width: 65px;
+    height:65px;
+    margin: 5px 20px 5px 0 ;
+    border-radius: 99px;
+    font-weight: 400;
+    font-size: 1.3rem;
+    background: #fafafa;
+    border: 1px solid rgb(255, 192, 66);
+}
 
 /* ローディング */
 .loadingArea{
@@ -27,7 +44,25 @@
     max-height: 80vh;
     padding-top: 10px;
     justify-content: space-around;
-    overflow: scroll;
+    margin: auto;
+    overflow-y: scroll;
+}
+.teamCardArea::-webkit-scrollbar {
+    width: 16px; /* スクロールバーの幅 */
+}
+
+.teamCardArea::-webkit-scrollbar-thumb {
+    background: #87d1c8; /* スクロールバーのつまみの色 */
+    border-radius: 10px; /* つまみの角を丸くする */
+}
+
+.teamCardArea::-webkit-scrollbar-track {
+    background: rgb(240, 240, 240); /* スクロールバーのトラックの色 */
+}
+
+/* スクロールバーのホバー時のスタイル */
+.teamCardArea::-webkit-scrollbar-thumb:hover {
+    background: #2a8f7c; /* ホバー時のつまみの色 */
 }
 .cardItem{
     padding: 20px;
@@ -46,8 +81,15 @@
 .teamAreaList{
     width: 100%;
     max-height: 80vh;
-    overflow: scroll;
+    overflow-y: scroll;
     display: block;
+}
+.teamAreaList::-webkit-scrollbar{
+    background: #ebf6f5;
+}
+.teamAreaList::-webkit-scrollbar-thumb{
+    background: #37ab9d;
+    border-radius: 15px;
 }
 .listLink{
     padding: 20px;
@@ -59,23 +101,29 @@
     gap: 20px;
     height: 80px;
 }
-/* .listItem{
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 20px;
-} */
-/* .listItem *{
-    width:calc((100% - 100px) / 4);
-} */
+
 .listItem p{
     overflow: hidden;
 }
+
+.innerList{
+    width: calc(100% / 4);
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+}
 .teamImgListArea{
     margin: 5px;
+    width: calc(100% / 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.teamImgListArea *{
+margin: auto;
 }
 
 .teamImgListArea img{
@@ -84,13 +132,3 @@
 }
 
 
-.addQue{
-    width: 80px;
-    height:80px;
-    margin: 5px ;
-    border-radius: 99px;
-    font-weight: 400;
-    font-size: 1.3rem;
-    background: #fafafa;
-    border: 1px solid rgb(255, 192, 66);
-}
