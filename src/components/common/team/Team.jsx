@@ -6,11 +6,16 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from '../../../hooks/Ajax';
 import ReactLoading from "react-loading";
+import AddTeamModal from '../../base/modal/addteamModal/AddTeamModal';
 
 export const Team = () => {
   const [isStyle, setIsStyle] = useState(true);
   const [team, setTeam] = useState([]); // 初期値を空配列に設定
   const token = useAuth();
+  const [showModal, setShowModal] = useState(false);
+  const ShowModal = () => {
+    setShowModal(true);
+  };
   
   const setCardView = () => setIsStyle(true);  // カード表示に変更
   const setListView = () => setIsStyle(false); // リスト表示に変更
@@ -32,10 +37,11 @@ export const Team = () => {
     const intervalId = setInterval(fetchTeamData, 5000); // 5秒ごとにデータを取得
     return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
   }, [token]);
-
+//
   return (
     <>
       <div className={styles.teamArea}>
+        <AddTeamModal showFlag={showModal} setShowModal={setShowModal}/>
         <div className={styles.visualSet}>
           {/* カード表示に切り替えるボタン */}
           <TeamButton
@@ -49,6 +55,7 @@ export const Team = () => {
             onClick={setListView}
             isInactive={isStyle}
           />
+          <button className={styles.addQue} onClick={ShowModal}>+</button>
         </div>
         <div>
           <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>

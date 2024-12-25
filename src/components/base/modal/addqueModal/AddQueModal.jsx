@@ -48,15 +48,12 @@ const AddQueModal = (props) => {
         if(data.status === "success") {
             console.log("dekite");
             closeModal();
-            // navigate(`/admin/questionnairedetail/${queId.id}`);
         } else {
             console.log(data.status);
             console.log(data.message);
         }
-        // props.setShowModal(true);
     });
     console.log("押した後",req);
-    // closeModal();
 }
   return (
     <>
