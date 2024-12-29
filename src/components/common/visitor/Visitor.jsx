@@ -30,9 +30,9 @@ const Visitor = () => {
   useEffect(() => {
     fetchVisitorData(); // 初回データ取得
 
-    const intervalId = setInterval(fetchVisitorData, 5000); // 5秒ごとにデータを取得
+    const intervalId = setInterval(fetchVisitorData, 60000); 
 
-    return () => clearInterval(intervalId); // コンポーネントがアンマウントされるときにintervalをクリア
+    return () => clearInterval(intervalId);
   }, [token]);
 
   const filteredVisitors = visitorData.filter(visitor => {
