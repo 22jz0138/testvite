@@ -7,6 +7,9 @@
 
 .processingArea{
     height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 .addeStudentButton{
     width: 5%;
