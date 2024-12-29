@@ -45,7 +45,7 @@ const Visitor = () => {
   return (
     <div className={styles.visitorTable}>
       <div className={styles.pageTitle}>
-        <h2>チーム一覧</h2>
+        <h2>来場者一覧</h2>
       </div>
       <div className={styles.sortArea}>
         <input
