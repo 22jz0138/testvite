@@ -19,7 +19,6 @@ const VisitorsLogPage = () => {
     <RoutingSidebar checkbool={checkbool}/>
     <Visitor className={styles.Visitor}/>
   </div>
-
 </>
   )
 }

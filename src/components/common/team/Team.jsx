@@ -80,7 +80,7 @@ const sortedTeams = [...filteredTeams].sort((a, b) => {
             </label>
             <label className={styles.searchArea}>
               <input 
-                type="text" 
+                type="search" 
                 placeholder="チーム名で検索"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)} 
