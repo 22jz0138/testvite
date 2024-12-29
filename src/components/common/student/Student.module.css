@@ -4,6 +4,22 @@
     /* background: #ffadad; */
     overflow: hidden;
 }
+.pageTitle{
+    width: calc(100% - 40px);
+    height: 5%;
+    margin: 40px 20px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.pageTitle h2{
+    color: #596a83;
+}
+.pageTitle span{
+    color: #7b90af;
+    font-size: small;
+}
 
 .processingArea{
     height: 10%;
@@ -11,6 +27,19 @@
     display: flex;
     align-items: center;
 }
+
+.innerProcessing{
+    flex: 90%;
+}
+
+.buttonArea{
+    flex: 10%;
+}
+.buttonArea button{
+    height: 50px;
+    background: #37ab9d;
+}
+
 .addeStudentButton{
     width: 5%;
     height: 70px;
@@ -24,7 +53,7 @@
 
 .studentListArea{
     width: 100%;
-    height: 90%;
+    height: 85%;
 
 }
 
