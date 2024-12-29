@@ -11,16 +11,16 @@
 }
 .addInnerForm {
     display: flex;
-    flex-direction: column; /* 縦に配置 */
+    flex-direction: column; 
 }
 
 .addTeamTitleForm {
-    margin-bottom: 5px; /* 各項目の間隔 */
+    margin-bottom: 5px; 
 }
 
 .addTeamTitleForm dt {
-    margin-bottom: 5px; /* ラベルと入力フィールドの間隔 */
-    font-weight: bold; /* ラベルを太字に */
+    margin-bottom: 5px; 
+    font-weight: bold; 
 }
 
 .addTeamTitleForm input[type="text"] {
@@ -38,7 +38,7 @@
 }
 
 .selectArea dt{
-    margin-bottom: 5px; /* ラベルと入力フィールドの間隔 */
+    margin-bottom: 5px;
     font-weight: bold; 
 }
 
@@ -55,32 +55,32 @@
 
 .submitButton {
     width: 60%;
-    padding: 10px 15px; /* ボタンのパディング */
+    padding: 10px 15px; 
     margin: 10px auto;
-    background-color: #e9c685; /* ボタンの背景色 */
-    color: white; /* ボタンのテキスト色 */
-    border: none; /* ボーダーを削除 */
-    border-radius: 4px; /* 角を丸く */
-    font-size: 16px; /* フォントサイズ */
-    cursor: pointer; /* カーソルをポインターに */
-    transition: background-color 0.3s; /* ホバー時のトランジション */
+    background-color: #e9c685; 
+    color: white; 
+    border: none;
+    border-radius: 4px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .disabled {
     width: 60%;
     padding: 10px 15px;
     margin: 10px auto;
-    border: none; /* ボーダーを削除 */
-    border-radius: 4px; /* 角を丸く */
-    font-size: 16px; /* フォントサイズ */
-    background-color: gray; /* 無効時の背景色 */
-    color: white;           /* テキスト色 */
-    cursor: not-allowed;    /* カーソルを禁止に */
+    border: none;
+    border-radius: 4px; 
+    font-size: 16px; 
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
 }
 
 
 .submitButton:hover {
-    background-color: #F8A100   ; /* ホバー時の色 */
+    background-color: #F8A100 
 }
 .cancelButton{
     border: none;
