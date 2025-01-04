@@ -96,7 +96,7 @@ const StudentAddModal = (props) => {
                                     <dd><input type="text" id="StudentID" maxLength={8} onChange={inputStudentIDNumber} required></input></dd>
                                 </div><div className={styles.addStudentForm}>
                                     <dt><label htmlFor="text">学年</label></dt>
-                                    <dd><input type="number" id="grade" max={3} onChange={inputStudentgrade} required></input></dd>
+                                    <dd><input type="number" id="grade" max={3} min={1} onChange={inputStudentgrade} required></input></dd>
                                 </div><div className={styles.addStudentForm}>
                                     <dt><label htmlFor="text">氏名</label></dt>
                                     <dd><input type="text" id="studentName" maxLength={15} onChange={inputStudentName} required></input></dd>
