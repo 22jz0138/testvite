@@ -200,7 +200,7 @@ const TestModel = () => {
     selectedDivisions.forEach(division => {
       const dataForDivision = divisionCounts[division];
       
-      // 同じ年のデータをスタッキングするために、データを年ごとにまとめる
+      // データを年ごとにまとめる
       const stackedData = selectedYears.map((year, index) => {
         return dataForDivision.slice(index * (endHour - startHour + 1) * 2, (index + 1) * (endHour - startHour + 1) * 2);
       }).flat();
@@ -209,17 +209,17 @@ const TestModel = () => {
         label: `${division === 1 ? '企業' : division === 2 ? '教員' : division === 3 ? 'JEC生徒' : division === 4 ? 'OB・OG' : 'その他'}`,
         data: stackedData,
         backgroundColor: division === 1 ? '#4d4d4d' : division === 2 ? '#ff9800' : division === 3 ? '#4caf50' : division === 4 ? '#f44336' : '#999999',
-        stack: 'stacked', // スタッキング用の設定を追加
+        stack: 'stacked', // スタッキング用設定
       });
     });
 
     setChartData({
-      labels: labels, // 生成したラベルをそのまま設定
+      labels: labels,
       datasets: datasets,
     });
-  }, [visitorData, selectedYears, selectedDivisions]); // visitorData, selectedYears, selectedDivisionsが更新された時に実行
+  }, [visitorData, selectedYears, selectedDivisions]); //更新された時に実行
 
-  // グラフの種類を切り替えるハンドラー
+  // グラフの切り替え
   const handleChartTypeChange = (e) => {
     setChartType(e.target.value);
   };
@@ -302,9 +302,9 @@ const TestModel = () => {
               responsive: true,
               maintainAspectRatio: false,
               scales: {
-               
-                y: { stacked: true, min: 0 }, // Y軸はスタッキング
-                x: { stacked: false }, // X軸はスタッキングしない
+               //スタッキングtf
+                y: { stacked: true, min: 0 }, 
+                x: { stacked: false }, 
               },
             }} 
           />
@@ -315,7 +315,7 @@ const TestModel = () => {
               responsive: true,
               maintainAspectRatio: false,
               scales: {
-                y: { stacked: false, min: 0 }, // 折れ線グラフではスタッキングしない
+                y: { stacked: false, min: 0 }, 
                 x: { stacked: false },
               },
             }} 

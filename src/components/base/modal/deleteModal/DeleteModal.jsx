@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '../../../../context/AuthContext'
 import { use } from 'react';
 import { useParams } from 'react-router-dom';
+import styles from './DeleteModal.module.css'
 
 const DeleteModal = (props) => {
   const token = useAuth();   

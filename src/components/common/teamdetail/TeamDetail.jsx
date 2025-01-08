@@ -36,7 +36,7 @@ export default function TeamDetail(props) {
             console.log(data);
         } else {
             console.log(data.status);
-        }                                     
+        }
         });
     }
 

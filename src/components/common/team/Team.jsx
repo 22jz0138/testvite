@@ -43,21 +43,16 @@ export const Team = () => {
     return () => clearInterval(intervalId);
   }, [token]);
 
-  // フィルタリング処理
+  // フィルタ処理
 const filteredTeams = team.filter(t => 
-  // チーム名を小文字に変換し、検索キーワード（小文字）を含むかチェック
   t.name.toLowerCase().includes(searchTerm.toLowerCase())
 );
 
 // ソート処理
 const sortedTeams = [...filteredTeams].sort((a, b) => {
-  // 昇順の場合
   if (sortOrder === 'asc') {
-    // チーム番号を昇順で比較
     return a.num.localeCompare(b.num);
   } else {
-    // 降順の場合
-    // チーム番号を降順で比較
     return b.num.localeCompare(a.num);
   }
 });

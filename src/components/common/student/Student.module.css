@@ -29,15 +29,21 @@
 }
 
 .innerProcessing{
-    flex: 90%;
+    flex: 80%;
 }
 
 .buttonArea{
-    flex: 10%;
+    flex: 20%;
+    display: flex;
 }
 .buttonArea button{
-    height: 50px;
+    height: 40px;
     background: #37ab9d;
+}
+
+.csvButton{
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .addeStudentButton{

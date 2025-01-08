@@ -65,47 +65,45 @@ const StudentAddModal = (props) => {
 
     return (
     <>
-        {props.showFlag ? (
+    {props.showFlag ? (
     <div id={styles.overlay} style={overlay}>
         <div id={styles.addModalContent} style={modalContent}>
             <div className={styles.addModalTitleArea}>
                 <p>登録する学生の情報を入力してください</p>
                 <button  className={styles.cancelButton} onClick={closeModal}><span>×</span></button>
             </div>
-                <div className={styles.formArea}>
-                    <form onSubmit={handleSubmit} className={styles.addForm}>
-                            <dl className={styles.addInnerForm}>
-                                <div className={styles.addStudentForm}>
-                                    <dt><label htmlFor="text">チーム番号</label></dt>
-                                    {/* <dd><input type="text" id="team" onChange={inputTeamNum} required ></input></dd> */}
-                                    <dd>
-                                        <select name="teams" id="teams" className={styles.teams} onChange={inputTeamNum} required>
-                                            <option value="">チームを選択してください</option>
-                                            {teamData.map((team)=>(
-                                                <option value={team.id} label={team.name} ></option>
-                                            ))}
-                                        </select>
-                                    </dd>
-                                </div>
-                                <div className={styles.addStudentForm}>
-                                    <dt><label htmlFor="text">法人番号</label></dt>
-                                    <dd><input type="text" id="employment_target_id	" onChange={inputStudentEmployment}></input></dd>
-                                </div>
-                                <div className={styles.addStudentForm}>
-                                    <dt><label htmlFor="text">学籍番号</label></dt>
-                                    <dd><input type="text" id="StudentID" maxLength={8} onChange={inputStudentIDNumber} required></input></dd>
-                                </div><div className={styles.addStudentForm}>
-                                    <dt><label htmlFor="text">学年</label></dt>
-                                    <dd><input type="number" id="grade" max={3} min={1} onChange={inputStudentgrade} required></input></dd>
-                                </div><div className={styles.addStudentForm}>
-                                    <dt><label htmlFor="text">氏名</label></dt>
-                                    <dd><input type="text" id="studentName" maxLength={15} onChange={inputStudentName} required></input></dd>
-                                </div>
-                                <button type="submit" className={styles.submitButton} onClick={handleSubmit}>OK</button>
-                            </dl>
-                        </form>
-                </div>
-                <div className={styles.buttonWrapper}>
+            <div className={styles.formArea}>
+                <form onSubmit={handleSubmit} className={styles.addForm}>
+                    <dl className={styles.addInnerForm}>
+                        <div className={styles.addStudentForm}>
+                            <dt><label htmlFor="text">チーム番号</label></dt>
+                            {/* <dd><input type="text" id="team" onChange={inputTeamNum} required ></input></dd> */}
+                            <dd>
+                                <select name="teams" id="teams" className={styles.teams} onChange={inputTeamNum} required>
+                                    <option value="">チームを選択してください</option>
+                                    {teamData.map((team)=>(
+                                        <option value={team.id} label={team.name} ></option>
+                                    ))}
+                                </select>
+                            </dd>
+                        </div>
+                        <div className={styles.addStudentForm}>
+                            <dt><label htmlFor="text">法人番号</label></dt>
+                            <dd><input type="text" id="employment_target_id	" onChange={inputStudentEmployment}></input></dd>
+                        </div>
+                        <div className={styles.addStudentForm}>
+                            <dt><label htmlFor="text">学籍番号</label></dt>
+                            <dd><input type="text" id="StudentID" maxLength={8} onChange={inputStudentIDNumber} required></input></dd>
+                        </div><div className={styles.addStudentForm}>
+                            <dt><label htmlFor="text">学年</label></dt>
+                            <dd><input type="number" id="grade" max={3} min={1} onChange={inputStudentgrade} required></input></dd>
+                        </div><div className={styles.addStudentForm}>
+                            <dt><label htmlFor="text">氏名</label></dt>
+                            <dd><input type="text" id="studentName" maxLength={15} onChange={inputStudentName} required></input></dd>
+                        </div>
+                        <button type="submit" className={styles.submitButton} onClick={handleSubmit}>OK</button>
+                    </dl>
+                </form>
             </div>
         </div>
     </div>

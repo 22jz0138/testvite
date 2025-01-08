@@ -6,11 +6,17 @@
 
 .pageTitle{
     width: calc(100% - 40px);
-    margin: 40px 20px 0 20px;
+
+    min-height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .pageTitle h2{
     color: #596a83;
+    margin: 40px 20px 0 20px;
+
 }
 .sortArea{
     width: 100%;
@@ -52,4 +58,5 @@
 
 .listArea{
     max-height: 80%;
+    overflow-y: scroll;
 }
