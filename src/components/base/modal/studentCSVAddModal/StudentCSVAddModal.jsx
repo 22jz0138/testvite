@@ -37,28 +37,28 @@ const StudentCSVAddModal = (props) => {
         try {
             for (const row of data) {
                 const req = {
-                    teamNumber: Number(row['チーム番号']),  
-                    studentId: row['学籍番号'],
+                    team_id: Number(row['チーム番号']),  
+                    number: row['学籍番号'],
                     grade: Number(row['学年']),
                     name: row['氏名'],
                 };
                 console.log(req);
                 console.log(token);
                 
-                // Ajax(null, token.token, 'student', 'post',  req)
-                // .then((data) => {
-                //     if(data.status === "success") {
-                //     console.log("dekita");
-                //     closeModal();
-                //     } else {
-                //     console.log(data.status);
-                //     console.log(data.message);
-                //     console.log(token.token );
-                //     console.log(req);
-                //     }   
-                // })
-            }
-            alert("すべての登録が完了しました");
+                Ajax(null, token.token, 'student', 'post',  req)
+                .then((data) => {
+                    if(data.status === "success") {
+                    console.log("dekita");
+                } else {
+                    console.log(data.status);
+                    console.log(data.message);
+                    console.log(token.token );
+                    console.log(req);
+                }   
+            })
+        }
+        alert("すべての登録が完了しました");
+        closeModal();
         } catch (error) {
             console.error("エラーが発生しました:", error);
         }
@@ -93,7 +93,7 @@ const StudentCSVAddModal = (props) => {
 const modalContent = {
     background: "white",
     width:"500px",
-    height:"650px",
+    height:"400px",
     padding: "10px",
     borderRadius: "10px",
 

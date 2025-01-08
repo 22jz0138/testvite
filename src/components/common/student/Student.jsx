@@ -15,10 +15,10 @@ export default function Student() {
   const [showCSVModal, setShowCSVModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortKey, setSortKey] = useState('grade'); // デフォルトのソートキー
-  const [sortDirection, setSortDirection] = useState('ascending'); // ソート方向
-  const [selectedGrade, setSelectedGrade] = useState(''); // フィルター用の学年
-  const [selectedTeam, setSelectedTeam] = useState(''); // フィルター用のチーム番号
+  const [sortKey, setSortKey] = useState('grade');
+  const [sortDirection, setSortDirection] = useState('ascending');
+  const [selectedGrade, setSelectedGrade] = useState('');
+  const [selectedTeam, setSelectedTeam] = useState('');
 
   const ShowModal = () => {
     setLoading(true);
@@ -37,8 +37,7 @@ export default function Student() {
   };
 
   const ShowCSVModal = () => {
-    
-    
+
     setLoading(true);
     Ajax(null, token.token, 'team', 'get')
       .then((data) => {
