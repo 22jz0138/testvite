@@ -39,10 +39,10 @@ const AddTeamModal = (props) => {
         event.preventDefault();
         const req = {
             num: teamNum,
-            name: sysName,
+            name: sysName || "未設定", // sysNameが未入力なら「未設定」
             detail: sysDetail,
             grade: teamGrade
-        };
+        };  
         Ajax(null, token.token, `team`, 'post', req)
         .then((data) => {
             if(data.status === "success") {

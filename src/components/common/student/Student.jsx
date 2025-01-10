@@ -11,7 +11,7 @@ export default function Student() {
   const token = useAuth();
   const [studentData, setStudentData] = useState([]);
   const [teamData, setTeamData] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState( );
   const [showCSVModal, setShowCSVModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');

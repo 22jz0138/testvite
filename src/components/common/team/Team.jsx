@@ -44,16 +44,20 @@ export const Team = () => {
   }, [token]);
 
   // フィルタ処理
-const filteredTeams = team.filter(t => 
-  t.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  const filteredTeams = team.filter(t => 
+    t.name ? t.name.toLowerCase().includes(searchTerm.toLowerCase()) : false
+  );
+  
 
 // ソート処理
 const sortedTeams = [...filteredTeams].sort((a, b) => {
+  const nameA = a.name || ""; // nullの場合は空文字
+  const nameB = b.name || ""; // nullの場合は空文字
+
   if (sortOrder === 'asc') {
-    return a.num.localeCompare(b.num);
+    return nameA.localeCompare(nameB);
   } else {
-    return b.num.localeCompare(a.num);
+    return nameB.localeCompare(nameA);
   }
 });
 
@@ -124,7 +128,7 @@ const sortedTeams = [...filteredTeams].sort((a, b) => {
                       <img src={catjpg} alt="口を開けた猫" />
                     </div>
                     <div className={isStyle ? "" : styles.innerList}>
-                      <h2>{team.name}</h2>
+                      <h2>{team.name ? team.name : "未設定"}</h2>
                     </div>
                     <ul>
                       {team.students && team.students.map((student) => (
