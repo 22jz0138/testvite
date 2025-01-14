@@ -8,8 +8,7 @@ import VisitorsLogPage from './components/pages/visitorslog/VisitorsLogPage';
 import StudentPage from './components/pages/student/StudentPage';
 import AreaPage from './components/pages/area/AreaPage';
 import Detail from './components/pages/mainteam/detail/Detail';
-import NoTeam from './components/pages/nomatch/NoTeam';
-import NoMatch from './components/pages/nomatch/NoMatch';
+
 import DetailStudent from './components/pages/student/detailStudent/DetailStudent';
 import Dashboard from './components/pages/dashboard/dashboard';
 import QuestionnaireDetail from './components/pages/questionnaire/detail/QuestionnaireDetail';
@@ -29,8 +28,6 @@ function App() {
                   <Route path='/admin/student/:id'element={<DetailStudent />}/>
                   <Route path='/admin/area'element={<AreaPage />}/>
                   <Route path='/admin/team/:id' element={<Detail />} />
-                  <Route path='/admin/NotTeam' element={<NoTeam/>}/>
-                  <Route path="/admin/*" element={<NoMatch />} />
         </Routes>
       
     </>
