@@ -19,7 +19,7 @@ const DeleteTeamModal = (props) => {
                 console.log("dekita");
                 closeModal();
                 // alert("削除しました");
-                
+
             } else {
                 console.log(data.status);
                 console.log(data.message);
@@ -34,7 +34,7 @@ const DeleteTeamModal = (props) => {
         <div id={styles.overlay} style={overlay}>
             <div id={styles.modalContent} style={modalContent}>
                 <div className={styles.addModalTitleArea}>
-                    <h2>登録情報の編集</h2>
+                    <h2>このチームを削除します</h2>
                     <button className={styles.cancelButton} onClick={closeModal}><span>×</span></button>
                 </div>
                 <div className={styles.deleteButtonWrapper}>
