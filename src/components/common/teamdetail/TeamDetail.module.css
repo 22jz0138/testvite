@@ -3,7 +3,7 @@
     max-width: 1200px;
     height: 80%;
 }
-.titleAndEdit{
+.titleAndButton{
     padding: 15px 0;
     margin-bottom: 30px;
     width: 100%;
@@ -11,9 +11,14 @@
     justify-content: space-between;
     border-bottom: 1px solid #d2d5da;
 }
-.titleAndEdit h1{
+.titleAndButton h1{
     margin: auto 30px;
     text-align: center;
+}
+
+.buttonWrapper{
+    display: flex;
+    gap: 20px;
 }
 .expArea{
     padding: 24px;

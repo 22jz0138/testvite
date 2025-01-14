@@ -11,7 +11,7 @@ export default function Student() {
   const token = useAuth();
   const [studentData, setStudentData] = useState([]);
   const [teamData, setTeamData] = useState([]);
-  const [showModal, setShowModal] = useState( );
+  const [showModal, setShowModal] = useState(false);
   const [showCSVModal, setShowCSVModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,7 +37,6 @@ export default function Student() {
   };
 
   const ShowCSVModal = () => {
-
     setLoading(true);
     Ajax(null, token.token, 'team', 'get')
       .then((data) => {
@@ -46,7 +45,7 @@ export default function Student() {
         } else {
           console.log(data.status);
         }
-        setShowCSVModal(true);console.log(showCSVModal);
+        setShowCSVModal(true);
       })
       .finally(() => {
         setLoading(false);
@@ -149,17 +148,19 @@ export default function Student() {
                 style={{ backgroundColor: '#fff' }}
               >
                 <MenuItem value="">全て</MenuItem>
-                {Array.from(new Set(studentData.map(student => student.team_id))).map(team => (
-                  <MenuItem key={team} value={team}>{team}</MenuItem>
-                ))}
+                {Array.from(new Set(studentData.map(student => student.team_id)))
+                  .sort((a, b) => a - b) // 数値としてソート
+                  .map(team => (
+                    <MenuItem key={team} value={team}>{team}</MenuItem>
+                  ))}
               </Select>
             </FormControl>
-            <Button variant="outlined" color="secondary" onClick={resetFilters} style={{ marginLeft: '20px',marginTop:'10px' }}>
+            <Button variant="outlined" color="secondary" onClick={resetFilters} style={{ marginLeft: '20px', marginTop: '10px' }}>
               元に戻す
             </Button>
           </div>
           <div className={styles.buttonArea}>
-            <Button variant="contained" color="primary" onClick={ShowModal} style={{marginRight:'10px'}}>
+            <Button variant="contained" color="primary" onClick={ShowModal} style={{ marginRight: '10px' }}>
               + 学生登録
             </Button>
             <Button variant="outlined" color="primary" className={styles.csvButton} onClick={ShowCSVModal}>
@@ -237,3 +238,4 @@ export default function Student() {
     </>
   );
 }
+

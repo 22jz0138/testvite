@@ -51,13 +51,13 @@ export const Team = () => {
 
 // ソート処理
 const sortedTeams = [...filteredTeams].sort((a, b) => {
-  const nameA = a.name || ""; // nullの場合は空文字
-  const nameB = b.name || ""; // nullの場合は空文字
+  const numA = a.num || ""; // nullの場合は空文字
+  const numB = b.num || ""; // nullの場合は空文字
 
   if (sortOrder === 'asc') {
-    return nameA.localeCompare(nameB);
+    return numA.localeCompare(numB);
   } else {
-    return nameB.localeCompare(nameA);
+    return numB.localeCompare(numA);
   }
 });
 
