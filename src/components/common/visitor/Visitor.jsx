@@ -74,7 +74,7 @@ const Visitor = () => {
               </TableHead>
               <TableBody>
                 {filteredVisitors.map((row) => (
-                  <TableRow key={row.id}>
+                  <TableRow key={row.id} component={Link} to={`/admin/visitor/${row.id}`}>
                     <TableCell>{row.id}</TableCell>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.affiliation}</TableCell>

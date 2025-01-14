@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../../../context/AuthContext'
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styles from './DeleteTeamModal.module.css'
 import Ajax from '../../../../hooks/Ajax';
 
