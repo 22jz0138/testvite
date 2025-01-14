@@ -105,7 +105,7 @@ const EditTeamModal = (props) => {
                                         id="system"
                                         onChange={inputTeamName}
                                         maxLength={20}
-                                        value={putNum || props.teamData.team.name || ""}
+                                        value={putName || props.teamData.team.name || ""}
                                         required
                                     />
                                 </dd>
@@ -118,8 +118,7 @@ const EditTeamModal = (props) => {
                                         id="detail"
                                         onChange={inputTeamDetail}
                                         maxLength={100}
-                                        value={putNum || props.teamData.team.detail || ""}
-                                        required
+                                        value={putDetail || props.teamData.team.detail || ""}
                                     />
                                 </dd>
                                 {detailError && <span className={styles.error}>{detailError}</span>} {/* 詳細のエラーメッセージ表示 */}

@@ -53,6 +53,7 @@ const AddTeamModal = (props) => {
                 console.log(data.message);
             }
         });
+        closeModal();
     };
 
     return (
