@@ -118,6 +118,7 @@ const modalContent = {
     height:"650px",
     padding: "10px",
     borderRadius: "10px",
+    opacity: 999,
 
   };
 
