@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, CircularProgress } from '@mui/material';
 import styles from './Visitor.module.css';
 import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
 import { useAuth } from '../../../context/AuthContext';
 import Ajax from '../../../hooks/Ajax';
 
