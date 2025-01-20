@@ -12,6 +12,7 @@ import Detail from './components/pages/mainteam/detail/Detail';
 import DetailStudent from './components/pages/student/detailStudent/DetailStudent';
 import Dashboard from './components/pages/dashboard/dashboard';
 import QuestionnaireDetail from './components/pages/questionnaire/detail/QuestionnaireDetail';
+import VisitorsLogDetail from './components/pages/visitorslog/visitorsLogDetail/VisitorsLogDetail';
 function App() {
 
   return (
@@ -24,6 +25,7 @@ function App() {
                   <Route path='/admin/questionnairedetail/:id' element={<QuestionnaireDetail/>}/>
                   <Route path='/admin/reception'element={<ReceptionPage />}/>
                   <Route path='/admin/visitor'element={<VisitorsLogPage />}/>
+                  <Route path='/admin/visitor/:id'element={<VisitorsLogDetail/>}/>
                   <Route path='/admin/student'element={<StudentPage />}/>
                   <Route path='/admin/student/:id'element={<DetailStudent />}/>
                   <Route path='/admin/area'element={<AreaPage />}/>
