@@ -1,15 +1,14 @@
-import React from 'react'
-import styles from "./Login.module.css"
-import { useState } from 'react'
+import React, { useState } from 'react';
+import styles from "./Login.module.css";
 import Ajax from '../../../hooks/Ajax';
-import { useAuth } from '../../../context/AuthContext'
+import { useAuth } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [errFlag, setErrFlag] = useState(true);
-    const [inputError, setInputError] = useState(''); // 入力エラーメッセージ用のステート
+    const [inputError, setInputError] = useState(''); 
     const { login } = useAuth();
     const navigate = useNavigate(); 
 
@@ -39,14 +38,31 @@ function Login() {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        if (account.length > 255 || password.length > 255) {
-            return; // すでにエラーがある場合は送信しない
+
+        // エラーメッセージの初期化
+        setInputError('');
+        setErrFlag(true);
+
+        if (account.trim() === '' && password.trim() === '') {
+            setInputError('アカウントとパスワードを入力してください');
+            setErrFlag(false);
+            return;
         }
-        
+        if (account.trim() === '') {
+            setInputError('アカウントを入力してください');
+            setErrFlag(false);
+            return;
+        }
+        if (password.trim() === '') {
+            setInputError('パスワードを入力してください');
+            setErrFlag(false);
+            return;
+        }
+
         const req = {
             account: account,
             password: password
-        }
+        };
 
         Ajax(null, null, 'login', 'POST', req)
         .then((data) => {
@@ -58,7 +74,7 @@ function Login() {
                 setErrFlag(false);
                 setInputError('アカウントまたはパスワードに誤りがあります');
             }
-        })
+        });
     }
 
     return (

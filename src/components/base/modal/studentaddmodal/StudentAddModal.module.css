@@ -119,7 +119,7 @@
     transition: background-color 0.3s; 
 }
 .disabled{
-    width: 20%;
+    width: 60%;
     padding: 10px 15px; 
     margin: 0 auto;
     border: none; 

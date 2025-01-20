@@ -8,6 +8,7 @@ import Ajax from '../../../hooks/Ajax';
 import ReactLoading from "react-loading";
 import AddTeamModal from '../../base/modal/addteamModal/AddTeamModal';
 import { CiSearch } from "react-icons/ci";
+import { Button } from '@mui/material';
 
 
 export const Team = () => {
@@ -98,7 +99,7 @@ const sortedTeams = [...filteredTeams].sort((a, b) => {
                 isInactive={isStyle}
               />
             </div>
-            <button className={styles.addTeam} onClick={ShowModal}>add +</button>
+            <Button variant="contained" color="primary" className={styles.addTeam} onClick={ShowModal} style={{ marginRight: '20px',height:'40px',width:'150px',backgroundColor:'#37ab9d' }}>+ チーム追加</Button>
           </div>
         </div>
         <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>

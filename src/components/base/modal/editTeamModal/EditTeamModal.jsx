@@ -13,7 +13,8 @@ const EditTeamModal = (props) => {
     const [numError, setNumError] = useState(""); // チーム番号用エラーメッセージ
     const [nameError, setNameError] = useState(""); // システム名用エラーメッセージ
     const [detailError, setDetailError] = useState(""); // 詳細用エラーメッセージ
-
+    console.log(props);
+    
     const closeModal = () => {
         props.setShowModal(false);
     };  
@@ -95,7 +96,7 @@ const EditTeamModal = (props) => {
                                         required
                                     />
                                 </dd>
-                                {numError && <span className={styles.error}>{numError}</span>} {/* チーム番号のエラーメッセージ表示 */}
+                                {numError && <span className={styles.error}>{numError}</span>} 
                             </div>
                             <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">システム名</label></dt>
@@ -109,7 +110,7 @@ const EditTeamModal = (props) => {
                                         required
                                     />
                                 </dd>
-                                {nameError && <span className={styles.error}>{nameError}</span>} {/* システム名のエラーメッセージ表示 */}
+                                {nameError && <span className={styles.error}>{nameError}</span>} 
                             </div>
                             <div className={styles.teamForm}>
                                 <dt><label htmlFor="text">詳細</label></dt>
@@ -121,7 +122,7 @@ const EditTeamModal = (props) => {
                                         value={putDetail || props.teamData.team.detail || ""}
                                     />
                                 </dd>
-                                {detailError && <span className={styles.error}>{detailError}</span>} {/* 詳細のエラーメッセージ表示 */}
+                                {detailError && <span className={styles.error}>{detailError}</span>} 
                             </div>
                             <button type="submit" className={styles.submitButton}>OK</button>
                         </dl>
