@@ -20,7 +20,7 @@ export const Graphs = () => {
         if (data.status === "success") {
           setVisitorData(data);
           
-          console.log(data);
+          // console.log(data);
         } else {
           // fetchVisitorData();
           console.log("データ取得失敗");

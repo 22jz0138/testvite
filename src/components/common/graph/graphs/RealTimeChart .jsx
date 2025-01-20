@@ -13,10 +13,8 @@ import {
 // Chart.jsの設定
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 let ntime = new Date;
-console.log(ntime);
 
 const RealTimeChart = (props) => {
-  console.log(props);
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
