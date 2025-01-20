@@ -11,7 +11,6 @@ const AddTeamModal = (props) => {
     const [sysDetail, setSysDetail] = useState(); 
     const [teamGrade, setTeamGrade] = useState();
 
-    const [inputValue, setInputValue] = useState('');
     const closeModal = () => {
         props.setShowModal(false);
     };  
@@ -56,6 +55,12 @@ const AddTeamModal = (props) => {
         closeModal();
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // エンターキーのデフォルト動作を防ぐ
+        }
+    };
+
     return (
         <>
         {props.showFlag ? (
@@ -70,15 +75,15 @@ const AddTeamModal = (props) => {
                             <div className={styles.addTeamTitleForm}>
                                 <dt><label htmlFor="sysName">システム名</label></dt>
                                 <dd>
-                                    <input type="text" id="sysName" maxLength={30} onChange={inputTitle} value={sysName}  />
+                                    <input type="text" id="sysName" maxLength={30} onChange={inputTitle} value={sysName} onKeyDown={handleKeyDown} />
                                 </dd>
                                 <dt><label htmlFor="teamNum">チーム番号</label></dt>
                                 <dd>
-                                    <input type="text" id="teamNum" maxLength={30} onChange={inputNum} value={teamNum} required />
+                                    <input type="text" id="teamNum" maxLength={30} onChange={inputNum} value={teamNum} required onKeyDown={handleKeyDown} />
                                 </dd>
                                 <dt><label htmlFor="teamDetail">チーム詳細</label></dt>
                                 <dd>
-                                    <textarea id="teamDetail" onChange={inputDetail} value={sysDetail}  />
+                                    <textarea id="teamDetail" onChange={inputDetail} value={sysDetail} onKeyDown={handleKeyDown} />
                                 </dd>
                             </div>
                             <div className={styles.selectArea}>
