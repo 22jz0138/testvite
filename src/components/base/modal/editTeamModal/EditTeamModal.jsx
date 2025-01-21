@@ -10,9 +10,12 @@ const EditTeamModal = (props) => {
     const [putNum, setPutNum] = useState("");
     const [putName, setPutName] = useState("");
     const [putDetail, setPutDetail] = useState("");
+    const [logoFile, setLogoFile] = useState('');
     const [numError, setNumError] = useState(""); // チーム番号用エラーメッセージ
     const [nameError, setNameError] = useState(""); // システム名用エラーメッセージ
     const [detailError, setDetailError] = useState(""); // 詳細用エラーメッセージ
+    const [teamGrade, setTeamGrade] = useState('');
+
     console.log(props);
     
     const closeModal = () => {
@@ -49,26 +52,46 @@ const EditTeamModal = (props) => {
         setPutDetail(value);
     };
 
+    const handleGradeChange = (e) => {
+        setTeamGrade(e.target.value);
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setLogoFile(file);
+            console.log(file);
+        }
+        console.log(logoFile);
+    };
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
         if (numError || nameError || detailError) {
             return; // エラーがある場合は送信しない
         }
+
         const req = {
-            num: putNum,
-            name: putName,
-            detail: putDetail
+            num: putNum || props.teamData.team.num,
+            name: putName || props.teamData.team.name,
+            detail: putDetail || props.teamData.team.detail,
+            grade: Number(teamGrade),
+            logo: logoFile // 追加: ロゴファイル名をリクエストに含める
         };
+
         Ajax(null, token.token, `team/${props.propsId}`, 'PUT', req)
         .then((data) => {
             if(data.status === "success") {
-                console.log("dekita");
                 closeModal();
                 alert("登録が完了しました");
+                console.log(data.status);
+                                console.log(req);
+
             } else {
                 console.log(data.status);
                 console.log(data.message);
                 console.log(token.token);
+                console.log(req);
             }   
         });
         closeModal();
@@ -85,7 +108,7 @@ const EditTeamModal = (props) => {
                     <form onSubmit={handleSubmit} className={styles.editForm}>
                         <dl className={styles.innerForm}>
                             <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">チーム番号</label></dt>
+                                <dt><label htmlFor="team">チーム番号</label></dt>
                                 <dd>
                                     <input
                                         type="text"
@@ -99,7 +122,7 @@ const EditTeamModal = (props) => {
                                 {numError && <span className={styles.error}>{numError}</span>} 
                             </div>
                             <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">システム名</label></dt>
+                                <dt><label htmlFor="system">システム名</label></dt>
                                 <dd>
                                     <input
                                         type="text"
@@ -113,7 +136,7 @@ const EditTeamModal = (props) => {
                                 {nameError && <span className={styles.error}>{nameError}</span>} 
                             </div>
                             <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">詳細</label></dt>
+                                <dt><label htmlFor="detail">詳細</label></dt>
                                 <dd>
                                     <textarea
                                         id="detail"
@@ -123,6 +146,21 @@ const EditTeamModal = (props) => {
                                     />
                                 </dd>
                                 {detailError && <span className={styles.error}>{detailError}</span>} 
+                            </div>
+                            <div className={styles.teamForm}>
+                                <dt><label htmlFor="logo">ロゴ画像</label></dt>
+                                <dd>
+                                    <input type="file" name="logo" accept='.png' onChange={handleFileChange} />                                </dd>
+                            </div>
+                            <div className={styles.selectArea}>
+                                <dt><label htmlFor="select">学年</label></dt>
+                                <dd>
+                                    <select value={teamGrade} onChange={handleGradeChange} className={styles.checkText} required>
+                                        <option value="">選択してください</option>
+                                        <option value="2">2年</option>
+                                        <option value="3">3年</option>
+                                    </select>
+                                </dd>
                             </div>
                             <button type="submit" className={styles.submitButton}>OK</button>
                         </dl>
@@ -136,7 +174,7 @@ const EditTeamModal = (props) => {
 const modalContent = {
     background: "white",
     width: "500px",
-    height: "600px",
+    height: "720px",
     padding: "10px",
     borderRadius: "10px",
 };

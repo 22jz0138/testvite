@@ -83,6 +83,18 @@ textarea:focus{
     height: 100px;
 }
 
+.checkText{
+    width: 90%;
+    height: 40px;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+.checkText:focus{
+    border-color: #F8A100; 
+    outline: none; 
+}
+
+
 .error{
     color: red;
 }
