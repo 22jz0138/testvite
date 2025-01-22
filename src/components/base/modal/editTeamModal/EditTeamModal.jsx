@@ -71,27 +71,34 @@ const EditTeamModal = (props) => {
             return; // エラーがある場合は送信しない
         }
 
-        const req = {
-            num: putNum || props.teamData.team.num,
-            name: putName || props.teamData.team.name,
-            detail: putDetail || props.teamData.team.detail,
-            grade: Number(teamGrade),
-            logo: logoFile // 追加: ロゴファイル名をリクエストに含める
-        };
+        // const req = {
+        //     num: putNum || props.teamData.team.num,
+        //     name: putName || props.teamData.team.name,
+        //     detail: putDetail || props.teamData.team.detail,
+        //     grade: Number(teamGrade),
+        //     logo: logoFile // 追加: ロゴファイル名をリクエストに含める
+        // };
 
-        Ajax(null, token.token, `team/${props.propsId}`, 'PUT', req)
+        const formData = new FormData();
+            formData.append('num', putNum || props.teamData.team.num);
+            formData.append('image', logoFile);
+            formData.append('name', putName || props.teamData.team.name);
+            formData.append('grade',  Number(teamGrade));
+            formData.append('detail', putDetail || props.teamData.team.detail);
+
+
+        Ajax(null, token.token, `team/${props.propsId}`, 'PUT', formData)
         .then((data) => {
             if(data.status === "success") {
                 closeModal();
                 alert("登録が完了しました");
                 console.log(data.status);
-                                console.log(req);
-
+                console.log(formData);
             } else {
                 console.log(data.status);
                 console.log(data.message);
                 console.log(token.token);
-                console.log(req);
+                console.log(formData);
             }   
         });
         closeModal();
