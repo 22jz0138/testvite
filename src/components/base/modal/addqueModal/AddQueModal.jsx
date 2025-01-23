@@ -1,104 +1,106 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../../context/AuthContext';
 import styles from './AddQueModal.module.css';
-import { useNavigate } from 'react-router-dom';
 import Ajax from '../../../../hooks/Ajax';
 
 const AddQueModal = (props) => {
   const token = useAuth();
-  const queId = useParams();//質問登録用アンケートID
-  const navigate = useNavigate();
-  const maxOrder = props.items.reduce((max, item) => Math.max(max, item.order) + 1, 0);//質問登録用orderの最大値
-  const queArray = props.question;
-  const [question, setQuestion] = useState();
-  // const [title, setTitle] = useState();
+  const queId = useParams(); // 質問登録用アンケートID
+  const maxOrder = props.items.reduce((max, item) => Math.max(max, item.order) + 1, 0); // 質問登録用orderの最大値
   const [inputValue, setInputValue] = useState('');
-  const [selectedValue, setSelectedValue] = useState(true);
+  const [selectedValue, setSelectedValue] = useState("1"); // 初期値を文字列に変更
+
   const handleChange = (e) => {
-    const tfCheck = (e.target.value);
-    if(tfCheck === "1"){
-      setSelectedValue(true);
-    }else{
-      setSelectedValue(false);
-    }
+    setSelectedValue(e.target.value);
   };
 
   const inputTitle = (e) => {
-    setQuestion(e.target.value);
-    setInputValue(e.target.value);//disabledd判定用
-    console.log(e.target.value); 
+    setInputValue(e.target.value);
   };
-  // console.log(maxOrder);
-  console.log(props.items);
 
   const closeModal = () => {
-  props.setShowModal(false);
+    props.setShowModal(false);
   };  
+
   const handleAddQue = (event) => {
     event.preventDefault();
     const req = {
-      questionnaire_id:Number(queId.id),
-      order:Number(maxOrder),
-      question : inputValue ,
-      isstring:selectedValue
-    }
+      questionnaire_id: Number(queId.id),
+      order: Number(maxOrder),
+      question: inputValue,
+      isstring: selectedValue === "1"
+    };
     Ajax(null, token.token, `survey`, 'post', req)
-    .then((data) => {
-        if(data.status === "success") {
-            console.log("dekite");
-            closeModal();
+      .then((data) => {
+        if (data.status === "success") {
+          closeModal();
         } else {
-            console.log(data.status);
-            console.log(data.message);
+          console.error(data.message);
         }
-    });
-    console.log("押した後",req);
-}
+      })
+      .catch((error) => {
+        console.error("エラーが発生しました:", error);
+      });
+  };
+
   return (
     <>
-    {props.showFlag ? (
+      {props.showFlag ? (
         <div id={styles.overlay} style={overlay}>
-            <div id={styles.modalContent} style={modalContent}>
-              <div className={styles.addModalTitleArea}>
-                <h2>新しい質問を作成します</h2>
-                <button  className={styles.cancelButton} onClick={closeModal}><span>×</span></button>
-              </div>
-              <form onSubmit={handleAddQue}>
-                <dl className={styles.addInnerForm}>
-                    <div className={styles.addQueTitleForm}>
-                      <dt><label htmlFor="text">質問内容</label></dt>
-                      <dd>
-                        <input type="text" id="QueTitle" maxLength={30} onChange={inputTitle} value={inputValue}  required >
-                        </input>
-                      </dd>
-                    </div>
-                    <div className={styles.selectArea}>
-                      <dt><label htmlFor="select">回答形式</label></dt>
-                      <dd>
-                        <select value={selectedValue} onChange={handleChange} className={styles.checkText}>
-                            <option value="1">text形式</option>
-                            <option value="2">その他の形式</option>
-                        </select>
-                      </dd>
-                    </div>
-                    <button type="submit" className={!inputValue ? styles.disabled : styles.submitButton} disabled={!inputValue}>OK</button>
-                </dl>
-              </form>
+          <div id={styles.modalContent} style={modalContent}>
+            <div className={styles.addModalTitleArea}>
+              <h2>新しい質問を作成します</h2>
+              <button className={styles.cancelButton} onClick={closeModal}>
+                <span>×</span>
+              </button>
             </div>
+            <form onSubmit={handleAddQue}>
+              <dl className={styles.addInnerForm}>
+                <div className={styles.addQueTitleForm}>
+                  <dt><label htmlFor="QueTitle">質問内容</label></dt>
+                  <dd>
+                    <input 
+                      type="text" 
+                      id="QueTitle" 
+                      maxLength={30} 
+                      onChange={inputTitle} 
+                      value={inputValue} 
+                      required 
+                    />
+                  </dd>
+                </div>
+                <div className={styles.selectArea}>
+                  <dt><label htmlFor="select">回答形式</label></dt>
+                  <dd>
+                    <select value={selectedValue} onChange={handleChange} className={styles.checkText}>
+                      <option value="1">text形式</option>
+                      <option value="2">その他の形式</option>
+                    </select>
+                  </dd>
+                </div>
+                <button 
+                  type="submit" 
+                  className={!inputValue ? styles.disabled : styles.submitButton} 
+                  disabled={!inputValue}
+                >
+                  OK
+                </button>
+              </dl>
+            </form>
+          </div>
         </div>
-    ) : null}
-
+      ) : null}
     </>
-    );
+  );
 }
+
 const modalContent = {
   background: "white",
-  width:"500px",
-  height:"280px",
+  width: "500px",
+  height: "280px",
   padding: "10px",
   borderRadius: "10px",
-
 };
 
 const overlay = {
@@ -113,5 +115,4 @@ const overlay = {
   justifyContent: "center",
 };
 
-
-export default AddQueModal
+export default AddQueModal;

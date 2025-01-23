@@ -10,14 +10,15 @@ import Ajax from "../../../hooks/Ajax";
 import ReactLoading from "react-loading";
 import { useParams } from "react-router-dom";
 import DeleteModal from "../../base/modal/deleteModal/DeleteModal";
+import Button from '@mui/material/Button'; // MUIのボタンをインポート
 
 const QeDetail = () => {
   const token = useAuth();
   const [newque, setNewQue] = useState();
-  const [queTitle,setQueTitle] = useState();
+  const [queTitle, setQueTitle] = useState();
   const [addFlag, setAddFlag] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [deleteModal,setDeleteModal] =useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true); // ローディング状態を追加
   const getId = useParams();
@@ -25,20 +26,22 @@ const QeDetail = () => {
   const ShowModal = () => {
     setShowModal(true);
   };
+
   const ShowDeleteModal = () => {
     setDeleteModal(true);
   };
+
   useEffect(() => {
     Ajax(null, token.token, 'questionnaire', 'get')
       .then((data) => {
         if (data.status === "success") {
           const filt = data.questionnaire.find(item => item.id === parseInt(getId.id, 10));
-          setQueTitle(filt.title ); // データが存在しない場合も空配列にする
+          setQueTitle(filt.title); // データが存在しない場合も空配列にする
         } else {
           console.log(data.status);
         }
       });
-  }, []); 
+  }, [token.token, getId.id]); // 依存配列に必要な値を追加
 
   useEffect(() => {
     setLoading(true); // データ取得開始時にローディングを開始
@@ -51,7 +54,7 @@ const QeDetail = () => {
         }
       })
       .finally(() => {
-        setLoading(false); 
+        setLoading(false);
       });
   }, [token.token, getId.id]);
 
@@ -68,18 +71,28 @@ const QeDetail = () => {
 
   return (
     <>
-    <div className={styles.queDetailWrapper}>
-      <div className={styles.chAreaWrapper}>
-        <div className={styles.makeChangesArea}>
-          <h2>{queTitle}</h2>
-          <div>
-            <button className={styles.addQue} onClick={ShowModal}>+</button>
-            <button className={styles.addQue} onClick={ShowDeleteModal}>×</button>
+      <div className={styles.queDetailWrapper}>
+        <div className={styles.chAreaWrapper}>
+          <div className={styles.makeChangesArea}>
+            <h2>{queTitle}</h2>
+            <div>
+              <Button variant="contained" color="primary" onClick={ShowModal}>+質問追加</Button>
+              <Button variant="contained" color="secondary" onClick={ShowDeleteModal}>×削除</Button>
+            </div>
           </div>
         </div>
-      </div>
-        <AddQueModal setAddFlag={setAddFlag} setNewQue={setNewQue} showFlag={showModal} setShowModal={setShowModal} items={items}/>
-        <DeleteModal showFlag={showModal} setShowModal={setShowModal} items={items}/>
+        <AddQueModal 
+          setAddFlag={setAddFlag} 
+          setNewQue={setNewQue} 
+          showFlag={showModal} 
+          setShowModal={setShowModal} 
+          items={items} 
+        />
+        <DeleteModal 
+          showFlag={deleteModal} 
+          setShowModal={setDeleteModal} 
+          items={items} 
+        />
         {loading ? ( // ローディング中の表示
           <article className={styles.loadingArea}>
             <ReactLoading type='spokes' color='#37ab9d' />
@@ -87,10 +100,9 @@ const QeDetail = () => {
         ) : items.length === 0 ? ( // itemsが空の場合の表示
           <div className={styles.noQuestions}>
             <p>
-              質問は登録されていません<br/>
+              質問は登録されていません<br />
               画面上部の+ボタンから登録してください
             </p>
-            
           </div>
         ) : (
           <>
@@ -101,8 +113,8 @@ const QeDetail = () => {
                     key={item.id}
                     index={index}
                     item={item}
-                    onSortEnd={handleSort}>
-                  </SortableItem>
+                    onSortEnd={handleSort}
+                  />
                 ))}
               </ul>
             </DndProvider>
