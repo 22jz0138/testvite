@@ -7,7 +7,7 @@ import { useAuth } from '../../../context/AuthContext';
 import styles from './QeDetail.module.css';
 import AddQueModal from "../../base/modal/addqueModal/AddQueModal";
 import Ajax from "../../../hooks/Ajax";
-import ReactLoading from "react-loading";
+import CircularProgress from '@mui/material/CircularProgress'; // CircularProgressをインポート
 import { useParams } from "react-router-dom";
 import DeleteModal from "../../base/modal/deleteModal/DeleteModal";
 import Button from '@mui/material/Button'; // MUIのボタンをインポート
@@ -36,15 +36,15 @@ const QeDetail = () => {
       .then((data) => {
         if (data.status === "success") {
           const filt = data.questionnaire.find(item => item.id === parseInt(getId.id, 10));
-          setQueTitle(filt.title); // データが存在しない場合も空配列にする
+          setQueTitle(filt.title);
         } else {
           console.log(data.status);
         }
       });
-  }, [token.token, getId.id]); // 依存配列に必要な値を追加
+  }, [token.token, getId.id]); 
 
   useEffect(() => {
-    setLoading(true); // データ取得開始時にローディングを開始
+    setLoading(true); 
     Ajax(null, token.token, `questionnaire/${getId.id}`, 'get')
       .then((data) => {
         if (data.status === "success") {
@@ -95,7 +95,7 @@ const QeDetail = () => {
         />
         {loading ? ( // ローディング中の表示
           <article className={styles.loadingArea}>
-            <ReactLoading type='spokes' color='#37ab9d' />
+            <CircularProgress color="primary" />
           </article>
         ) : items.length === 0 ? ( // itemsが空の場合の表示
           <div className={styles.noQuestions}>
@@ -106,18 +106,20 @@ const QeDetail = () => {
           </div>
         ) : (
           <>
-            <DndProvider backend={HTML5Backend}>
-              <ul className={styles.dndArea}>
-                {items.map((item, index) => (
-                  <SortableItem
-                    key={item.id}
-                    index={index}
-                    item={item}
-                    onSortEnd={handleSort}
-                  />
-                ))}
-              </ul>
-            </DndProvider>
+              <div className={styles.queArea}>
+                <DndProvider backend={HTML5Backend}>    
+                  <ul className={styles.dndArea}>
+                    {items.map((item, index) => (
+                      <SortableItem
+                        key={item.id}
+                        index={index}
+                        item={item}
+                        onSortEnd={handleSort}
+                      />
+                    ))}
+                  </ul>
+                </DndProvider>
+              </div>
           </>
         )}
       </div>

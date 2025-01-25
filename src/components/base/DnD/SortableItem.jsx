@@ -1,28 +1,26 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { Bar } from 'react-chartjs-2';
+import { useAuth } from "../../../context/AuthContext";
+import Ajax from "../../../hooks/Ajax";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import styles from './SortableItem.module.css';
 
 const ItemTypes = {
   CARD: "card"
 };
 
-const style = {
-  border: "1px solid #ddd",
-  padding: "0.5rem 1rem",
-  cursor: "move",
-  listStyle: "none"
-};
-
 export const SortableItem = ({ item, index, onSortEnd }) => {
+  const token = useAuth();
   const ref = useRef(null);
+  const [ansData, setAnsData] = useState([]);
+  const [detailedAnswers, setDetailedAnswers] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
+  // DND関連の設定
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
-    collect(monitor) {
-      return {
-        handlerId: monitor.getHandlerId()
-      };
-    },
     hover(dragItem, monitor) {
       if (!ref.current) {
         return;
@@ -50,7 +48,12 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
 
       onSortEnd(dragIndex, hoverIndex);
       dragItem.index = hoverIndex;
-    }
+    },
+    collect(monitor) {
+      return {
+        handlerId: monitor.getHandlerId(),
+      };
+    },
   });
 
   const [{ isDragging }, drag] = useDrag({
@@ -59,17 +62,133 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
       return { id: item.id, index };
     },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging()
-    })
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   const opacity = isDragging ? 0 : 1;
 
   drag(drop(ref));
 
+
+  useEffect(() => {
+    setLoading(true); 
+    Ajax(null, token.token, 'survey/answer', 'get')
+      .then((data) => {
+        console.log("回答データ:", data); 
+        if (data.status === "success") {
+          setAnsData(data.answera); 
+
+          // 各回答のIDを使用して詳細情報を取得
+          const detailPromises = data.answera.map(answer => 
+            Ajax(null, token.token, `survey/answer/${answer.id}`, 'get')
+              .then((detailData) => {
+                console.log(`詳細情報 (ID: ${answer.id}):`, detailData); // 詳細情報をログ出力
+                if (detailData.status === "success") {
+                  return detailData; // 詳細情報を返す
+                } else {
+                  console.log("詳細情報の取得失敗");
+                  return null;
+                }
+              })
+          );
+
+          // 全詳細データ取得
+          Promise.all(detailPromises).then(details => {
+            setDetailedAnswers(details.filter(detail => detail !== null)); // nullを除外
+            setLoading(false); 
+          });
+        } else {
+          console.log("取得失敗");
+          setLoading(false);
+        }
+      });
+  }, [token]);
+
+  // item.questionと一致する回答
+  const filteredAnswers = detailedAnswers.flatMap(detail => {
+    return detail.answers.map(answer => ({
+      ...answer,
+      visitor: detail.visitor 
+    })).filter(answer => answer.question_text === item.question);
+  });
+
+  // グラフ用解凍件数計算
+  const answerCount = {};
+  filteredAnswers.forEach(answer => {
+    const key = answer.answer; 
+    answerCount[key] = (answerCount[key] || 0) + 1; 
+  });
+
+  // グラフ用のデータを作成
+  const chartData = {
+    labels: Object.keys(answerCount), 
+    datasets: [
+      {
+        label: item.question,
+        data: Object.values(answerCount), 
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }
+    ]
+  };
+
   return (
-    <li ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} className={styles.quevalue}>
-      {item.question}
+    <li ref={ref} style={{ opacity }} data-handler-id={handlerId} className={styles.quevalue}>
+      <p>{item.question}</p>
+      {loading ? (
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <CircularProgress color="primary" />
+        </div>
+      ) : item.isstring === 1 ? (
+        <TableContainer component={Paper} style={{ maxHeight: 300, overflowY: 'auto', maxWidth: '70%' }}>
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ fontSize: '0.9rem', padding: '4px 8px' }}>回答</TableCell>
+                <TableCell style={{ width: '100px', fontSize: '0.9rem', padding: '4px 8px' }}>訪問者名</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredAnswers.length > 0 ? (
+                filteredAnswers.map(answer => (
+                  <TableRow key={answer.id}>
+                    <TableCell>{answer.answer}</TableCell>
+                    <TableCell>{answer.visitor.name}</TableCell> 
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell>回答がありません</TableCell>
+                  <TableCell>情報なし</TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <div>
+          <Bar data={chartData} options={{
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: '回答内容'
+                }
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: '件数'
+                }
+              }
+            }
+          }} />
+        </div>
+      )}
     </li>
   );
 };
