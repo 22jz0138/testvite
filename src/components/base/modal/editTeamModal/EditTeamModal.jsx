@@ -10,7 +10,7 @@ const EditTeamModal = (props) => {
     const [putNum, setPutNum] = useState("");
     const [putName, setPutName] = useState("");
     const [putDetail, setPutDetail] = useState("");
-    const [logoFile, setLogoFile] = useState('');
+    const [logoFile, setLogoFile] = useState();
     const [numError, setNumError] = useState(""); // チーム番号用エラーメッセージ
     const [nameError, setNameError] = useState(""); // システム名用エラーメッセージ
     const [detailError, setDetailError] = useState(""); // 詳細用エラーメッセージ
@@ -61,8 +61,8 @@ const EditTeamModal = (props) => {
         if (file) {
             setLogoFile(file);
             console.log(file);
+            console.log(logoFile);
         }
-        console.log(logoFile);
     };
 
     const handleSubmit = (ev) => {
@@ -80,11 +80,11 @@ const EditTeamModal = (props) => {
         // };
 
         const formData = new FormData();
-            formData.append('num', putNum || props.teamData.team.num);
-            formData.append('image', logoFile);
-            formData.append('name', putName || props.teamData.team.name);
-            formData.append('grade',  Number(teamGrade));
-            formData.append('detail', putDetail || props.teamData.team.detail);
+        formData.append('num', putNum || props.teamData.team.num);
+        formData.append('logo', logoFile);
+        formData.append('name', putName || props.teamData.team.name);
+        formData.append('grade',  Number(teamGrade));
+        formData.append('detail', putDetail || props.teamData.team.detail);
 
 
         Ajax(null, token.token, `team/${props.propsId}`, 'PUT', formData)

@@ -37,17 +37,32 @@ const AddTeamModal = (props) => {
             setLogoFileName(file.name);
         }
     };
+    console.log(props);
+    
 
     const handleAddTeam = (event) => {
         event.preventDefault();
-        const req = {
-            num: teamNum,
-            name: sysName || "未設定",
-            detail: sysDetail,
-            grade: teamGrade,
-            logo: logoFileName
-        };  
-        Ajax(null, token.token, `team`, 'post', req)
+        // const req = {
+        //     num: teamNum,
+        //     name: sysName || "未設定",
+        //     detail: sysDetail,
+        //     grade: teamGrade,
+        //     logo: logoFileName
+        // };  
+        const formData = new FormData();
+        formData.append('num', teamNum );
+        formData.append('logo', logoFileName);
+        formData.append('name', sysName );
+        formData.append('grade',  Number(teamGrade));
+        formData.append('detail', sysDetail);
+        console.log(formData);
+        for (const [key, value] of formData.entries()) {
+            console.log(key, value);
+          }
+          console.log(formData.entries);
+          
+        
+        Ajax(null, token.token, `team`, 'post', formData.entries)
         .then((data) => {
             if(data.status === "success") {
                 closeModal();
@@ -62,6 +77,7 @@ const AddTeamModal = (props) => {
             event.preventDefault(); 
         }
     };
+    
 
     return (
         <>

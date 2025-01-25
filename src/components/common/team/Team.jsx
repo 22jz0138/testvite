@@ -61,7 +61,7 @@ export const Team = () => {
   return (
     <>
       <div className={styles.teamArea}>
-        <AddTeamModal showFlag={showModal} setShowModal={setShowModal}/>
+        <AddTeamModal showFlag={showModal} setShowModal={setShowModal} teamData={team}/>
         <div className={styles.teamTopArea}>
           <div className={styles.pageTitle}>
             <h2>チーム一覧</h2>
@@ -120,7 +120,7 @@ export const Team = () => {
 
                 // 画像のパスを設定
                 const imagePath = `./admin/assets/img/logo/${year}/${team.num}.png`; // 年度を使ったパス
-                console.log(imagePath);
+                // console.log(imagePath);
 
                 return (
                   <div
