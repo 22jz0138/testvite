@@ -2,9 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import { EditButton } from '../../base/editButton/EditButton';
 import { DeleteButton } from '../../base/deleteButton/DeleteButton';
-import StudentModal from '../../base/modal/studentModal/StudentModal';
 import styles from './StDetail.module.css';
 import ReactLoading from "react-loading";
+import StudentDeleteModal from '../../base/modal/studentDeleteModal/StudentDeleteModal';
 
 
 export default function StDetail(props) {
@@ -35,8 +35,8 @@ export default function StDetail(props) {
                     <p>登録されている学生の情報を確認・編集します</p>
                     <small className={styles.smallp}>※編集する場合は右上のボタンを押してください</small>
                 </div>
-                <StudentModal showFlag={showModal} setShowModal={setShowModal} data={detailData} />
-                <div className={ isVisible ? styles.None : styles.detailArea}>
+                <StudentDeleteModal showFlag={showModal} setShowModal={setShowModal} data={detailData} />
+                <div className={styles.detailArea}>
                     {detailData ? (
                             <div className={styles.studentText}>
                                 <div>
@@ -66,27 +66,6 @@ export default function StDetail(props) {
                             <ReactLoading type='spokes' color='#37ab9d'/>
                         )}
                     
-                </div>
-                <div>
-                <div className={ isVisible ? styles.formArea : styles.None }>
-                    <form  className={styles.editForm}>
-                        <dl className={styles.innerForm}>
-                            <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">所属チーム</label></dt>
-                                <dd><input type="text" id="team"  ></input></dd>
-                            </div>
-                            <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">学年</label></dt>
-                                <dd><input type="text" id="system" ></input></dd>
-                            </div>
-                            <div className={styles.teamForm}>
-                                <dt><label htmlFor="text">学籍番号</label></dt>
-                                <dd><input type="text" id="system" ></input></dd>
-                            </div>
-                            <button type="submit" className={styles.submitButton}>登録</button>
-                        </dl>
-                    </form>
-                </div>
                 </div>
             </div>
         </>

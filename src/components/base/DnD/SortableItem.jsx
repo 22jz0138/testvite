@@ -70,6 +70,40 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
 
   drag(drop(ref));
 
+    useEffect(() => {
+    setLoading(true); 
+    Ajax(null, token.token, 'survey/answer', 'get')
+      .then((data) => {
+        console.log("回答データ:", data); 
+        if (data.status === "success") {
+          setAnsData(data.answera); 
+
+          // 各回答のIDを使用して詳細情報を取得
+          const detailPromises = data.answera.map(answer => 
+            Ajax(null, token.token, `survey/answer/${answer.id}`, 'get')
+              .then((detailData) => {
+                console.log(`詳細情報 (ID: ${answer.id}):`, detailData); // 詳細情報をログ出力
+                if (detailData.status === "success") {
+                  return detailData; // 詳細情報を返す
+                } else {
+                  console.log("詳細情報の取得失敗");
+                  return null;
+                }
+              })
+          );
+
+          // 全詳細データ取得
+          Promise.all(detailPromises).then(details => {
+            setDetailedAnswers(details.filter(detail => detail !== null)); // nullを除外
+            setLoading(false); 
+          });
+        } else {
+          console.log("取得失敗");
+          setLoading(false);
+        }
+      });
+  }, [token]);
+
 
   useEffect(() => {
     setLoading(true); 

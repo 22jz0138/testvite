@@ -34,7 +34,8 @@ const AddTeamModal = (props) => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setLogoFileName(file.name);
+            setLogoFileName(file);
+            console.log(file);
         }
     };
     console.log(props);
@@ -62,14 +63,37 @@ const AddTeamModal = (props) => {
           console.log(formData.entries);
           
         
-        Ajax(null, token.token, `team`, 'post', formData.entries)
-        .then((data) => {
-            if(data.status === "success") {
-                closeModal();
-            } else {
-                console.error(data.message);
-            }
-        });
+        // Ajax(null, token.token, `team`, 'post', formData.entries)
+        // .then((data) => {
+        //     if(data.status === "success") {
+        //         closeModal();
+        //     } else {
+        //         console.error(data.message);
+        //     }
+        // });
+
+        const url = `https://jpages.jp/JPagesApi/public/api/team`;
+        const options = {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token.token}`,
+            },
+            body: formData,
+        };
+    
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    console.log( formData);
+                    closeModal();
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     const handleKeyDown = (event) => {

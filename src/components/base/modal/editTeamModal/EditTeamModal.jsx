@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import styles from './EditTeamModal.module.css';
@@ -79,30 +79,66 @@ const EditTeamModal = (props) => {
         //     logo: logoFile // 追加: ロゴファイル名をリクエストに含める
         // };
 
+        
+        
+        //     Ajax(null, token.token, `team/${props.propsId}`, 'PUT', formData)
+        //     .then((data) => {
+            //         if(data.status === "success") {
+                //             closeModal();
+                //             alert("登録が完了しました");
+                //             console.log(data.status);
+                //             console.log(formData);
+                //         } else {
+                    //             console.log(data.status);
+                    //             console.log(data.message);
+                    //             console.log(token.token);
+                    //             console.log(formData);
+                    //         }   
+                    //     });
+                    //     closeModal();
         const formData = new FormData();
         formData.append('num', putNum || props.teamData.team.num);
         formData.append('logo', logoFile);
         formData.append('name', putName || props.teamData.team.name);
         formData.append('grade',  Number(teamGrade));
         formData.append('detail', putDetail || props.teamData.team.detail);
+        const url = `https://jpages.jp/JPagesApi/public/api/team/${props.propsId}`;
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token.token}`,
+            },
+            body: JSON.stringify(formData.entries),
+        };
 
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    closeModal();
+                    alert("登録が完了しました");
+                    console.log(data.status);
+                    console.log(formData);
+                } else {
+                    console.log(data.status);
+                    console.log(data.message);
+                    console.log(token.token);
+                    console.log(formData);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            closeModal();
+        };
 
-        Ajax(null, token.token, `team/${props.propsId}`, 'PUT', formData)
-        .then((data) => {
-            if(data.status === "success") {
-                closeModal();
-                alert("登録が完了しました");
-                console.log(data.status);
-                console.log(formData);
-            } else {
-                console.log(data.status);
-                console.log(data.message);
-                console.log(token.token);
-                console.log(formData);
-            }   
-        });
-        closeModal();
-    };
+        
+        
+
+    // useEffect(() => {
+    //     editTeam();
+    // }, []);
+    
 
     return (
         <div id={styles.overlay} style={overlay}>

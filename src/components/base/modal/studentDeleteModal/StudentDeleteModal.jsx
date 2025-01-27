@@ -1,10 +1,10 @@
 import React from "react";
-import styles from './StudentModal.module.css'
+import styles from './StudentDeleteModal.module.css'
 import Ajax from "../../../../hooks/Ajax";
 import { useAuth } from "../../../../context/AuthContext";
 import { useParams,useNavigate, Navigate } from 'react-router-dom';
 
-const StudentModal = (props) => {
+const StudentDeleteModal = (props) => {
     const token = useAuth();
     // const studentId = props.stID
     const navigate = useNavigate();
@@ -67,4 +67,4 @@ const modalContent = {
   };
 
 
-export default StudentModal;
+export default StudentDeleteModal;

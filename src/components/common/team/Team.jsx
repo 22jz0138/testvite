@@ -111,16 +111,14 @@ export const Team = () => {
                 // createdAtから年度を計算
                 const createdDate = new Date(team.created_at);
                 let year = createdDate.getFullYear();
-
                 // 年度の条件に基づいて設定
-                if (createdDate >= new Date(year, 3, 1) && createdDate <= new Date(year, 11, 31)) {
-                  year += 1; // 4月1日から12月31日の場合は次年度
-                } 
-                // 1月1日から3月31日の場合はその年度を使用
+                if (createdDate.getMonth() + 1 >= 4) { // 月は0から始まるため1を加算
+                  year++;
+              }
 
                 // 画像のパスを設定
-                const imagePath = `./admin/assets/img/logo/${year}/${team.num}.png`; // 年度を使ったパス
-                // console.log(imagePath);
+                const imagePath = `/assets/img/logo/${year}/${team.num}.png`; // 年度を使ったパス
+                console.log(imagePath);
 
                 return (
                   <div
