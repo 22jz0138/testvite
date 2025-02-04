@@ -3,15 +3,18 @@ import styles from './StudentDeleteModal.module.css'
 import Ajax from "../../../../hooks/Ajax";
 import { useAuth } from "../../../../context/AuthContext";
 import { useParams,useNavigate, Navigate } from 'react-router-dom';
+import swal from 'sweetalert2';
+
 
 const StudentDeleteModal = (props) => {
+    console.log(props);
     const token = useAuth();
     // const studentId = props.stID
     const navigate = useNavigate();
     const { id } = useParams();
     console.log(props);
     const closeModal = () => {
-        props.setShowModal(false);
+        props.setShowDeleteModal(false);
     };
     const deleteStudent = () => {
         Ajax(null, token.token, `student/${id}`, 'DELETE')
@@ -19,11 +22,23 @@ const StudentDeleteModal = (props) => {
             if(data.status === "success") {
                 console.log("dekite");
                 closeModal();
+                swal.fire({
+                    title: '削除完了',
+                    text: '学生情報の削除が完了しました。',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });                  
                 navigate('/admin/student');
             } else {
                 console.log(data.status);
+                swal.fire({
+                    title: 'エラー',
+                    text: 'エラーが発生しました。もう一度お試しください',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });              
             }
-            setShowModal(true);
+            setShowDeleteModal(true);
         });
     }
 

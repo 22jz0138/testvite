@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './AddTeamModal.module.css';
 import { useAuth } from '../../../../context/AuthContext';
 import Ajax from '../../../../hooks/Ajax';
+import swal from 'sweetalert2';
+
 
 const AddTeamModal = (props) => {
     const token = useAuth();
@@ -43,34 +45,12 @@ const AddTeamModal = (props) => {
 
     const handleAddTeam = (event) => {
         event.preventDefault();
-        // const req = {
-        //     num: teamNum,
-        //     name: sysName || "未設定",
-        //     detail: sysDetail,
-        //     grade: teamGrade,
-        //     logo: logoFileName
-        // };  
         const formData = new FormData();
         formData.append('num', teamNum );
         formData.append('logo', logoFileName);
         formData.append('name', sysName );
         formData.append('grade',  Number(teamGrade));
         formData.append('detail', sysDetail);
-        console.log(formData);
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value);
-          }
-          console.log(formData.entries);
-          
-        
-        // Ajax(null, token.token, `team`, 'post', formData.entries)
-        // .then((data) => {
-        //     if(data.status === "success") {
-        //         closeModal();
-        //     } else {
-        //         console.error(data.message);
-        //     }
-        // });
 
         const url = `https://jpages.jp/JPagesApi/public/api/team`;
         const options = {
@@ -87,6 +67,12 @@ const AddTeamModal = (props) => {
                 if (data.status === "success") {
                     console.log( formData);
                     closeModal();
+                    swal.fire({
+                        title: '完了',
+                        text: 'チームの追加が完了しました',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });                      
                 } else {
                     console.error(data.message);
                 }

@@ -3,6 +3,7 @@ import styles from './StudentAddModal.module.css';
 import { useAuth } from "../../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Ajax from "../../../../hooks/Ajax";
+import swal from 'sweetalert2';
 
 const StudentAddModal = (props) => {
     const [putNum, setPutNum] = useState();
@@ -67,7 +68,13 @@ const StudentAddModal = (props) => {
             .then((data) => {
                 if (data.status === "success") {
                     closeModal();
-                    alert("登録が完了しました");
+                    alert("");
+                    swal.fire({
+                        title: '完了',
+                        text: '登録が完了しました',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });                      
                 } else {
                     console.log(data.status);
                     console.log(data.message);

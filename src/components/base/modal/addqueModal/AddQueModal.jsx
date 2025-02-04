@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../../context/AuthContext';
 import styles from './AddQueModal.module.css';
 import Ajax from '../../../../hooks/Ajax';
+import swal from 'sweetalert2';
+
 
 const AddQueModal = (props) => {
   const token = useAuth();
@@ -34,13 +36,27 @@ const AddQueModal = (props) => {
     Ajax(null, token.token, `survey`, 'post', req)
       .then((data) => {
         if (data.status === "success") {
+          swal.fire({
+            title: '追加完了',
+            text: 'アンケートの追加が完了しました',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
           closeModal();
+          
         } else {
           console.error(data.message);
         }
       })
       .catch((error) => {
         console.error("エラーが発生しました:", error);
+        swal.fire({
+          title: 'エラー',
+          text: 'エラーが発生しました。もう一度お試しください',
+          icon: 'warning',
+          confirmButtonText: 'OK'
+        });
+        
       });
   };
 
@@ -113,6 +129,7 @@ const overlay = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  zIndex:999
 };
 
 export default AddQueModal;

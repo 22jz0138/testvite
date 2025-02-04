@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Papa from 'papaparse';
 import Ajax from "../../../../hooks/Ajax";
+import swal from 'sweetalert2';
+
 
 const StudentCSVAddModal = (props) => {
     const token = useAuth();
@@ -52,7 +54,7 @@ const StudentCSVAddModal = (props) => {
                 
                 const response = await Ajax(null, token.token, 'student', 'post', req);
                 if(response.status === "success") {
-                    console.log("dekita");
+                    console.log("登録成功");
                 } else {
                     console.log(response.status);
                     console.log(response.message);
@@ -60,7 +62,11 @@ const StudentCSVAddModal = (props) => {
                     console.log(req);
                 }   
             }
-            alert("すべての登録が完了しました");
+            swal.fire({
+                title: '登録完了',
+                text: 'すべての登録が完了しました',
+                icon: 'success',
+                confirmButtonText: 'OK'});
             closeModal();
         } catch (error) {
             console.error("エラーが発生しました:", error);
@@ -84,7 +90,7 @@ const StudentCSVAddModal = (props) => {
         ];
 
         const csvContent = csvData.map(e => e.join(",")).join("\n"); // CSV形式に変換
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const blob = new Blob([`\ufeff${csvContent}`], { type: 'text/csv;charset=utf-8;' }); // BOMを追加
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;

@@ -4,11 +4,15 @@ import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import styles from './DeleteTeamModal.module.css'
 import Ajax from '../../../../hooks/Ajax';
+import swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 
 const DeleteTeamModal = (props) => {
     const token = useAuth(); 
     const queId = useParams();
+    const navigate = useNavigate();
+
     console.log(props);
     const closeModal = () =>{
         props.setShowDeleteModal(false);
@@ -19,14 +23,33 @@ const DeleteTeamModal = (props) => {
             if(data.status === "success") {
                 console.log("dekita");
                 closeModal();
-                // alert("削除しました");
-
+                swal.fire({
+                    title: '完了',
+                    text: 'チームを削除しました',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+                navigate('/admin/team');
             } else {
                 console.log(data.status);
                 console.log(data.message);
                 console.log(token.token);
-                alert("正常に処理が完了しませんでした。時間をおいて再度お試しください")
+                swal.fire({
+                    title: 'エラー',
+                    text: 'すでに評価されているため削除できません',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                })
             }   
+        })
+        .catch((error) => {
+            console.error(error); // エラーをコンソールに表示
+            swal.fire({
+                title: 'エラー',
+                text: '削除中にエラーが発生しました',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         });
         closeModal();
     }
