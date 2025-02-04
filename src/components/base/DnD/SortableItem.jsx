@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Bar } from 'react-chartjs-2';
 import { useAuth } from "../../../context/AuthContext";
-import Ajax from "../../../hooks/Ajax";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import styles from './SortableItem.module.css';
@@ -14,11 +13,8 @@ const ItemTypes = {
 export const SortableItem = ({ item, index, onSortEnd }) => {
   const token = useAuth();
   const ref = useRef(null);
-  const [ansData, setAnsData] = useState([]);
-  const [detailedAnswers, setDetailedAnswers] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(false); 
 
-  // DND関連の設定
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
     hover(dragItem, monitor) {
@@ -70,86 +66,9 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
 
   drag(drop(ref));
 
-    useEffect(() => {
-    setLoading(true); 
-    Ajax(null, token.token, 'survey/answer', 'get')
-      .then((data) => {
-        console.log("回答データ:", data); 
-        if (data.status === "success") {
-          setAnsData(data.answera); 
-
-          // 各回答のIDを使用して詳細情報を取得
-          const detailPromises = data.answera.map(answer => 
-            Ajax(null, token.token, `survey/answer/${answer.id}`, 'get')
-              .then((detailData) => {
-                console.log(`詳細情報 (ID: ${answer.id}):`, detailData); // 詳細情報をログ出力
-                if (detailData.status === "success") {
-                  return detailData; // 詳細情報を返す
-                } else {
-                  console.log("詳細情報の取得失敗");
-                  return null;
-                }
-              })
-          );
-
-          // 全詳細データ取得
-          Promise.all(detailPromises).then(details => {
-            setDetailedAnswers(details.filter(detail => detail !== null)); // nullを除外
-            setLoading(false); 
-          });
-        } else {
-          console.log("取得失敗");
-          setLoading(false);
-        }
-      });
-  }, [token]);
-
-
-  useEffect(() => {
-    setLoading(true); 
-    Ajax(null, token.token, 'survey/answer', 'get')
-      .then((data) => {
-        console.log("回答データ:", data); 
-        if (data.status === "success") {
-          setAnsData(data.answera); 
-
-          // 各回答のIDを使用して詳細情報を取得
-          const detailPromises = data.answera.map(answer => 
-            Ajax(null, token.token, `survey/answer/${answer.id}`, 'get')
-              .then((detailData) => {
-                console.log(`詳細情報 (ID: ${answer.id}):`, detailData); // 詳細情報をログ出力
-                if (detailData.status === "success") {
-                  return detailData; // 詳細情報を返す
-                } else {
-                  console.log("詳細情報の取得失敗");
-                  return null;
-                }
-              })
-          );
-
-          // 全詳細データ取得
-          Promise.all(detailPromises).then(details => {
-            setDetailedAnswers(details.filter(detail => detail !== null)); // nullを除外
-            setLoading(false); 
-          });
-        } else {
-          console.log("取得失敗");
-          setLoading(false);
-        }
-      });
-  }, [token]);
-
-  // item.questionと一致する回答
-  const filteredAnswers = detailedAnswers.flatMap(detail => {
-    return detail.answers.map(answer => ({
-      ...answer,
-      visitor: detail.visitor 
-    })).filter(answer => answer.question_text === item.question);
-  });
-
   // グラフ用解凍件数計算
   const answerCount = {};
-  filteredAnswers.forEach(answer => {
+  item.number_answers?.forEach(answer => {
     const key = answer.answer; 
     answerCount[key] = (answerCount[key] || 0) + 1; 
   });
@@ -185,11 +104,11 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredAnswers.length > 0 ? (
-                filteredAnswers.map(answer => (
+              {item.text_answers && item.text_answers.length > 0 ? (
+                item.text_answers.map(answer => (
                   <TableRow key={answer.id}>
                     <TableCell>{answer.answer}</TableCell>
-                    <TableCell>{answer.visitor.name}</TableCell> 
+                    <TableCell>{answer.answer_info.visitor.name}</TableCell> 
                   </TableRow>
                 ))
               ) : (
@@ -202,22 +121,26 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
           </Table>
         </TableContainer>
       ) : (
-        <div>
+        <div style={{ width: '100%', height: '250px', display: 'flex',justifyContent:'center' }} >
           <Bar data={chartData} options={{
+            
             responsive: true,
+            plugins:{
+              legend:{
+                display:false
+              }
+            },
             scales: {
               x: {
-                title: {
-                  display: true,
-                  text: '回答内容'
-                }
+              
               },
               y: {
                 beginAtZero: true,
                 title: {
                   display: true,
                   text: '件数'
-                }
+                },
+                
               }
             }
           }} />
