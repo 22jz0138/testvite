@@ -123,7 +123,7 @@ export default function Student() {
               variant="outlined"
               placeholder="検索"
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ marginLeft: '20px', backgroundColor: '#fff' }}
+              style={{ marginLeft: '20px' }}
             />
             <FormControl variant="outlined" style={{ marginLeft: '20px', width: '100px' }}>
               <InputLabel>学年</InputLabel>
@@ -131,7 +131,6 @@ export default function Student() {
                 value={selectedGrade}
                 onChange={handleGradeChange}
                 label="学年フィルター"
-                style={{ backgroundColor: '#fff' }}
               >
                 <MenuItem value="">全て</MenuItem>
                 {Array.from(new Set(studentData.map(student => student.grade))).map(grade => (
@@ -145,7 +144,6 @@ export default function Student() {
                 value={selectedTeam}
                 onChange={handleTeamChange}
                 label="チームフィルター"
-                style={{ backgroundColor: '#fff' }}
               >
                 <MenuItem value="">全て</MenuItem>
                 {Array.from(new Set(studentData.map(student => student.team_id)))

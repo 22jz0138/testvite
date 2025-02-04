@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import styles from './EditTeamModal.module.css';
-import Ajax from '../../../../hooks/Ajax';
+import swal from 'sweetalert2';
+
 
 const EditTeamModal = (props) => {
     const token = useAuth();   
@@ -11,9 +12,9 @@ const EditTeamModal = (props) => {
     const [putName, setPutName] = useState("");
     const [putDetail, setPutDetail] = useState("");
     const [logoFile, setLogoFile] = useState();
-    const [numError, setNumError] = useState(""); // チーム番号用エラーメッセージ
-    const [nameError, setNameError] = useState(""); // システム名用エラーメッセージ
-    const [detailError, setDetailError] = useState(""); // 詳細用エラーメッセージ
+    const [numError, setNumError] = useState("");
+    const [nameError, setNameError] = useState("");
+    const [detailError, setDetailError] = useState("");
     const [teamGrade, setTeamGrade] = useState('');
 
     console.log(props);
@@ -68,34 +69,9 @@ const EditTeamModal = (props) => {
     const handleSubmit = (ev) => {
         ev.preventDefault();
         if (numError || nameError || detailError) {
-            return; // エラーがある場合は送信しない
+            return;
         }
 
-        // const req = {
-        //     num: putNum || props.teamData.team.num,
-        //     name: putName || props.teamData.team.name,
-        //     detail: putDetail || props.teamData.team.detail,
-        //     grade: Number(teamGrade),
-        //     logo: logoFile // 追加: ロゴファイル名をリクエストに含める
-        // };
-
-        
-        
-        //     Ajax(null, token.token, `team/${props.propsId}`, 'PUT', formData)
-        //     .then((data) => {
-            //         if(data.status === "success") {
-                //             closeModal();
-                //             alert("登録が完了しました");
-                //             console.log(data.status);
-                //             console.log(formData);
-                //         } else {
-                    //             console.log(data.status);
-                    //             console.log(data.message);
-                    //             console.log(token.token);
-                    //             console.log(formData);
-                    //         }   
-                    //     });
-                    //     closeModal();
         const formData = new FormData();
         formData.append('num', putNum || props.teamData.team.num);
         formData.append('logo', logoFile);
@@ -108,7 +84,7 @@ const EditTeamModal = (props) => {
             headers: {
                 'Authorization': `Bearer ${token.token}`,
             },
-            body: JSON.stringify(formData.entries),
+            body: formData,
         };
 
         fetch(url, options)
@@ -116,7 +92,13 @@ const EditTeamModal = (props) => {
             .then(data => {
                 if (data.status === "success") {
                     closeModal();
-                    alert("登録が完了しました");
+                    swal.fire({
+                        title: '完了',
+                        text: '登録が完了しました！',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
                     console.log(data.status);
                     console.log(formData);
                 } else {
@@ -128,18 +110,16 @@ const EditTeamModal = (props) => {
             })
             .catch(error => {
                 console.error('Error:', error);
+                swal.fire({
+                    title: 'エラー',
+                    text: 'エラーが発生しました。時間をおいてもう一度やり直してください',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });                  
             });
             closeModal();
         };
-
-        
-        
-
-    // useEffect(() => {
-    //     editTeam();
-    // }, []);
     
-
     return (
         <div id={styles.overlay} style={overlay}>
             <div id={styles.modalContent} style={modalContent}>

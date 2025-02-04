@@ -18,31 +18,13 @@ export default function TeamDetail(props) {
 
     console.log(showModal);
     const ShowModal = () => {
-        Ajax(null, null, `team/${props.id}`, 'get')
-        .then((data) => {
-            if (data.status === "success") {
-                setTeamDetail(data );
-                console.log("データ取得成功");
-                console.log(data);
-            } else {
-                console.log(data.status);
-            }
-        });
+        fetchTeamData();
         setShowModal(true);
         console.log(showModal);
     };
 
     const ShowDeleteModal = () =>{
-        Ajax(null, null, `team/${props.id}`, 'get')
-        .then((data) => {
-            if (data.status === "success") {
-                setTeamDetail(data);
-                console.log("データ取得成功");
-                console.log(data);
-            } else {
-                console.log(data.status);
-            }
-        });
+        fetchTeamData();
         setShowDeleteModal(true);
         console.log(showDeleteModal);
     }

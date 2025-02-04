@@ -109,13 +109,13 @@ const QeDetail = () => {
               <div className={styles.queArea}>
                 <DndProvider backend={HTML5Backend}>    
                   <ul className={styles.dndArea}>
-                    {items.map((item, index) => (
+                    {items && (items.map((item, index) => (
                       <SortableItem
                         key={item.id}
                         index={index}
                         item={item}
                         onSortEnd={handleSort}
-                      />
+                      />)
                     ))}
                   </ul>
                 </DndProvider>

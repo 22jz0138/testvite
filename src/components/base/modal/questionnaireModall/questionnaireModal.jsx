@@ -3,11 +3,15 @@ import Ajax from '../../../../hooks/Ajax';
 import { useAuth } from '../../../../context/AuthContext';
 import { useState } from 'react';
 import styles from './questionnaireModal.module.css';
+import { useNavigate } from "react-router-dom";
+
 
 const questionnaireModal = (props) => {
   const token = useAuth();
   const [title, setTitle] = useState();
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
+
   const inputTitle = (e) => {
     setTitle(e.target.value);
     setInputValue(e.target.value);
@@ -17,7 +21,9 @@ const questionnaireModal = (props) => {
   const closeModal = () => {
   props.setShowModal(false);
   };  
-  const handleAddQue = () => {
+  const handleAddQue = (ev) => {
+    ev.preventDefault();
+
     const req = {
       title : title
     }

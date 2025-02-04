@@ -5,19 +5,23 @@ import Ajax from '../../../hooks/Ajax';
 import { useAuth } from '../../../context/AuthContext';
 import QuestionnaireModal from '../../base/modal/questionnaireModall/questionnaireModal';
 import styles from './QuestionnaireList.module.css';
+import DeleteModal from '../../base/modal/deleteModal/DeleteModal';
 
 const QuestionnaireList = () => {
     const token = useAuth();
     const [queData, setQueData] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const ShowModal = () => {
         setShowModal(true);
     };
-    console.log(token);
+    const ShowDeleteModal = () => {
+        setShowDeleteModal(true);
+    };
     
-    useEffect(() => {
+    const fetchData = () => {
         setLoading(true);
         Ajax(null, token.token, 'questionnaire', 'get')
             .then((data) => {
@@ -30,6 +34,13 @@ const QuestionnaireList = () => {
             .finally(() => {
                 setLoading(false);
             });
+    };
+
+    useEffect(() => {
+        fetchData();
+        const interval = setInterval(fetchData, 5000); // 5秒ごとにデータを取得
+
+        return () => clearInterval(interval); // クリーンアップ
     }, [token.token]);
 
     return (
@@ -43,11 +54,18 @@ const QuestionnaireList = () => {
                         <Button variant="contained" color="primary" onClick={ShowModal} style={{ marginLeft: '20px' }}>
                             + 新規登録
                         </Button>
+                        <Button variant="contained" onClick={ShowDeleteModal} style={{ marginLeft: '20px', backgroundColor: 'red' }}>
+                            削除
+                        </Button>
                     </div>
                 </div>
 
                 {showModal && (
                     <QuestionnaireModal showFlag={showModal} setShowModal={setShowModal} />
+                )}
+
+                {showDeleteModal && (
+                    <DeleteModal showFlag={showDeleteModal} setShowModal={setShowDeleteModal} queData={queData} />
                 )}
 
                 <div className={styles.questionnaireListArea}>

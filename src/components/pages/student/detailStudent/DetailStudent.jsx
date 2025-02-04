@@ -25,7 +25,12 @@ export default function DetailStudent() {
             console.log(data);
             setStudentData(data);
         } else {
-            alert("失敗")
+            swal.fire({
+                title: 'エラー',
+                text: 'エラーが発生しました。もう一度お試しください',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });              
         }
     });
 }, [token]);
