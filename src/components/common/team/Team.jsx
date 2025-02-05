@@ -6,7 +6,7 @@ import { useAuth } from '../../../context/AuthContext';
 import Ajax from '../../../hooks/Ajax';
 import ReactLoading from "react-loading";
 import AddTeamModal from '../../base/modal/addteamModal/AddTeamModal';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 export const Team = () => {
   const [isStyle, setIsStyle] = useState(true);
@@ -99,7 +99,8 @@ export const Team = () => {
         <div className={isStyle ? styles.teamCardArea : styles.teamAreaList}>
           {team.length === 0 ? (
             <article className={styles.loadingArea}>
-              <ReactLoading type='spokes' color='#37ab9d'/>
+              <CircularProgress />
+              <p>ロード中</p>
             </article>
           ) : (
             sortedTeams.length === 0 ? (
@@ -138,13 +139,6 @@ export const Team = () => {
                       <div className={isStyle ? "" : styles.innerList}>
                         <h2>{team.name ? team.name : "未設定"}</h2>
                       </div>
-                      <ul>
-                        {team.students && team.students.map((student) => (
-                          <li key={student.id}>
-                            {student.name} ({student.grade}年生)
-                          </li>
-                        ))}
-                      </ul>
                     </Link>
                   </div>
                 );

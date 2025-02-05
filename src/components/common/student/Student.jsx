@@ -58,6 +58,7 @@ export default function Student() {
       .then((data) => {
         if (data.status === "success") {
           setStudentData(data.student);
+          console.log(data.student);
         } else {
           console.log(data.status);
         }
@@ -67,12 +68,15 @@ export default function Student() {
       });
   }, [token]);
 
+  
+
+  
   // 検索機能
   const filteredStudents = studentData.filter(student => {
-    const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.number.toString().includes(searchTerm);
+    const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) || student.number.toString().includes(searchTerm);
     const matchesGrade = selectedGrade ? student.grade === selectedGrade : true;
-    const matchesTeam = selectedTeam ? student.team_id === selectedTeam : true;
+    const matchesTeam = selectedTeam ? student.teamNum === selectedTeam : true;
+    // return true
     return matchesSearch && matchesGrade && matchesTeam;
   });
 
@@ -146,7 +150,7 @@ export default function Student() {
                 label="チームフィルター"
               >
                 <MenuItem value="">全て</MenuItem>
-                {Array.from(new Set(studentData.map(student => student.team_id)))
+                {Array.from(new Set(studentData.map(student => student.teamNum)))
                   .sort((a, b) => a - b) // 数値としてソート
                   .map(team => (
                     <MenuItem key={team} value={team}>{team}</MenuItem>
@@ -195,7 +199,7 @@ export default function Student() {
                     学年 {sortKey === 'grade' && (sortDirection === 'ascending' ? '(asc)' : '(desc)')}
                   </TableCell>
                   <TableCell onClick={() => handleSort('team_id')} style={{ cursor: 'pointer' }}>
-                    チーム番号 {sortKey === 'team_id' && (sortDirection === 'ascending' ? '(asc)' : '(desc)')}
+                    チーム名 {sortKey === 'team_id' && (sortDirection === 'ascending' ? '(asc)' : '(desc)')}
                   </TableCell>
                   <TableCell>氏名</TableCell>
                   <TableCell>学籍番号</TableCell>
@@ -221,7 +225,7 @@ export default function Student() {
                     <TableRow key={item.id} component={Link} to={`/admin/student/${item.id}`}>
                       <TableCell>{item.id}</TableCell>
                       <TableCell>{item.grade}</TableCell>
-                      <TableCell>{item.team_id}</TableCell>
+                      <TableCell>{item.teamNum}</TableCell>
                       <TableCell>{item.name}</TableCell>
                       <TableCell>{item.number}</TableCell>
                       <TableCell>{item.employment_target_id}</TableCell>

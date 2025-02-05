@@ -7,7 +7,7 @@ import Ajax from '../../../hooks/Ajax';
 import EditTeamModal from '../../base/modal/editTeamModal/EditTeamModal';
 import DeleteTeamModal from '../../base/modal/deleteTeamModal/DeleteTeamModal';
 import ReactLoading from "react-loading";
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 
 export default function TeamDetail(props) {
@@ -99,8 +99,8 @@ export default function TeamDetail(props) {
                             </div>
                         </div>
                     ) : (
-                        <ReactLoading type='spokes' color='#37ab9d'/>
-                    )}
+                        <CircularProgress />
+                        )}
                     <div className={styles.teamImage}>
                         <div>
                             <span>ロゴ画像</span>

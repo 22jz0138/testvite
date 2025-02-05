@@ -97,12 +97,12 @@ const StudentAddModal = (props) => {
                             <form onSubmit={handleSubmit} className={styles.addForm}>
                                 <dl className={styles.addInnerForm}>
                                     <div className={styles.addStudentForm}>
-                                        <dt><label htmlFor="text">チーム番号</label></dt>
+                                        <dt><label htmlFor="text">所属チーム</label></dt>
                                         <dd>
-                                            <select name="teams" id="teams" className={styles.teams} onChange={inputTeamNum} required>
+                                            <select name="teams" id="teams" className={styles.teams} onChange={inputTeamNum} >
                                                 <option value="">チームを選択してください</option>
                                                 {teamData.map((team) => (
-                                                    <option key={team.id} value={team.id} label={team.name}></option>
+                                                    <option key={team.id} value={team.id} label={team.name ? team.name: team.num}></option>
                                                 ))}
                                             </select>
                                         </dd>
