@@ -119,8 +119,6 @@ export const Team = () => {
 
                 // 画像のパスを設定
                 const imagePath = `/assets/img/logo/${year}/${team.num}.png`; // 年度を使ったパス
-                console.log(imagePath);
-
                 return (
                   <div
                     key={team.id}

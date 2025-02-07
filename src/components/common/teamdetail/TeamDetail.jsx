@@ -64,7 +64,6 @@ export default function TeamDetail(props) {
                     teamData={teamDetail}
                 />
                 )}
-                {/* <EditTeamModal showFlag={showModal} setShowModal={setShowModal} propsId={props.id}/> */}
                 <div className={styles.titleAndButton}>
                     <h1> チーム情報</h1>
                     <div className={styles.buttonWrapper}>
