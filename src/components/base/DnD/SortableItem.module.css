@@ -1,7 +1,7 @@
 .quevalue{
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     width: 80%;
     height: 10%;
@@ -11,7 +11,26 @@
     
 }
 
+.surveyTitleArea{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.surveyTitleArea p {
+    font-size: 1.4rem;
+    margin: 15px;
+}
+
+.surveyTitleArea button{
+    margin: 15px 20px 0 0;
+    height: 40px;
+    background: #ff0000;
+}
+
+/* 
 .quevalue p{
     font-size: 1.2rem;
     margin: 20px;
-}
+} */
