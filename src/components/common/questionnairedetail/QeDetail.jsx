@@ -18,7 +18,6 @@ const QeDetail = () => {
   const [queTitle, setQueTitle] = useState();
   const [addFlag, setAddFlag] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true); // ローディング状態を追加
   const getId = useParams();
@@ -27,9 +26,7 @@ const QeDetail = () => {
     setShowModal(true);
   };
 
-  const ShowDeleteModal = () => {
-    setDeleteModal(true);
-  };
+
 
   useEffect(() => {
     Ajax(null, token.token, 'questionnaire', 'get')
@@ -77,7 +74,6 @@ const QeDetail = () => {
             <h2>{queTitle}</h2>
             <div>
               <Button variant="contained" color="primary" onClick={ShowModal}>+質問追加</Button>
-              <Button variant="contained" color="secondary" onClick={ShowDeleteModal}>×削除</Button>
             </div>
           </div>
         </div>
@@ -88,11 +84,11 @@ const QeDetail = () => {
           setShowModal={setShowModal} 
           items={items} 
         />
-        <DeleteModal 
+        {/* <DeleteModal 
           showFlag={deleteModal} 
           setShowModal={setDeleteModal} 
           items={items} 
-        />
+        /> */}
         {loading ? ( // ローディング中の表示
           <article className={styles.loadingArea}>
             <CircularProgress color="primary" />
