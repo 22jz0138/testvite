@@ -9,7 +9,7 @@ import swal from 'sweetalert2';
 const AddQueModal = (props) => {
   const token = useAuth();
   const queId = useParams(); // 質問登録用アンケートID
-  const maxOrder = props.items.reduce((max, item) => Math.max(max, item.order) + 1, 0); // 質問登録用orderの最大値
+  const maxOrder = props.items.reduce((max, item) => Math.max(max, item.order) + 1, 1); // 質問登録用orderの最大値
   const [inputValue, setInputValue] = useState('');
   const [selectedValue, setSelectedValue] = useState("1"); // 初期値を文字列に変更
 
@@ -24,7 +24,7 @@ const AddQueModal = (props) => {
   const closeModal = () => {
     props.setShowModal(false);
   };  
-
+  console.log(queId);
   const handleAddQue = (event) => {
     event.preventDefault();
     const req = {
@@ -46,6 +46,14 @@ const AddQueModal = (props) => {
           
         } else {
           console.error(data.message);
+          console.log(req);
+          swal.fire({
+            title: 'エラー',
+            text: 'エラーが発生しました。もう一度お試しください',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+          });
+          
         }
       })
       .catch((error) => {
