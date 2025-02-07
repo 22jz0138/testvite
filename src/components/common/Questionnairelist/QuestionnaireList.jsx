@@ -27,6 +27,7 @@ const QuestionnaireList = () => {
             .then((data) => {
                 if (data.status === "success") {
                     setQueData(data.questionnaire);
+                    console.log(data);
                 } else {
                     console.log(data.status);
                 }
@@ -38,9 +39,8 @@ const QuestionnaireList = () => {
 
     useEffect(() => {
         fetchData();
-        const interval = setInterval(fetchData, 5000); // 5秒ごとにデータを取得
-
-        return () => clearInterval(interval); // クリーンアップ
+        const interval = setInterval(fetchData, 10000);
+        return () => clearInterval(interval); 
     }, [token.token]);
 
     return (

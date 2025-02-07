@@ -34,7 +34,7 @@ export default function StDetail(props) {
     const ShowDeleteModal = () => {
         setShowDeleteModal(true);
     };
-
+    console.log(detailData);
     return (
         <>
             <div className={styles.studentDetailArea}>
@@ -46,7 +46,14 @@ export default function StDetail(props) {
                     <p>登録されている学生の情報を確認・編集します</p>
                     <small className={styles.smallp}>※編集する場合は右上のボタンを押してください</small>
                 </div>
-                <EditStudentModal showFlag={showModal} setShowModal={setShowModal} teamData={teamData} />
+                {showModal &&(
+                    <EditStudentModal 
+                    showFlag={showModal}
+                    setShowModal={setShowModal} 
+                    teamData={teamData} 
+                    studentid={detailData.student.id} />
+                )}
+                {/* */}
                 <StudentDeleteModal showFlag={showDeleteModal} setShowDeleteModal={setShowDeleteModal} data={detailData} />
                 <div className={styles.detailArea}>
                     {detailData ? (
