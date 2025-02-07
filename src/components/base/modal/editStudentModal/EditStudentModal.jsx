@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 
 
 
-const EditStudentModal = ({ showFlag, setShowModal,teamData }) => {
+const EditStudentModal = ({ showFlag, setShowModal,teamData,studentid }) => {
     const token = useAuth();
     const [putTeamNum, setPutTeamNum] = useState("");
     const [putGrade, setPutGrade] = useState("");
@@ -14,6 +14,8 @@ const EditStudentModal = ({ showFlag, setShowModal,teamData }) => {
     const [putName, setPutName] = useState("");
     const [errors, setErrors] = useState({});
     const selectData = Object.values(teamData);
+
+    console.log(teamData);
 
     const closeModal = () => {
         setShowModal(false);
@@ -37,10 +39,15 @@ const EditStudentModal = ({ showFlag, setShowModal,teamData }) => {
             return;
         }
 
-        const req = { team_id: Number(putTeamNum), number: putStudentId, grade: Number(putGrade), name: putName };
+        const req = {
+            team_id: Number(putTeamNum),
+            number: putStudentId,
+            grade: Number(putGrade),
+            name: putName 
+        };
 
-        try {
-            const data = await Ajax(null, token.token, 'student', 'put', req);
+        Ajax(null, token.token, `student/${studentid}`, 'put', req)
+        .then((data)=>{
             if (data.status === "success") {
                 closeModal();
                 swal.fire({
@@ -48,14 +55,19 @@ const EditStudentModal = ({ showFlag, setShowModal,teamData }) => {
                     text: '情報の変更が完了しました',
                     icon: 'success',
                     confirmButtonText: 'OK'
-                  });
-                  
+                });
             } else {
                 console.error(data.message);
+                console.log( );
+                swal.fire({
+                    title: 'エラー',
+                    text: 'エラー',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
             }
-        } catch (error) {
-            console.error("エラーが発生しました:", error);
-        }
+
+        });
     };
 
     const isButtonDisabled = !putStudentId || !putName || !putGrade;
