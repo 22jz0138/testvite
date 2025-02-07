@@ -11,11 +11,11 @@ const EditTeamModal = (props) => {
     const [putNum, setPutNum] = useState("");
     const [putName, setPutName] = useState("");
     const [putDetail, setPutDetail] = useState("");
+    const [teamGrade, setTeamGrade] = useState('');
     const [logoFile, setLogoFile] = useState();
     const [numError, setNumError] = useState("");
     const [nameError, setNameError] = useState("");
     const [detailError, setDetailError] = useState("");
-    const [teamGrade, setTeamGrade] = useState('');
 
     console.log(props);
     
@@ -45,8 +45,8 @@ const EditTeamModal = (props) => {
 
     const inputTeamDetail = (e) => {
         const value = e.target.value;
-        if (value.length > 100) {
-            setDetailError("詳細は100文字以内で入力してください");
+        if (value.length > 255) {
+            setDetailError("詳細は255文字以内で入力してください");
         } else {
             setDetailError("");
         }
@@ -92,13 +92,17 @@ const EditTeamModal = (props) => {
             .then(data => {
                 if (data.status === "success") {
                     closeModal();
+                    setPutNum("");
+                    setPutName("");
+                    setPutDetail("");
+                    setTeamGrade('');
+                    setLogoFile(null); 
                     swal.fire({
                         title: '完了',
                         text: '登録が完了しました！',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
-
                     console.log(data.status);
                     console.log(formData);
                 } else {
@@ -164,7 +168,7 @@ const EditTeamModal = (props) => {
                                     <textarea
                                         id="detail"
                                         onChange={inputTeamDetail}
-                                        maxLength={100}
+                                        maxLength={255}
                                         value={putDetail || props.teamData.team.detail || ""}
                                     />
                                 </dd>
@@ -197,7 +201,7 @@ const EditTeamModal = (props) => {
 const modalContent = {
     background: "white",
     width: "500px",
-    height: "720px",
+    height: "730px",
     padding: "10px",
     borderRadius: "10px",
 };
