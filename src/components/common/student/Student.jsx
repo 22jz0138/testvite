@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, CircularProgress, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, CircularProgress, TextField, Select, MenuItem, FormControl, InputLabel, Pagination } from '@mui/material';
 import { Link } from "react-router-dom";
 import Ajax from '../../../hooks/Ajax';
 import { useAuth } from '../../../context/AuthContext';
@@ -19,6 +19,8 @@ export default function Student() {
   const [sortDirection, setSortDirection] = useState('ascending');
   const [selectedGrade, setSelectedGrade] = useState('');
   const [selectedTeam, setSelectedTeam] = useState('');
+  const [page, setPage] = useState(1); // 現在のページ
+  const rowsPerPage = 10; // 1ページあたりの学生数
 
   const ShowModal = () => {
     setLoading(true);
@@ -68,15 +70,11 @@ export default function Student() {
       });
   }, [token]);
 
-  
-
-  
   // 検索機能
   const filteredStudents = studentData.filter(student => {
     const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) || student.number.toString().includes(searchTerm);
     const matchesGrade = selectedGrade ? student.grade === selectedGrade : true;
     const matchesTeam = selectedTeam ? student.teamNum === selectedTeam : true;
-    // return true
     return matchesSearch && matchesGrade && matchesTeam;
   });
 
@@ -93,6 +91,13 @@ export default function Student() {
     }
     return 0;
   });
+
+  // ページネーション用の学生リスト
+  const paginatedStudents = sortedStudents.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+  const handlePageChange = (event, newPage) => {
+    setPage(newPage);
+  };
 
   const handleSort = (key) => {
     const direction = (sortKey === key && sortDirection === 'ascending') ? 'descending' : 'ascending';
@@ -214,30 +219,39 @@ export default function Student() {
                       <p>ロード中...</p>
                     </TableCell>
                   </TableRow>
-                ) : sortedStudents.length === 0 ? (
+                ) : paginatedStudents.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={6} style={{ textAlign: 'center' }}>
                       <p>該当するデータは見つかりませんでした。</p>
                     </TableCell>
                   </TableRow>
                 ) : (
-                  sortedStudents.map((item) => (
+                  paginatedStudents.map((item) => (
                     <TableRow key={item.id} component={Link} to={`/admin/student/${item.id}`}>
-                      <TableCell>{item.id}</TableCell>
-                      <TableCell>{item.grade}</TableCell>
-                      <TableCell>{item.teamNum}</TableCell>
-                      <TableCell>{item.name}</TableCell>
-                      <TableCell>{item.number}</TableCell>
-                      <TableCell>{item.employment_target_id}</TableCell>
-                    </TableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+                    <TableCell>{item.id}</TableCell>
+                    <TableCell>{item.grade}</TableCell>
+                    <TableCell>{item.teamNum}</TableCell>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.number}</TableCell>
+                    <TableCell>{item.employment_target_id}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      {/* Paginationコンポーネントの追加 */}
+      <Pagination
+        count={Math.ceil(sortedStudents.length / rowsPerPage)}
+        page={page}
+        onChange={handlePageChange}
+        variant="outlined"
+        shape="rounded"
+        style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+        className={styles.pageNation}
+      />
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 }
-

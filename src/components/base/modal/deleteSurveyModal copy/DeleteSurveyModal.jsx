@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 
 const DeleteSurveyModal = ({ showFlag, setShowModal, itemid }) => {
   const token = useAuth();
-  console.log(itemid);
+  // console.log(itemid);
 
   const closeModal = () => {
     setShowModal(false);

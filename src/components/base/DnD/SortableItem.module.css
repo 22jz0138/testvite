@@ -11,6 +11,11 @@
     
 }
 
+.queArea{
+    display: flex;
+    justify-content: center;
+}
+
 .surveyTitleArea{
     width: 100%;
     height: 20%;
@@ -21,6 +26,11 @@
 .surveyTitleArea p {
     font-size: 1.4rem;
     margin: 15px;
+    color: #435063;
+}
+
+.surveyTitleArea p * {
+    font-size: 1.1rem;
 }
 
 .surveyTitleArea button{
@@ -28,9 +38,3 @@
     height: 40px;
     background: #ff0000;
 }
-
-/* 
-.quevalue p{
-    font-size: 1.2rem;
-    margin: 20px;
-} */

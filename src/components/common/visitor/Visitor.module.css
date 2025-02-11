@@ -58,3 +58,7 @@
     max-height: 80%;
     overflow-y: scroll;
 }
+
+.pageNation button{
+    border-radius: 10px;
+}

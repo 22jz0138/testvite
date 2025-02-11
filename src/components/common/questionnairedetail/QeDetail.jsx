@@ -26,8 +26,6 @@ const QeDetail = () => {
     setShowModal(true);
   };
 
-
-
   useEffect(() => {
     Ajax(null, token.token, 'questionnaire', 'get')
       .then((data) => {
@@ -56,25 +54,30 @@ const QeDetail = () => {
   }, [token.token, getId.id]);
 
   const handleSort = useCallback((dragIndex, hoverIndex) => {
+    console.log("動いた",items);
+    
     setItems((prevRows) =>
       update(prevRows, {
         $splice: [
           [dragIndex, 1],
           [hoverIndex, 0, prevRows[dragIndex]]
         ]
-      })
+      }),
+      // console.log("動いたあと",prevRows)
     );
+    
   }, []);
-
+  
   return (
     <>
       <div className={styles.queDetailWrapper}>
         <div className={styles.chAreaWrapper}>
-          <div className={styles.makeChangesArea}>
+          <div className={styles.titleArea}>
             <h2>{queTitle}</h2>
-            <div>
-              <Button variant="contained" color="primary" onClick={ShowModal}>+質問追加</Button>
-            </div>
+          </div>
+          <div className={styles.buttonArea} >
+            <Button variant="contained" color="primary">変更の確定</Button>
+            <Button variant="contained" color="secondary" onClick={ShowModal}>+質問追加</Button>
           </div>
         </div>
         <AddQueModal 
@@ -84,11 +87,6 @@ const QeDetail = () => {
           setShowModal={setShowModal} 
           items={items} 
         />
-        {/* <DeleteModal 
-          showFlag={deleteModal} 
-          setShowModal={setDeleteModal} 
-          items={items} 
-        /> */}
         {loading ? ( // ローディング中の表示
           <article className={styles.loadingArea}>
             <CircularProgress color="primary" />
@@ -105,6 +103,7 @@ const QeDetail = () => {
               <div className={styles.queArea}>
                 <DndProvider backend={HTML5Backend}>    
                   <ul className={styles.dndArea}>
+                    {  console.log(items)}
                     {items && (items.map((item, index) => (
                       <SortableItem
                         key={item.id}

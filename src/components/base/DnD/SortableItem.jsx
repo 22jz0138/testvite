@@ -77,14 +77,15 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
     const key = answer.answer; 
     answerCount[key] = (answerCount[key] || 0) + 1; 
   });
-  console.log(item.id);
+  // console.log(item.id);
   // 件数の合計を計算
   const totalAnswers = Object.values(answerCount).reduce((acc, count) => acc + count, 0);
 
   const ShowDeleteModal = () => {
     setDeleteModal(true);
   };
-
+  // console.log(item);
+  
   return (
     <>
       <DeleteSurveyModal 
@@ -95,8 +96,8 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
       <li ref={ref} style={{ opacity }} data-handler-id={handlerId} className={styles.quevalue}>
       <div className={styles.surveyTitleArea}>
         <p>
-          {item.question} ({item.isstring === 1 ? (item.text_answers ? item.text_answers.length : 0) : totalAnswers}件)
-        </p> {/* 条件に応じて件数を表示 */}
+          {item.question} <small>回答件数</small>({item.isstring === 1 ? (item.text_answers ? item.text_answers.length : 0) : totalAnswers}件)
+        </p>
         <Button variant="contained" color="secondary" onClick={ShowDeleteModal}>×削除</Button>
       </div>
       {loading ? (
@@ -104,7 +105,7 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
           <CircularProgress color="primary" />
         </div>
       ) : item.isstring === 1 ? (
-        <div>
+        <div className={styles.queArea}>
           <TableContainer component={Paper} style={{ maxHeight: 300, overflowY: 'auto', maxWidth: '70%',minWidth:"1200px" }}>
             <Table stickyHeader>
               <TableHead>
