@@ -28,10 +28,10 @@ const StudentCSVAddModal = (props) => {
                 skipEmptyLines: true,
                 complete: (results) => {
                     setData(results.data); 
-                    console.log(results);
+                    // console.log(results);
                 },
                 error: (error) => {
-                    console.error("CSVパース中にエラー:", error);
+                    // console.error("CSVパース中にエラー:", error);
                 }
             });
         } else {
@@ -49,17 +49,17 @@ const StudentCSVAddModal = (props) => {
                     grade: Number(row['学年']),
                     name: row['氏名'],
                 };
-                console.log(req);
-                console.log(token);
+                // console.log(req);
+                // console.log(token);
                 
                 const response = await Ajax(null, token.token, 'student', 'post', req);
                 if(response.status === "success") {
-                    console.log("登録成功");
+                    // console.log("登録成功");
                 } else {
-                    console.log(response.status);
-                    console.log(response.message);
-                    console.log(token.token);
-                    console.log(req);
+                    // console.log(response.status);
+                    // console.log(response.message);
+                    // console.log(token.token);
+                    // console.log(req);
                 }   
             }
             swal.fire({
@@ -69,7 +69,7 @@ const StudentCSVAddModal = (props) => {
                 confirmButtonText: 'OK'});
             closeModal();
         } catch (error) {
-            console.error("エラーが発生しました:", error);
+            // console.error("エラーが発生しました:", error);
         }
     };
 

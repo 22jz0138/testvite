@@ -37,10 +37,10 @@ const AddTeamModal = (props) => {
         const file = e.target.files[0];
         if (file) {
             setLogoFileName(file);
-            console.log(file);
+            // console.log(file);
         }
     };
-    console.log(props);
+    // console.log(props);
     
 
     const handleAddTeam = (event) => {

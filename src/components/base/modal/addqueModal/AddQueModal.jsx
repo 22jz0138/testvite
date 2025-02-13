@@ -24,7 +24,7 @@ const AddQueModal = (props) => {
   const closeModal = () => {
     props.setShowModal(false);
   };  
-  console.log(queId);
+  // console.log(queId);
   const handleAddQue = (event) => {
     event.preventDefault();
     const req = {
@@ -46,7 +46,7 @@ const AddQueModal = (props) => {
           
         } else {
           console.error(data.message);
-          console.log(req);
+          // console.log(req);
           swal.fire({
             title: 'エラー',
             text: 'エラーが発生しました。もう一度お試しください',

@@ -33,7 +33,7 @@ const QeDetail = () => {
           const filt = data.questionnaire.find(item => item.id === parseInt(getId.id, 10));
           setQueTitle(filt.title);
         } else {
-          console.log(data.status);
+          // console.log(data.status);
         }
       });
   }, [token.token, getId.id]); 
@@ -45,7 +45,7 @@ const QeDetail = () => {
         if (data.status === "success") {
           setItems(data.questionnaire);
         } else {
-          console.log(data.status);
+          // console.log(data.status);
         }
       })
       .finally(() => {
@@ -127,7 +127,7 @@ const QeDetail = () => {
               <div className={styles.queArea}>
                 <DndProvider backend={HTML5Backend}>    
                   <ul className={styles.dndArea}>
-                    {  console.log(items)}
+                    {/* {  console.log(items)} */}
                     {items && (items.map((item, index) => (
                       <SortableItem
                         key={item.id}

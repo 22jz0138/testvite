@@ -15,7 +15,7 @@ const questionnaireModal = (props) => {
   const inputTitle = (e) => {
     setTitle(e.target.value);
     setInputValue(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const closeModal = () => {
@@ -30,11 +30,11 @@ const questionnaireModal = (props) => {
     Ajax(null, token.token, `questionnaire`, 'post', req)
     .then((data) => {
         if(data.status === "success") {
-            console.log("dekite");
+            // console.log("dekite");
             closeModal();
             navigate('/admin/question');
         } else {
-            console.log(data.status);
+            // console.log(data.status);
         }
         setShowModal(true);
     });
