@@ -67,6 +67,17 @@ const QeDetail = () => {
     );
     
   }, []);
+
+  const handlePostOrder = () =>{
+    for (let i = 0; i < items.length; i++) {
+      let req = {
+        id : items.questionnaireid,
+        
+      }
+      Ajax(null, token.token, `questionnaire/${i}`, 'put')
+    }
+  };
+
   
   return (
     <>
@@ -76,7 +87,7 @@ const QeDetail = () => {
             <h2>{queTitle}</h2>
           </div>
           <div className={styles.buttonArea} >
-            <Button variant="contained" color="primary">変更の確定</Button>
+            <Button variant="contained" color="primary" onClick={handlePostOrder}>変更の確定</Button>
             <Button variant="contained" color="secondary" onClick={ShowModal}>+質問追加</Button>
           </div>
         </div>

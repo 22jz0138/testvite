@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import CircularProgress from "@mui/material/CircularProgress";
 import styles from './SortableItem.module.css';
 import DeleteSurveyModal from "../modal/deleteSurveyModal copy/DeleteSurveyModal";
+import EditSurveryModal from "../modal/editsurveryModal/EditSurveryModal";
 
 const ItemTypes = {
   CARD: "card"
@@ -16,6 +17,8 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
   const ref = useRef(null);
   const [loading, setLoading] = useState(false);
   const [showDeleteModal, setDeleteModal] = useState(false);
+  const [showEditModal, setEditModal] = useState(false);
+
 
 
   const [{ handlerId }, drop] = useDrop({
@@ -85,7 +88,9 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
     setDeleteModal(true);
   };
   // console.log(item);
-  
+  const ShowEditModal = () => {
+    setEditModal(true);
+  };
   return (
     <>
       <DeleteSurveyModal 
@@ -93,12 +98,22 @@ export const SortableItem = ({ item, index, onSortEnd }) => {
         setShowModal={setDeleteModal} 
         itemid={item.id}
       />
+      <EditSurveryModal
+        showFlag={showEditModal} 
+        setShowModal={setEditModal} 
+        itemid={item.id}
+        itemTitle={item.question}
+        items={item}
+      />
       <li ref={ref} style={{ opacity }} data-handler-id={handlerId} className={styles.quevalue}>
       <div className={styles.surveyTitleArea}>
         <p>
           {item.question} <small>回答件数</small>({item.isstring === 1 ? (item.text_answers ? item.text_answers.length : 0) : totalAnswers}件)
         </p>
-        <Button variant="contained" color="secondary" onClick={ShowDeleteModal}>×削除</Button>
+        <div className={styles.buttonArea}>
+          <Button  variant="contained" color="primary" onClick={ShowEditModal}>編集</Button>
+          <Button variant="contained" color="secondary" onClick={ShowDeleteModal} style={{backgroundColor:"#ff0000"}} >×削除</Button>
+        </div>
       </div>
       {loading ? (
         <div style={{ textAlign: 'center', margin: '20px 0' }}>

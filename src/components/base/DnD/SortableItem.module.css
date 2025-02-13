@@ -33,8 +33,10 @@
     font-size: 1.1rem;
 }
 
-.surveyTitleArea button{
-    margin: 15px 20px 0 0;
-    height: 40px;
-    background: #ff0000;
+.buttonArea{
+    margin: 15px 40px 0 0;
+    /* height: 40px; */
+}
+.buttonArea button{
+    margin-left: 10px;
 }
