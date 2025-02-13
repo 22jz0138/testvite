@@ -27,9 +27,9 @@ const QuestionnaireList = () => {
             .then((data) => {
                 if (data.status === "success") {
                     setQueData(data.questionnaire);
-                    console.log(data);
+                    // console.log(data);
                 } else {
-                    console.log(data.status);
+                    // console.log(data.status);
                 }
             })
             .finally(() => {

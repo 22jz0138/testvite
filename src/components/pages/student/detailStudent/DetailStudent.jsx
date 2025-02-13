@@ -17,12 +17,12 @@ export default function DetailStudent() {
     const {checkbool,toggleSidebar} = useSetSidebar();
     const mypath = useSetUrlPath();
     const [studentData,setStudentData] = useState();
-    console.log(id);
+    // console.log(id);
     useEffect(() => {
     Ajax(null, token.token, `student/${id}`, 'get')
     .then((data) => {
         if (data.status === "success") {
-            console.log(data);
+            // console.log(data);
             setStudentData(data);
         } else {
             swal.fire({

@@ -76,8 +76,14 @@ const StudentAddModal = (props) => {
                         confirmButtonText: 'OK'
                     });                      
                 } else {
-                    console.log(data.status);
-                    console.log(data.message);
+                    swal.fire({
+                        title: 'エラー',
+                        text: 'エラーが発生しました',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });      
+                    // console.log(data.status);
+                    // console.log(data.message);
                 }
             });
     };

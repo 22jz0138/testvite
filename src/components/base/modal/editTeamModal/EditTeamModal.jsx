@@ -17,7 +17,7 @@ const EditTeamModal = (props) => {
     const [nameError, setNameError] = useState("");
     const [detailError, setDetailError] = useState("");
 
-    console.log(props);
+    // console.log(props);
     
     const closeModal = () => {
         props.setShowModal(false);
@@ -61,8 +61,8 @@ const EditTeamModal = (props) => {
         const file = e.target.files[0];
         if (file) {
             setLogoFile(file);
-            console.log(file);
-            console.log(logoFile);
+            // console.log(file);
+            // console.log(logoFile);
         }
     };
 
@@ -103,13 +103,13 @@ const EditTeamModal = (props) => {
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
-                    console.log(data.status);
-                    console.log(formData);
+                    // console.log(data.status);
+                    // console.log(formData);
                 } else {
-                    console.log(data.status);
-                    console.log(data.message);
-                    console.log(token.token);
-                    console.log(formData);
+                    // console.log(data.status);
+                    // console.log(data.message);
+                    // console.log(token.token);
+                    // console.log(formData);
                 }
             })
             .catch(error => {

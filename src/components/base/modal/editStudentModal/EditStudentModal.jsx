@@ -15,7 +15,7 @@ const EditStudentModal = ({ showFlag, setShowModal,teamData,studentid }) => {
     const [errors, setErrors] = useState({});
     const selectData = Object.values(teamData);
 
-    console.log(teamData);
+    // console.log(teamData);
 
     const closeModal = () => {
         setShowModal(false);
@@ -58,7 +58,6 @@ const EditStudentModal = ({ showFlag, setShowModal,teamData,studentid }) => {
                 });
             } else {
                 console.error(data.message);
-                console.log( );
                 swal.fire({
                     title: 'エラー',
                     text: 'エラー',

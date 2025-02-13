@@ -27,8 +27,8 @@ const DeleteSurveyModal = ({ showFlag, setShowModal, itemid }) => {
           confirmButtonText: 'OK'
         });
       } else {
-        console.log(data);
-        console.log(itemid);
+        // console.log(data);
+        // console.log(itemid);
         swal.fire({
           title: 'エラー',
           text: `${data.message}`,

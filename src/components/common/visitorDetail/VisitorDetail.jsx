@@ -27,7 +27,7 @@ const VisitorDetail = () => {
         if (data.status === "success") {
           setVisitorDetail(data);
         } else {
-          console.log(data.status);
+          // console.log(data.status);
         }
       });
   };
@@ -38,7 +38,7 @@ const VisitorDetail = () => {
         if (data.status === "success") {
           setTeamData(data);
         } else {
-          console.log(data.status);
+          // console.log(data.status);
         }
       });
   };

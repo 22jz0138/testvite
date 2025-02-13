@@ -18,10 +18,10 @@ const VisitorCounter = () => {
             if (data.status === "success") {
                 setVisitorData(data.visitor.length); 
                 startCountAnimation(data.visitor.length);
-                console.log(data.visitor.length);
+                // console.log(data.visitor.length);
                 
             } else {
-              console.log(data.status);
+              // console.log(data.status);
             }
           });
       };
@@ -33,7 +33,7 @@ const VisitorCounter = () => {
         const stepTime = duration / targetCount;
 
         const interval = setInterval(() => {
-            currentCount += 1;
+            currentCount = 0;
             setVisitorData(currentCount);
             if (currentCount >= targetCount) {
                 clearInterval(interval);

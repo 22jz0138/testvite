@@ -22,7 +22,7 @@ export default function StDetail(props) {
             if (data.status === "success") {
             setTeamData(data.team);
             } else {
-            console.log(data.status);
+            // console.log(data.status);
             }
             setShowModal(true);
         })
@@ -34,7 +34,7 @@ export default function StDetail(props) {
     const ShowDeleteModal = () => {
         setShowDeleteModal(true);
     };
-    console.log(detailData);
+    // console.log(detailData);
     return (
         <>
             <div className={styles.studentDetailArea}>

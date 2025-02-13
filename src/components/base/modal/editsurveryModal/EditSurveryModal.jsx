@@ -8,7 +8,7 @@ const EditSurveryModal = ({ showFlag, setShowModal, itemid,itemTitle,items }) =>
     const token = useAuth();
     const [putTitle,setPutTitle] = useState("");
     const [nameError, setNameError] = useState("");
-console.log(items);
+// console.log(items);
 // console.log(itemid);
     useEffect(() =>{
         setPutTitle(itemTitle)
@@ -50,8 +50,8 @@ const handlePut = async (ev) => {
                 confirmButtonText: 'OK'
             });
         } else {
-            console.log(data);
-            console.log(itemid);
+            // console.log(data);
+            // console.log(itemid);
             swal.fire({
                 title: 'エラー',
                 text: `${data.message}`,

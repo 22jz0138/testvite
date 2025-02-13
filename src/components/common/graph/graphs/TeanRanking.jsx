@@ -22,8 +22,8 @@ const TeanRanking = () => {
                     setRatingItem(sortedData);
                     // console.log(sortedData);
                 } else {
-                    console.log(data.status);
-                    console.log(data.message);
+                    // console.log(data.status);
+                    // console.log(data.message);
                 }
             });
     }, []);
