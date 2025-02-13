@@ -54,7 +54,7 @@ const QeDetail = () => {
   }, [token.token, getId.id]);
 
   const handleSort = useCallback((dragIndex, hoverIndex) => {
-    console.log("動いた",items);
+    // console.log("動いた",items);
     
     setItems((prevRows) =>
       update(prevRows, {
@@ -69,13 +69,26 @@ const QeDetail = () => {
   }, []);
 
   const handlePostOrder = () =>{
-    for (let i = 0; i < items.length; i++) {
+    items.forEach((item, index) => {
       let req = {
-        id : items.questionnaireid,
-        
-      }
-      Ajax(null, token.token, `questionnaire/${i}`, 'put')
-    }
+        questionnaire_id: Number(item['questionnaire_id']),
+        order: index + 1,
+        question: item.question,
+        isstring: Boolean(item.isstring)
+      };
+      
+      Ajax(null, token.token, `survey/${item['id']}`, 'put', req)
+        .then((data) => {
+          if (data.status === "success") {
+            console.log("完了！");
+          } else {
+            console.log(data);
+          }
+        });
+    });
+    
+    
+
   };
 
   

@@ -36,7 +36,9 @@ const TeanRanking = () => {
                         <span>
                             {index === 0 ? <FontAwesomeIcon icon={faCrown}size='lg' /> : `${index + 1}位 `}
                         </span>
-                        <p className={styles.rankingName}>{item.name}</p>
+                        <div className={styles.rankingName}>
+                             <p>{item.name}</p>
+                        </div>
                         <p className={styles.rankingScore}> {item.total}pt</p>
                     </div>
                 ))}
