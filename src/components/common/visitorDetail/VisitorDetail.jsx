@@ -67,7 +67,8 @@ const VisitorDetail = () => {
   };
 
   const ratingsData = getRatingsData();
-
+  console.log(ratingsData);
+  
   return (
     <>
       <div className={styles.visitorDetailArea}>
@@ -93,8 +94,8 @@ const VisitorDetail = () => {
                   <p>{visitorDetail.visitor.email || '情報がありません'}</p>
                 </div>
                 <div>
-                  <span>法人番号</span>
-                  <p>{visitorDetail.visitor.employment_target_id || '詳細情報がありません'}</p>
+                  <span>入場時刻</span>
+                  <p>{visitorDetail.visitor.created_at || '詳細情報がありません'}</p>
                 </div>
               </div>
             </div>

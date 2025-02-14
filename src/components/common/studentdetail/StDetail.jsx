@@ -12,7 +12,7 @@ export default function StDetail(props) {
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [teamData, setTeamData] = useState([]);
-
+    
     const detailData = props.stData;
 
     const ShowModal = () => {

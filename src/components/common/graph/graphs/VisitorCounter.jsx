@@ -33,7 +33,7 @@ const VisitorCounter = () => {
         const stepTime = duration / targetCount;
 
         const interval = setInterval(() => {
-            currentCount = 0;
+            currentCount += 1;
             setVisitorData(currentCount);
             if (currentCount >= targetCount) {
                 clearInterval(interval);

@@ -22,6 +22,11 @@ const QeDetail = () => {
   const [loading, setLoading] = useState(true); // ローディング状態を追加
   const getId = useParams();
 
+  console.log(token
+  
+  );
+  
+
   const ShowModal = () => {
     setShowModal(true);
   };
